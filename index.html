@@ -960,6 +960,98 @@
     }
 
     /* ============================================================
+       RESUME DOWNLOAD BANNER
+    ============================================================ */
+    .resume-banner {
+      background: var(--bg-secondary);
+      border-top: 1px solid rgba(217,168,108,0.15);
+      border-bottom: 1px solid rgba(217,168,108,0.15);
+      padding: clamp(50px, 7vw, 90px) clamp(20px, 5vw, 60px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .resume-banner-left {}
+    .resume-banner-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 14px;
+    }
+    .resume-banner-eyebrow::before {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--accent-gold);
+    }
+    .resume-banner-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-light);
+    }
+    .resume-banner-title em {
+      font-style: italic;
+      color: var(--accent-gold);
+    }
+    .resume-banner-sub {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: var(--text-on-dark);
+      line-height: 1.7;
+    }
+    .resume-dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 44px;
+      background: var(--accent-gold);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      box-shadow: 0 12px 40px rgba(217,168,108,0.3);
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .resume-dl-btn:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 18px 50px rgba(255,138,101,0.4);
+      transform: translateY(-3px);
+      gap: 20px;
+    }
+    .resume-dl-icon {
+      font-size: 1.2rem;
+    }
+    .resume-file-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .resume-file-dot {
+      width: 6px; height: 6px;
+      background: var(--accent-gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .resume-file-meta {
+      font-size: 0.72rem;
+      color: var(--text-on-dark);
+      letter-spacing: 0.06em;
+    }
+
+    /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media (max-width: 900px) {
@@ -998,6 +1090,7 @@
       <li><a href="#skills" id="nav-skills">Skills</a></li>
       <li><a href="#work" id="nav-work">Work</a></li>
       <li><a href="#showcase" id="nav-showcase">Showcase</a></li>
+      <li><a href="#resume-section" id="nav-resume">Resume</a></li>
       <li><a href="#contact" class="nav-cta" id="nav-contact">Let's Talk</a></li>
     </ul>
   </nav>
@@ -1451,6 +1544,29 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Resume Download Banner -->
+    <div class="resume-banner reveal" id="resume-section">
+      <div class="resume-banner-left">
+        <div class="resume-banner-eyebrow">Resume</div>
+        <h2 class="resume-banner-title">
+          Download My<br/>
+          <em>Full Resume.</em>
+        </h2>
+        <p class="resume-banner-sub">
+          B.Tech CSE · UI/UX Designer · Visual Artist · Python Developer
+        </p>
+        <div class="resume-file-info">
+          <div class="resume-file-dot"></div>
+          <span class="resume-file-meta">PDF · 2 Pages · Updated June 2026</span>
+        </div>
+      </div>
+      <a href="Prajwal_Sharma_Resume.pdf" download="Prajwal_Sharma_Resume.pdf"
+         class="resume-dl-btn" id="resume-download-btn" aria-label="Download Prajwal Sharma Resume PDF">
+        <span class="resume-dl-icon">↓</span>
+        Download Resume
+      </a>
     </div>
 
     <!-- Footer Bar -->
