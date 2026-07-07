@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TradeSight AI Case Study | Prajwal Sharma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:          #FAFAF8;
+      --bg-card:     #FFFFFF;
+      --border:      rgba(0,0,0,0.08);
+      --text:        #111111;
+      --text-2:      #555555;
+      --text-3:      #888888;
+      --accent:      #C9903D;
+      --accent-soft: rgba(201,144,61,0.12);
+      --radius:      10px;
+      --font:        'Inter', system-ui, sans-serif;
+      --font-serif:  'Playfair Display', Georgia, serif;
+    }
+    [data-theme="dark"] {
+      --bg:          #0E0E0E;
+      --bg-card:     #1A1A1A;
+      --border:      rgba(255,255,255,0.08);
+      --text:        #F0F0F0;
+      --text-2:      #AAAAAA;
+      --text-3:      #666666;
+      --accent:      #D9A86C;
+      --accent-soft: rgba(217,168,108,0.12);
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      padding: 40px 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 32px;
+      transition: gap 0.2s;
+    }
+    .back-btn:hover {
+      gap: 12px;
+    }
+    .header {
+      margin-bottom: 40px;
+    }
+    .meta {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-2);
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+    .featured-img {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    p {
+      color: var(--text-2);
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
+    ul {
+      margin-bottom: 20px;
+      padding-left: 20px;
+      color: var(--text-2);
+      font-size: 0.95rem;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 4px;
+    }
+    .footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-3);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="index.html" class="back-btn">← Back to Portfolio</a>
+    
+    <header class="header">
+      <div class="meta">02 · Case Study</div>
+      <h1 class="title">"TradeSight AI" — Financial Analytics</h1>
+      <p class="subtitle">Designing an elegant, high-performance brand identity and dashboard system for modern asset forecasting.</p>
+      
+      <div class="tag-row">
+        <span class="tag">Brand Identity</span>
+        <span class="tag">Python Backend</span>
+        <span class="tag">Data Analysis</span>
+        <span class="tag">FinTech UX</span>
+      </div>
+    </header>
+
+    <img src="tradesight_project.png" class="featured-img" alt="TradeSight AI branding"/>
+
+    <h2 class="section-title">The Challenge</h2>
+    <p>Financial trading dashboards are typically cluttered, confusing, and dry. Most platforms use rigid tables and clinical default color combinations (standard dark blues, greys, and reds) that lack personality and can intimidate newer retail traders.</p>
+    <p>Our team set out to build **TradeSight AI** for the **Yukti Hackathon**—an AI-driven market analysis engine that translates live news and price feeds into a premium, curated visual brand. The challenge was combining complex data charts with an premium, warm chocolate-and-gold luxury aesthetic.</p>
+
+    <h2 class="section-title">Brand Identity &amp; Aesthetic</h2>
+    <p>We avoided the typical generic "tech blue" color palette. Instead, we developed a system based on premium gold highlights and dark warm chocolate tones. Gold conveys prosperity and premium quality, while the deep chocolate provides soft contrast that feels high-end, elegant, and comfortable to view over long periods.</p>
+
+    <h2 class="section-title">Key Features</h2>
+    <ul>
+      <li><strong>AI Sentiment Analysis:</strong> Uses Python natural language processing (NLP) to scan market articles and assign real-time positive/negative scores to index components.</li>
+      <li><strong>Predictive Candlestick Charts:</strong> Machine learning forecasts future price bands, drawing clean indicator overlays directly onto the chart.</li>
+      <li><strong>Luxury Dashboard Design:</strong> Minimal borders, generous spacing, and custom font sets (Inter paired with elegant serif quotes) to create an editorial feel.</li>
+    </ul>
+
+    <h2 class="section-title">Technical Implementation</h2>
+    <p>The backend was written in Python to fetch real-time financial datasets. We used standard prediction models to run analysis. The frontend dashboard was built using pure, clean responsive styles to keep load speeds ultra-fast.</p>
+
+    <footer class="footer">
+      Designed with precision by Prajwal Sharma. © 2026 All Rights Reserved.
+    </footer>
+  </div>
+
+  <script>
+    const saved = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+  </script>
+</body>
+</html>

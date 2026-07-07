@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VIPER Case Study | Prajwal Sharma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:          #FAFAF8;
+      --bg-card:     #FFFFFF;
+      --border:      rgba(0,0,0,0.08);
+      --text:        #111111;
+      --text-2:      #555555;
+      --text-3:      #888888;
+      --accent:      #C9903D;
+      --accent-soft: rgba(201,144,61,0.12);
+      --radius:      10px;
+      --font:        'Inter', system-ui, sans-serif;
+      --font-serif:  'Playfair Display', Georgia, serif;
+    }
+    [data-theme="dark"] {
+      --bg:          #0E0E0E;
+      --bg-card:     #1A1A1A;
+      --border:      rgba(255,255,255,0.08);
+      --text:        #F0F0F0;
+      --text-2:      #AAAAAA;
+      --text-3:      #666666;
+      --accent:      #D9A86C;
+      --accent-soft: rgba(217,168,108,0.12);
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      padding: 40px 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 32px;
+      transition: gap 0.2s;
+    }
+    .back-btn:hover {
+      gap: 12px;
+    }
+    .header {
+      margin-bottom: 40px;
+    }
+    .meta {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-2);
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+    .featured-img {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    p {
+      color: var(--text-2);
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
+    ul {
+      margin-bottom: 20px;
+      padding-left: 20px;
+      color: var(--text-2);
+      font-size: 0.95rem;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 4px;
+    }
+    .footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-3);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="index.html" class="back-btn">← Back to Portfolio</a>
+    
+    <header class="header">
+      <div class="meta">01 · Case Study</div>
+      <h1 class="title">"VIPER" — AI Security Interface</h1>
+      <p class="subtitle">Designing a tactical dashboard for real-time threat response and perimeter monitoring.</p>
+      
+      <div class="tag-row">
+        <span class="tag">UI/UX Design</span>
+        <span class="tag">Military Interface</span>
+        <span class="tag">Dark Mode</span>
+        <span class="tag">Figma</span>
+      </div>
+    </header>
+
+    <img src="viper_project.png" class="featured-img" alt="VIPER Dashboard"/>
+
+    <h2 class="section-title">The Challenge</h2>
+    <p>Modern defense and cybersecurity setups deal with massive amounts of incoming sensory data. Legacy software used by surveillance teams is often cluttered, poorly organized, and difficult to navigate. Under high-stress situations, this clutter leads to cognitive overload and delayed response times.</p>
+    <p>The goal for **VIPER** was to re-imagine the commander's terminal: prioritizing speed, legibility, and offering a clean visual hierarchy to help operators make split-second decision calls.</p>
+
+    <h2 class="section-title">Design Philosophy</h2>
+    <p>We designed the dashboard in a high-contrast dark theme. Because operators work in dimly lit command centers for long shifts, dark mode reduces eye strain. The UI uses sharp cyan accents for focus states and warm amber/red indicators for severity levels, making critical alerts stand out immediately.</p>
+
+    <h2 class="section-title">Key Features</h2>
+    <ul>
+      <li><strong>Threat Prioritization Engine:</strong> Machine learning algorithms automatically categorize incoming alerts, highlighting high-probability intrusions while muting background noise.</li>
+      <li><strong>Tactical Map Overlay:</strong> An interactive geospatial map provides instantaneous coordinate mapping for active signals, removing the need to switch tabs.</li>
+      <li><strong>One-Click Response Actions:</strong> Integrated shortcuts allow operators to alert field teams, trigger sirens, or clear alarms in a single tap.</li>
+    </ul>
+
+    <h2 class="section-title">Results &amp; Impact</h2>
+    <p>Using prototyping feedback, the VIPER redesign reduced navigation steps for resolving active alarms by 40%. The minimalist layout helped users identify critical alerts up to 2.5 seconds faster compared to legacy grid interfaces.</p>
+
+    <footer class="footer">
+      Designed with precision by Prajwal Sharma. © 2026 All Rights Reserved.
+    </footer>
+  </div>
+
+  <script>
+    const saved = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+  </script>
+</body>
+</html>
