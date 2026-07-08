@@ -225,6 +225,130 @@
       .stats-row{gap:12px;}
     }
 
+    /* ── CERTIFICATES ── */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .cert-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition);
+    }
+    .cert-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card);
+    }
+    .cert-img-wrapper {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      border-bottom: 1px solid var(--border);
+    }
+    .cert-thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .cert-img-wrapper:hover .cert-thumbnail {
+      transform: scale(1.05);
+    }
+    .cert-zoom-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: opacity var(--transition);
+    }
+    .cert-img-wrapper:hover .cert-zoom-overlay {
+      opacity: 1;
+    }
+    .cert-info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .cert-org {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .cert-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .cert-date {
+      font-size: 0.72rem;
+      color: var(--text-3);
+      margin-bottom: 8px;
+    }
+    .cert-desc {
+      font-size: 0.78rem;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* Modal Style */
+    #cert-modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(14,14,14,0.95);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    #cert-modal.open {
+      display: flex;
+      opacity: 1;
+    }
+    #cert-modal-img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 6px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+    #cert-modal.open #cert-modal-img {
+      transform: scale(1);
+    }
+    #cert-modal-close {
+      position: absolute;
+      top: 20px; right: 25px;
+      color: #fff;
+      font-size: 2.2rem;
+      font-weight: 300;
+      cursor: pointer;
+    }
+
     /* ── CODE BG ANIMATION ── */
     #code-bg {
       position: fixed;
@@ -265,6 +389,7 @@
           <a href="#projects">Projects</a>
           <a href="#education">Education</a>
           <a href="#achievements">Achievements</a>
+          <a href="#certificates">Certificates</a>
           <a href="#resume-section">Resume</a>
           <a href="#contact">Contact</a>
         </div>
@@ -607,6 +732,94 @@
 </section>
 
 <!-- ════════════════════════════════
+     CERTIFICATES
+════════════════════════════════ -->
+<section id="certificates" class="section">
+  <div class="wrap">
+    <p class="sec-label fade">Credentials</p>
+    <h2 class="sec-title fade">Professional Certificates.</h2>
+    
+    <div class="certs-grid">
+      <!-- 1. TATA GenAI Simulator -->
+      <div class="cert-card fade">
+        <div class="cert-img-wrapper" onclick="openCertModal('cert_tata.png')">
+          <img src="cert_tata.png" alt="Tata GenAI Powered Data Analytics Certificate" class="cert-thumbnail"/>
+          <div class="cert-zoom-overlay">🔍 Click to Zoom</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-org">Tata Group · Forage</div>
+          <h3 class="cert-name">GenAI Powered Data Analytics Job Simulation</h3>
+          <div class="cert-date">June 9th, 2026</div>
+          <p class="cert-desc">Worked on exploratory data analysis, risk profiling, AI delinquency forecasting models, and interactive data storytelling for collections strategies.</p>
+        </div>
+      </div>
+
+      <!-- 2. Deloitte Tech Simulator -->
+      <div class="cert-card fade">
+        <div class="cert-img-wrapper" onclick="openCertModal('cert_deloitte.png')">
+          <img src="cert_deloitte.png" alt="Deloitte Technology Job Simulation Certificate" class="cert-thumbnail"/>
+          <div class="cert-zoom-overlay">🔍 Click to Zoom</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-org">Deloitte · Forage</div>
+          <h3 class="cert-name">Technology Job Simulation</h3>
+          <div class="cert-date">June 14th, 2026</div>
+          <p class="cert-desc">Completed hands-on software design, codebase coding exercises, and development task simulations aligning with modern enterprise systems.</p>
+        </div>
+      </div>
+
+      <!-- 3. Google Game Night -->
+      <div class="cert-card fade">
+        <div class="cert-img-wrapper" onclick="openCertModal('cert_google.png')">
+          <img src="cert_google.png" alt="Google Game Night Certificate" class="cert-thumbnail"/>
+          <div class="cert-zoom-overlay">🔍 Click to Zoom</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-org">Google Student Campus Program</div>
+          <h3 class="cert-name">Game Night Edition — Participation</h3>
+          <div class="cert-date">February 5th, 2026</div>
+          <p class="cert-desc">Recognized for outstanding innovation, exceptional problem-solving, and creative execution under the Google Student Campus Ambassador Program.</p>
+        </div>
+      </div>
+
+      <!-- 4. CodSoft Python Internship -->
+      <div class="cert-card fade">
+        <div class="cert-img-wrapper" onclick="openCertModal('cert_codsoft.png')">
+          <img src="cert_codsoft.png" alt="CodSoft Python Internship Certificate" class="cert-thumbnail"/>
+          <div class="cert-zoom-overlay">🔍 Click to Zoom</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-org">CodSoft</div>
+          <h3 class="cert-name">Python Programming Internship</h3>
+          <div class="cert-date">August 3rd, 2025</div>
+          <p class="cert-desc">Successfully completed 4 weeks of virtual developer internship programming tasks, building functional scripts and core algorithmic models.</p>
+        </div>
+      </div>
+
+      <!-- 5. HackWithIndia Vibe Hack 2.0 -->
+      <div class="cert-card fade">
+        <div class="cert-img-wrapper" onclick="openCertModal('cert_hackwithindia.jpg')">
+          <img src="cert_hackwithindia.jpg" alt="Vibe Hack 2.0 HackWithIndia Certificate" class="cert-thumbnail"/>
+          <div class="cert-zoom-overlay">🔍 Click to Zoom</div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-org">HackWithIndia</div>
+          <h3 class="cert-name">Vibe Hack 2.0 — BuildwithIndia</h3>
+          <div class="cert-date">June 2026</div>
+          <p class="cert-desc">Selected in the Top 5,000 teams out of 25,000+ national level participants. Attended the national hackathon finale held at the Google Office.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Certificate Zoom Modal -->
+<div id="cert-modal" onclick="closeCertModal()">
+  <span id="cert-modal-close">&times;</span>
+  <img id="cert-modal-img" src="" alt="Enlarged Certificate"/>
+</div>
+
+<!-- ════════════════════════════════
      RESUME BANNER
 ════════════════════════════════ -->
 <section id="resume-section" class="section">
@@ -774,6 +987,20 @@
       btn.textContent='Send Message →';btn.disabled=false;
     }
   });
+
+  /* Certificate Zoom Modal Logic */
+  window.openCertModal = function(src) {
+    const modal = document.getElementById('cert-modal');
+    const modalImg = document.getElementById('cert-modal-img');
+    modalImg.src = src;
+    modal.style.display = 'flex';
+    setTimeout(() => modal.classList.add('open'), 10);
+  };
+  window.closeCertModal = function() {
+    const modal = document.getElementById('cert-modal');
+    modal.classList.remove('open');
+    setTimeout(() => modal.style.display = 'none', 300);
+  };
 </script>
 <script src="bg-animation.js"></script>
 </body>
