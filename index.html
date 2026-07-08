@@ -775,67 +775,8 @@
     }
   });
 
-  /* Subtle Code Rain Background Animation */
-  (function initCodeRain() {
-    const canvas = document.getElementById('code-bg');
-    const ctx = canvas.getContext('2d');
-
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    // Dynamic, geeky snippets and characters
-    const words = [
-      "0", "1", "py", "js", "git", "ux", "art", "cmd", "def", "class", "import", 
-      "const", "let", "div", "html", "css", "lambda", "B.Tech", "CSE", "AI", "ML",
-      "print()", "return", "if", "else", "while", "for", "Design", "Prajwal"
-    ];
-
-    const fontSize = 11;
-    let columns = Math.floor(width / 22); // space out columns for clean look
-    const drops = [];
-
-    for (let i = 0; i < columns; i++) {
-      drops[i] = Math.random() * -100; // stagger start positions
-    }
-
-    function draw() {
-      // Get accent color dynamically from page styles
-      const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#D9A86C';
-      
-      ctx.clearRect(0, 0, width, height);
-      ctx.font = `bold ${fontSize}px var(--font)`;
-      ctx.fillStyle = accentColor;
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = words[Math.floor(Math.random() * words.length)];
-        const x = i * 24;
-        const y = drops[i] * fontSize;
-
-        ctx.fillText(text, x, y);
-
-        // Reset drop to top if it goes off screen or randomly
-        if (y > height && Math.random() > 0.985) {
-          drops[i] = 0;
-        }
-        
-        // Control speed of fall
-        drops[i] += 0.45;
-      }
-    }
-
-    let interval = setInterval(draw, 33);
-
-    // Handle Resize
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      columns = Math.floor(width / 22);
-      drops.length = 0;
-      for (let i = 0; i < columns; i++) {
-        drops[i] = Math.random() * -100;
-      }
-    });
-  })();
+  });
 </script>
+<script src="bg-animation.js"></script>
 </body>
 </html>
