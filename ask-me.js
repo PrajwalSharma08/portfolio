@@ -151,8 +151,26 @@ function scoreEntry(entry, tokens) {
   return (total / tokens.length) + (matchCount * 0.15);
 }
 
+// ── 0. Suggestions ────────────────────────────────────
+const suggestions = [
+  'Who is Prajwal?',
+  'What are his skills?',
+  'Tell me about VIPER',
+  'His certificates?',
+  'How to contact him?',
+  'Any hackathons?'
+];
+
 // ── 7. Knowledge Base ────────────────────────────────
 const KB = [
+  {
+    keys: ['hi', 'hello', 'hey', 'greetings', 'hola', 'namaste', 'start'],
+    ans: `Hello! 👋 How can I help you learn about Prajwal today?<br><br>You can ask me about his <b>skills, projects, certificates, internship experience, or hobbies!</b>`
+  },
+  {
+    keys: ['tell', 'details', 'more', 'info', 'information', 'everything', 'tell me'],
+    ans: `Prajwal Sharma is a B.Tech CSE student, UI/UX Designer, Visual Artist, and Python Developer! 🚀<br><br>What specific detail would you like to know?<br>• 🎨 <b>Skills & Tech Stack</b><br>• 🔐 <b>VIPER & Projects</b><br>• 🏆 <b>Certificates & Hackathons</b><br>• 🐍 <b>Internship Experience</b>`
+  },
   {
     keys: ['internship', 'intern', 'codsoft', 'placement', 'training', 'work experience'],
     ans: `Prajwal completed a <b>Python Programming Internship at CodSoft</b> 🐍<br><br>
@@ -388,6 +406,11 @@ Ask me about his <b>skills, projects, certificates, experience, or goals!</b>`
 
 // ── 8. Find best-matching answer ─────────────────────
 function getAnswer(q) {
+  if (!q || typeof q !== 'string') return `Please ask me something! Try: <i>"What are his skills?"</i> 😊`;
+  const lower = q.toLowerCase().trim();
+  if (lower === 'tell' || lower === 'tell me' || lower === 'details' || lower === 'more') {
+    return `Prajwal Sharma is a B.Tech CSE student, UI/UX Designer, Visual Artist, and Python Developer! 🚀<br><br>What would you like to explore?<br>• 🎨 <b>Skills & Tech Stack</b><br>• 🔐 <b>VIPER & Projects</b><br>• 🏆 <b>Certificates & Hackathons</b><br>• 🐍 <b>Internship Experience</b>`;
+  }
   const tokens = tokenize(q);
   if (!tokens.length) {
     return `Please ask me something! Try:<br><i>"What are his skills?"</i> or <i>"Tell me about VIPER"</i> 😊`;
@@ -398,13 +421,13 @@ function getAnswer(q) {
     if (s > bestScore) { bestScore = s; best = entry; }
   }
   if (best && bestScore >= 0.07) return best.ans;
-  return `Hmm, I'm not sure about that! 🤔<br><br>
+  return `Hmm, I'm not sure about that specific phrase! 🤔<br><br>
 Try asking things like:<br>
 • <i>"What are his skills?"</i><br>
-• <i>"Tell me about the VIPER project"</i><br>
+• <i>"Tell me about VIPER project"</i><br>
 • <i>"Is he doing any internship?"</i><br>
 • <i>"What are his hobbies?"</i><br>
-• <i>"How can I contact him?"</i><br>
-• <i>"What are his career goals?"</i><br><br>
+• <i>"How can I contact him?"</i><br><br>
 Or email directly: <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a>`;
 }
+
