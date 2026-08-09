@@ -675,9 +675,42 @@
       <div class="dock-icon" style="background:linear-gradient(135deg,#ff3b30,#a00)">📄</div>
       <div class="dock-tooltip">Resume.pdf</div>
     </div>
+    <div class="dock-sep"></div>
+    <div class="dock-item" onclick="openAskMe()" id="askme-dock">
+      <div class="dock-icon" style="background:linear-gradient(135deg,#bf5af2,#9b27d4);padding:0 14px;width:auto;gap:7px;min-width:52px;">
+        <span style="font-size:18px">✨</span>
+        <span style="font-size:12px;font-weight:600;color:#fff;white-space:nowrap">Ask Me</span>
+      </div>
+      <div class="dock-tooltip">Ask about Prajwal</div>
+    </div>
   </div>
 
 </div><!-- /desktop -->
+
+<!-- ASK ME MODAL -->
+<div id="askme-overlay" onclick="closeAskMe()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:89999;backdrop-filter:blur(4px);"></div>
+<div id="askme-panel" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.95);width:min(560px,92vw);max-height:70vh;background:rgba(22,22,30,0.98);border:1px solid rgba(255,255,255,0.12);border-radius:16px;box-shadow:0 32px 80px rgba(0,0,0,0.8),inset 0 1px 0 rgba(255,255,255,0.12);z-index:90000;display:none;flex-direction:column;overflow:hidden;transition:transform 0.22s cubic-bezier(0.34,1.3,0.64,1),opacity 0.2s;opacity:0;">
+  <!-- Panel Titlebar -->
+  <div style="height:44px;background:rgba(35,35,42,0.99);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;padding:0 16px;gap:8px;flex-shrink:0;border-radius:16px 16px 0 0;">
+    <div style="width:13px;height:13px;border-radius:50%;background:#FF5F57;cursor:pointer;" onclick="closeAskMe()"></div>
+    <div style="width:13px;height:13px;border-radius:50%;background:#FEBC2E;"></div>
+    <div style="width:13px;height:13px;border-radius:50%;background:#28C840;"></div>
+    <span style="position:absolute;left:50%;transform:translateX(-50%);font-size:13px;font-weight:500;color:rgba(255,255,255,0.42);pointer-events:none;">✨&nbsp;&nbsp;Ask Me Anything</span>
+  </div>
+  <!-- Chat Messages -->
+  <div id="chat-msgs" style="flex:1;overflow-y:auto;padding:20px 20px 10px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.15) transparent;"></div>
+  <!-- Suggested Questions -->
+  <div id="chat-suggestions" style="padding:0 20px 12px;display:flex;flex-wrap:wrap;gap:6px;"></div>
+  <!-- Input -->
+  <div style="padding:12px 16px;border-top:1px solid rgba(255,255,255,0.07);display:flex;gap:10px;align-items:center;flex-shrink:0;">
+    <input id="chat-input" type="text" placeholder="Ask anything about Prajwal..." autocomplete="off"
+      style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:13px;color:#fff;font-family:inherit;outline:none;transition:border-color 0.15s;"
+      onkeydown="if(event.key==='Enter')sendMsg()"
+      onfocus="this.style.borderColor='rgba(191,90,242,0.5)'"
+      onblur="this.style.borderColor='rgba(255,255,255,0.1)'"/>
+    <button onclick="sendMsg()" style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#bf5af2,#9b27d4);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:opacity 0.15s;" onmouseenter="this.style.opacity=0.85" onmouseleave="this.style.opacity=1">↑</button>
+  </div>
+</div>
 
 <!-- CERT MODAL -->
 <div id="cert-modal" onclick="closeCert()">
@@ -789,6 +822,132 @@
     win.style.top=Math.max(28, st+e.clientY-sy)+'px';
   });
   document.addEventListener('mouseup', () => { drag=false; win.style.transition=''; });
+
+  /* ──────────────────────────────────
+     ASK ME — KNOWLEDGE BASE & ENGINE
+  ────────────────────────────────── */
+  const KB = [
+    // Identity
+    { keys:['name','who','yourself','prajwal','introduce'], ans: `Hi! I'm <b>Prajwal Sharma</b> — a B.Tech CSE student at BBS College of Engineering & Technology, Prayagraj. I'm a UI/UX Designer, Visual Artist, and Python Developer. I love building beautiful digital experiences that blend traditional art with modern technology. 🎨` },
+    { keys:['college','university','study','education','bbs','engineering','prayagraj','btech','cse'], ans: `I'm currently pursuing <b>B.Tech in Computer Science & Engineering</b> from <b>BBS College of Engineering & Technology, Prayagraj</b> (2022–2026). It's affiliated with AKTU, UP. 📚` },
+    { keys:['skill','know','tech','stack','language','tools','work with'], ans: `My tech skills include:<br><br>🐍 <b>Python</b> · 🌐 <b>HTML5 & CSS3</b> · ⚡ <b>JavaScript</b> · 🖌️ <b>Figma</b> · 🔀 <b>Git & GitHub</b> · 💻 <b>C / C++</b> · 🗄️ <b>SQL</b><br><br>Design skills: <b>UI/UX Design, Brand Identity, Visual Art, Pencil Portraiture</b> 🎨` },
+    { keys:['python'], ans: `Yes, Python is one of my core skills! 🐍 I've used Python for AI/ML learning, scripting, and was selected for a <b>Python Programming Internship at CodSoft</b>. I'm continuously exploring Python for web backends and automation.` },
+    { keys:['figma','design','uiux','ui/ux','ui ux','interface'], ans: `Figma is my primary design tool! 🖌️ I use it for high-fidelity UI/UX design, wireframing, and prototyping. My major projects — <b>VIPER</b> and <b>TradeSight AI</b> — were both fully designed in Figma with complete design systems.` },
+    // Projects
+    { keys:['project','build','made','created','viper','tradesight','pencilastic'], ans: `I've built some exciting projects!<br><br>🔐 <b>VIPER</b> — AI Security Interface (UI/UX design, threat maps, cyber aesthetic)<br>📈 <b>TradeSight AI</b> — Fintech brand & platform (Yukti Hackathon 2024)<br>✏️ <b>Pencilastic</b> — Digital art gallery (pencil portrait showcase)<br><br>Click the project icons on the desktop to explore! 🚀` },
+    { keys:['viper'], ans: `<b>VIPER</b> is an AI-powered security monitoring system UI/UX concept. 🔐<br><br>It features threat map visualizations, real-time alert panels, active tracking indicators, and a cyber-dark aesthetic with cyan accents — designed for security operations teams. Built entirely in Figma.` },
+    { keys:['tradesight','trade sight'], ans: `<b>TradeSight AI</b> is a full fintech brand + UI system I built at <b>Yukti Hackathon 2024</b>. 📈<br><br>It includes an AI sentiment analysis dashboard, candlestick chart UI, complete brand identity with luxury gold & dark brown aesthetic, and Python backend for market analysis.` },
+    { keys:['pencilastic','pencil','art','gallery','portrait','drawing'], ans: `<b>Pencilastic</b> is my digital art gallery — showcasing my graphite pencil portrait artwork. ✏️<br><br>I've been doing pencil portraiture for years, and this project bridges my traditional art roots with web development. Clean minimal layout with elegant typography.` },
+    // Experience
+    { keys:['experience','work','job','internship','intern'], ans: `My experience highlights:<br><br>🐍 <b>CodSoft</b> — Python Programming Intern<br>🎤 <b>Nova Fest BBS College</b> — Head Coordinator (Design & Branding)<br>🏆 <b>Yukti Hackathon 2024</b> — Finalist<br>🚀 <b>Lovable Hackathon</b> — Top 5K out of 25K teams globally 🌍` },
+    { keys:['hackathon','competition','contest'], ans: `I've participated in several hackathons!<br><br>🏆 <b>Yukti Hackathon 2024</b> (AKTU) — Finalist with TradeSight AI<br>🚀 <b>Lovable Hackathon</b> — Top 5K / 25K participants globally (Top 20%!)<br>💻 <b>HackWithIndia</b> — Participant<br>🧩 <b>GFG Syntax Error</b> — Participant` },
+    { keys:['nova','fest','event','coordinator'], ans: `I was the <b>Head Coordinator</b> for Nova Fest at BBS College! 🎤<br><br>I led the complete design and branding, created all visual materials, and coordinated the entire event. It was a great experience managing a large-scale college cultural fest.` },
+    // Certificates
+    { keys:['certificate','certification','course','achieved','certified'], ans: `I have <b>8 professional certificates</b>! 🏆<br><br>🔵 <b>Tata Group</b> — Data Visualisation & Cybersecurity Analyst<br>🟢 <b>Deloitte</b> — Technology Consulting<br>🔴 <b>Google</b> — AI Essentials<br>☁️ <b>Google Cloud</b> — Generative AI Fundamentals<br>🐍 <b>CodSoft</b> — Python Internship<br>💡 <b>HackWithIndia, GFG</b> — Hackathons<br><br>See them all in the Certificates section! 📜` },
+    { keys:['google','ai','artificial intelligence','generative','cloud'], ans: `I have two Google certificates!<br><br>🔴 <b>Google AI Essentials</b> — Core AI concepts, prompt engineering, responsible AI<br>☁️ <b>Google Cloud — Generative AI Fundamentals</b> — Vertex AI, foundation models, LLMs<br><br>I'm actively learning AI/ML engineering! 🤖` },
+    { keys:['tata'], ans: `I completed two Tata Group job simulations:<br><br>📊 <b>Data Visualisation: Empowering Business with Effective Insights</b><br>🔐 <b>Cybersecurity Analyst Job Simulation</b><br><br>Great practical exposure to enterprise-level thinking! 💼` },
+    { keys:['deloitte'], ans: `I completed the <b>Deloitte Technology Consulting Job Simulation</b>! 💼<br><br>It gave me exposure to real consulting workflows, technology strategy, and business problem-solving at a global firm level.` },
+    // Contact
+    { keys:['contact','reach','email','hire','connect','collab','opportunity'], ans: `You can reach Prajwal here:<br><br>📧 <b>Email:</b> manjumanoj1177@gmail.com<br>💼 <b>LinkedIn:</b> linkedin.com/in/prajwal-sharma-015b98296<br>🐙 <b>GitHub:</b> github.com/PrajwalSharma08<br>📷 <b>Instagram:</b> @ps_artist_661<br><br>He's <b>open to internships, freelance design, and collaborations!</b> 🚀` },
+    { keys:['linkedin'], ans: `Here's Prajwal's LinkedIn: <a href="https://www.linkedin.com/in/prajwal-sharma-015b98296" target="_blank" style="color:#5cb4ff;">linkedin.com/in/prajwal-sharma-015b98296</a> 💼<br><br>Feel free to connect! He's actively looking for opportunities.` },
+    { keys:['github'], ans: `Prajwal's GitHub: <a href="https://github.com/PrajwalSharma08" target="_blank" style="color:#c8a0ff;">github.com/PrajwalSharma08</a> 🐙<br><br>Check out his repos and projects there!` },
+    // Resume
+    { keys:['resume','cv','download'], ans: `You can <b>download Prajwal's resume</b> directly from the portfolio! 📄<br><br>Just click the 📄 Resume icon in the dock at the bottom, or the "Download PDF" button inside the main window. It's always up to date!` },
+    // Personal
+    { keys:['hobby','interest','passion','like','love'], ans: `Prajwal is passionate about:<br><br>✏️ <b>Pencil Portraiture</b> — his artistic roots, graphite & graphite-on-paper<br>🎨 <b>UI/UX Design</b> — crafting premium digital experiences<br>🐍 <b>Python & AI</b> — exploring automation and ML<br>🌐 <b>Web Development</b> — building beautiful responsive interfaces<br>🎭 <b>Brand Identity</b> — creating visual systems from scratch` },
+    { keys:['location','city','from','india','up'], ans: `Prajwal is from <b>Prayagraj, Uttar Pradesh, India</b> 🇮🇳<br><br>He's studying at BBS College of Engineering & Technology there, and is available for remote internships and collaborations worldwide.` },
+    { keys:['available','open','fresher','hire'], ans: `Yes! Prajwal is <b>open to opportunities</b> 🚀<br><br>✅ Internships (UI/UX, Python, Web Dev)<br>✅ Freelance design projects<br>✅ Collaborations on creative tech projects<br>✅ Remote work<br><br>Graduating in <b>2026</b>. Reach out at manjumanoj1177@gmail.com!` },
+  ];
+
+  const suggestions = [
+    'Who is Prajwal?', 'What are his skills?', 'Tell me about VIPER',
+    'His certificates?', 'How to contact him?', 'Any hackathons?'
+  ];
+
+  function openAskMe() {
+    const panel = document.getElementById('askme-panel');
+    const overlay = document.getElementById('askme-overlay');
+    panel.style.display = 'flex';
+    overlay.style.display = 'block';
+    setTimeout(() => {
+      panel.style.opacity = '1';
+      panel.style.transform = 'translate(-50%,-50%) scale(1)';
+    }, 10);
+    // Init chat if empty
+    if (document.getElementById('chat-msgs').children.length === 0) {
+      addMsg('bot', "Hi there! 👋 I'm Prajwal's AI assistant. I can answer anything about his <b>education, skills, projects, certificates, experience</b>, or how to <b>contact</b> him. What would you like to know?");
+      renderSuggestions();
+    }
+    setTimeout(() => document.getElementById('chat-input').focus(), 300);
+  }
+
+  function closeAskMe() {
+    const panel = document.getElementById('askme-panel');
+    const overlay = document.getElementById('askme-overlay');
+    panel.style.opacity = '0';
+    panel.style.transform = 'translate(-50%,-50%) scale(0.95)';
+    setTimeout(() => {
+      panel.style.display = 'none';
+      overlay.style.display = 'none';
+    }, 200);
+  }
+
+  function addMsg(role, html) {
+    const msgs = document.getElementById('chat-msgs');
+    const el = document.createElement('div');
+    el.style.cssText = role === 'user'
+      ? 'align-self:flex-end;max-width:80%;background:rgba(191,90,242,0.18);border:1px solid rgba(191,90,242,0.28);border-radius:12px 12px 3px 12px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,0.88);line-height:1.6;'
+      : 'align-self:flex-start;max-width:86%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px 12px 12px 3px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,0.78);line-height:1.6;';
+    if (role === 'bot') {
+      // Typing effect
+      el.innerHTML = '';
+      msgs.appendChild(el);
+      msgs.scrollTop = msgs.scrollHeight;
+      let i = 0;
+      const stripped = html;
+      // Fast-render HTML with small delay
+      setTimeout(() => { el.innerHTML = stripped; msgs.scrollTop = msgs.scrollHeight; }, 120);
+    } else {
+      el.innerHTML = html;
+      msgs.appendChild(el);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+  }
+
+  function renderSuggestions() {
+    const sg = document.getElementById('chat-suggestions');
+    sg.innerHTML = suggestions.map(s =>
+      `<button onclick="askSuggestion(this,'${s}')" style="font-size:11px;font-weight:500;padding:5px 12px;border-radius:20px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);cursor:pointer;font-family:inherit;transition:all 0.15s;" onmouseenter="this.style.background='rgba(191,90,242,0.15)';this.style.borderColor='rgba(191,90,242,0.35)';this.style.color='#c8a0ff'" onmouseleave="this.style.background='rgba(255,255,255,0.05)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='rgba(255,255,255,0.6)'">${s}</button>`
+    ).join('');
+  }
+
+  function askSuggestion(btn, q) {
+    btn.parentElement.innerHTML = ''; // hide suggestions after click
+    document.getElementById('chat-input').value = q;
+    sendMsg();
+  }
+
+  function getAnswer(q) {
+    const lower = q.toLowerCase();
+    for (const entry of KB) {
+      if (entry.keys.some(k => lower.includes(k))) return entry.ans;
+    }
+    return `Hmm, I'm not sure about that specific detail! 🤔<br><br>You can always <b>email Prajwal directly</b> at <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff;">manjumanoj1177@gmail.com</a> or check his <a href="Prajwal_Sharma_Resume.pdf" target="_blank" style="color:#c8a0ff;">resume PDF</a>. Try asking about his <b>skills, projects, certificates, or education!</b>`;
+  }
+
+  function sendMsg() {
+    const inp = document.getElementById('chat-input');
+    const q = inp.value.trim();
+    if (!q) return;
+    addMsg('user', q);
+    inp.value = '';
+    const ans = getAnswer(q);
+    setTimeout(() => addMsg('bot', ans), 400);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeAskMe(); closeCert(); }
+  });
 </script>
 </body>
 </html>
