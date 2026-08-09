@@ -14,7 +14,7 @@ const STOP = new Set([
   'i','my','we','our','they','their','you','your',
   'of','in','on','at','to','for','with','from','and','or',
   'but','if','then','so','also','too','as','by','up','be',
-  'get','give','know','want','need','like','think'
+  'get','give','know','want','need','like','think','all'
 ]);
 
 // ── 2. Synonym → canonical topic map ────────────────
@@ -39,7 +39,7 @@ const SYN = {
   'projects':'project','built':'project','build':'project',
   'made':'project','created':'project','developed':'project',
   'development':'project','portfolio':'project','app':'project',
-  'website':'project','application':'project',
+  'website':'project','application':'project','apps':'project','websites':'project',
   // certificate
   'certificates':'certificate','certification':'certificate',
   'certifications':'certificate','certified':'certificate',
@@ -145,43 +145,18 @@ const suggestions = [
   'How to contact him?'
 ];
 
-// ── 8. Resume Knowledge Base (100% Professional English) ─
+// ── 8. Resume Knowledge Base ─────────────────────────
 const KB = [
   {
     keys: ['hi', 'hello', 'hey', 'greetings', 'hola', 'namaste', 'start'],
     ans: `Hello! 👋 How can I help you today?<br><br>I have access to Prajwal's full resume and background. You can ask me about his <b>skills, featured projects, certifications, internship, hackathons, or hobbies!</b>`
   },
   {
-    keys: ['prajwal', 'who', 'about', 'yourself', 'introduce', 'background', 'describe', 'summary'],
-    ans: `<b>Prajwal Sharma</b> is a <b>UI/UX Designer, Visual Artist, and Python Developer</b> based in Prayagraj, India 🚀<br><br>
-🎓 <b>Education:</b> B.Tech in Computer Science & Engineering (2022–2026) from <b>BBS College of Engineering & Technology, Prayagraj</b> (affiliated with AKTU).<br>
-🎨 <b>Background:</b> He blends traditional graphite pencil portraiture with modern UI/UX design systems and Python web development.<br>
-💼 <b>Status:</b> Actively seeking Internship and Pre-Placement opportunities in UI/UX Design & Software Engineering!`
-  },
-  {
-    keys: ['internship', 'intern', 'codsoft', 'job', 'work experience', 'placement', 'working', 'experience'],
-    ans: `Prajwal completed a <b>Python Programming Internship at CodSoft</b> 🐍<br><br>
-• Developed Python scripting projects, automation tools, and strengthened core software engineering fundamentals.<br>
-• Served as <b>Head Coordinator for Nova Fest</b> at BBS College — managing end-to-end design, branding, and event logistics.<br>
-• <b>Actively seeking new Internship opportunities</b> in UI/UX Design, Python Development, or Front-End Engineering.<br><br>
-📧 Contact for Internships: <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a>`
-  },
-  {
-    keys: ['hobby', 'hobbies', 'free time', 'interest', 'passion', 'drawing', 'art', 'pencil', 'portrait'],
-    ans: `Prajwal's Hobbies & Creative Pursuits 🎨<br><br>
-✏️ <b>Graphite Pencil Portraiture:</b> Years of self-taught graphite portrait drawing. This artistic foundation gives him an exceptional eye for detail, light, shadow, and visual balance.<br>
-🎨 <b>UI/UX Design:</b> Designing high-fidelity interactive prototypes and design systems in Figma.<br>
-🐍 <b>Python Scripting:</b> Creating automation scripts and experimenting with algorithms for fun.<br>
-🌐 <b>Web Development:</b> Crafting responsive web interfaces with modern CSS animations and glassmorphism.<br>
-🎭 <b>Brand Identity:</b> Designing logos, visual identities, and event branding.`
-  },
-  {
-    keys: ['skill', 'skills', 'python', 'figma', 'html', 'css', 'javascript', 'git', 'sql', 'c++', 'tech stack', 'technology', 'tools'],
-    ans: `Prajwal's Resume Tech & Design Stack 💻<br><br>
-• <b>Programming Languages:</b> Python, C / C++, HTML5, CSS3, JavaScript (ES6+), SQL<br>
-• <b>UI/UX & Design:</b> Figma, Wireframing, High-Fidelity Prototyping, Brand Identity Systems<br>
-• <b>Tools & Version Control:</b> Git, GitHub, VS Code, Canva, Figma Desktop<br>
-• <b>Specializations:</b> Pencil Portraiture, Responsive Web Design, AI/ML (Learning)`
+    keys: ['project', 'projects', 'work', 'built', 'created', 'developed', 'made', 'apps', 'websites'],
+    ans: `Prajwal's Featured Portfolio Projects 🚀<br><br>
+🔐 <b>VIPER — AI Security Interface:</b> High-fidelity UI/UX concept for an AI Security Operations Center featuring threat maps, real-time alerts, and cyber-dark aesthetic. <a href="viper-case-study.html" style="color:#c8a0ff">View Case Study →</a><br><br>
+📈 <b>TradeSight AI — Fintech Platform:</b> Developed for Yukti Hackathon 2024 (AKTU Finalist). AI sentiment analysis dashboard for stock market trends with luxury gold branding. <a href="tradesight-case-study.html" style="color:#c8a0ff">View Case Study →</a><br><br>
+✏️ <b>Pencilastic — Digital Art Gallery:</b> Minimal web gallery showcasing graphite pencil portrait artwork, built with HTML5, CSS3, and JavaScript.`
   },
   {
     keys: ['viper', 'security', 'cyber', 'monitoring', 'threat'],
@@ -203,7 +178,7 @@ Developed for <b>Yukti Hackathon 2024 (AKTU Finalist)</b>:<br>
 <a href="tradesight-case-study.html" style="color:#c8a0ff">View Case Study →</a>`
   },
   {
-    keys: ['pencilastic', 'gallery', 'art website'],
+    keys: ['pencilastic', 'gallery', 'art website', 'drawing website'],
     ans: `<b>Pencilastic — Digital Art Gallery</b> ✏️<br><br>
 Prajwal's personal digital gallery website for graphite pencil portraiture:<br>
 • Clean, minimal white layout with elegant typography<br>
@@ -211,7 +186,39 @@ Prajwal's personal digital gallery website for graphite pencil portraiture:<br>
 • Built using HTML5, CSS3, and JavaScript.`
   },
   {
-    keys: ['certificate', 'certificates', 'certification', 'tata', 'deloitte', 'google', 'codsoft', 'hackwithindia', 'gfg'],
+    keys: ['prajwal', 'who', 'about', 'yourself', 'introduce', 'background', 'describe', 'summary'],
+    ans: `<b>Prajwal Sharma</b> is a <b>UI/UX Designer, Visual Artist, and Python Developer</b> based in Prayagraj, India 🚀<br><br>
+🎓 <b>Education:</b> B.Tech in Computer Science & Engineering (2022–2026) from <b>BBS College of Engineering & Technology, Prayagraj</b> (affiliated with AKTU).<br>
+🎨 <b>Background:</b> He blends traditional graphite pencil portraiture with modern UI/UX design systems and Python web development.<br>
+💼 <b>Status:</b> Actively seeking Internship and Pre-Placement opportunities in UI/UX Design & Software Engineering!`
+  },
+  {
+    keys: ['internship', 'intern', 'codsoft', 'job', 'work experience', 'placement', 'working', 'experience'],
+    ans: `Prajwal completed a <b>Python Programming Internship at CodSoft</b> 🐍<br><br>
+• Developed Python scripting projects, automation tools, and strengthened core software engineering fundamentals.<br>
+• Served as <b>Head Coordinator for Nova Fest</b> at BBS College — managing end-to-end design, branding, and event logistics.<br>
+• <b>Actively seeking new Internship opportunities</b> in UI/UX Design, Python Development, or Front-End Engineering.<br><br>
+📧 Contact for Internships: <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a>`
+  },
+  {
+    keys: ['hobby', 'hobbies', 'free time', 'interest', 'passion', 'drawing', 'art', 'pencil', 'portrait', 'passions'],
+    ans: `Prajwal's Hobbies & Creative Pursuits 🎨<br><br>
+✏️ <b>Graphite Pencil Portraiture:</b> Years of self-taught graphite portrait drawing. This artistic foundation gives him an exceptional eye for detail, light, shadow, and visual balance.<br>
+🎨 <b>UI/UX Design:</b> Designing high-fidelity interactive prototypes and design systems in Figma.<br>
+🐍 <b>Python Scripting:</b> Creating automation scripts and experimenting with algorithms for fun.<br>
+🌐 <b>Web Development:</b> Crafting responsive web interfaces with modern CSS animations and glassmorphism.<br>
+🎭 <b>Brand Identity:</b> Designing logos, visual identities, and event branding.`
+  },
+  {
+    keys: ['skill', 'skills', 'python', 'figma', 'html', 'css', 'javascript', 'git', 'sql', 'c++', 'tech stack', 'technology', 'tools', 'coding'],
+    ans: `Prajwal's Resume Tech & Design Stack 💻<br><br>
+• <b>Programming Languages:</b> Python, C / C++, HTML5, CSS3, JavaScript (ES6+), SQL<br>
+• <b>UI/UX & Design:</b> Figma, Wireframing, High-Fidelity Prototyping, Brand Identity Systems<br>
+• <b>Tools & Version Control:</b> Git, GitHub, VS Code, Canva, Figma Desktop<br>
+• <b>Specializations:</b> Pencil Portraiture, Responsive Web Design, AI/ML (Learning)`
+  },
+  {
+    keys: ['certificate', 'certificates', 'certification', 'certifications', 'tata', 'deloitte', 'google', 'codsoft', 'hackwithindia', 'gfg'],
     ans: `Prajwal holds <b>8 Professional Certifications</b> 🏆<br><br>
 🔵 <b>Tata Group:</b> Data Visualisation: Empowering Business<br>
 🔵 <b>Tata Group:</b> Cybersecurity Analyst Job Simulation<br>
@@ -223,7 +230,7 @@ Prajwal's personal digital gallery website for graphite pencil portraiture:<br>
 🧩 <b>GeeksforGeeks:</b> Syntax Error Hackathon Certificate`
   },
   {
-    keys: ['hackathon', 'yukti', 'lovable', 'hackwithindia', 'gfg', 'competition'],
+    keys: ['hackathon', 'hackathons', 'yukti', 'lovable', 'hackwithindia', 'gfg', 'competition', 'contest'],
     ans: `Prajwal's Hackathon Achievements 🏆<br><br>
 🥈 <b>Yukti Hackathon 2024 (AKTU):</b> Finalist with TradeSight AI<br>
 🚀 <b>Lovable Global Hackathon:</b> Top 5,000 out of 25,000 participants globally (Top 20% worldwide 🌍)<br>
@@ -231,7 +238,7 @@ Prajwal's personal digital gallery website for graphite pencil portraiture:<br>
 🧩 <b>GFG Syntax Error:</b> Hackathon participant`
   },
   {
-    keys: ['contact', 'email', 'reach', 'linkedin', 'github', 'instagram', 'phone', 'contact info'],
+    keys: ['contact', 'email', 'reach', 'linkedin', 'github', 'instagram', 'phone', 'contact info', 'connect', 'social', 'socials'],
     ans: `Ways to Connect with Prajwal 📬<br><br>
 📧 <b>Email:</b> <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a><br>
 💼 <b>LinkedIn:</b> <a href="https://www.linkedin.com/in/prajwal-sharma-015b98296" target="_blank" style="color:#5cb4ff">linkedin.com/in/prajwal-sharma-015b98296</a><br>
@@ -267,7 +274,7 @@ Try asking about:<br>
 • <i>"What are his skills?"</i><br>
 • <i>"Tell me about VIPER project"</i><br>
 • <i>"Is he doing any internship?"</i><br>
-• <i>"What are his hobbies?"</i><br>
+• <i>"What are his certificates?"</i><br>
 • <i>"How to contact him?"</i><br><br>
 Or email directly: <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a>`;
 }
