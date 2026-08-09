@@ -95,7 +95,7 @@
     }
     .hover-letter:hover { color: #c8a0ff; transform: translateY(-4px); }
 
-    /* DESKTOP ICONS GRID */
+    /* DESKTOP ICONS GRID (RIGHT SIDEBAR) */
     .desktop-icon-grid {
       position: absolute;
       top: 16px; right: 24px;
@@ -226,7 +226,7 @@
       white-space: nowrap;
     }
 
-    /* 1. PORTFOLIO / FINDER WINDOW */
+    /* PORTFOLIO / FINDER WINDOW (MIDDLE MAIN WINDOW) */
     #main-window {
       top: 45px;
       left: calc(50% - 410px);
@@ -243,7 +243,7 @@
     #win-scroll::-webkit-scrollbar { width: 6px; }
     #win-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
 
-    /* Portfolio Content Styles */
+    /* Hero Section */
     .win-hero { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
     .win-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.15); box-shadow: 0 8px 24px rgba(0,0,0,0.4); flex-shrink: 0; }
     .win-name { font-size: 24px; font-weight: 700; color: rgba(255,255,255,0.95); letter-spacing: -0.02em; line-height: 1.2; }
@@ -256,13 +256,6 @@
 
     .win-bio { font-size: 13px; color: rgba(255,255,255,0.58); line-height: 1.7; margin-bottom: 20px; }
 
-    .social-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-    .soc-btn { font-size: 12px; font-weight: 500; padding: 7px 14px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); color: rgba(255,255,255,0.85); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.15s; }
-    .soc-btn:hover { background: rgba(255,255,255,0.12); color: #fff; transform: translateY(-1px); }
-    .soc-btn.li:hover { background: rgba(10,102,194,0.2); border-color: rgba(10,102,194,0.4); color: #5cb4ff; }
-    .soc-btn.em:hover { background: rgba(234,85,50,0.15); border-color: rgba(234,85,50,0.4); color: #ff9580; }
-    .soc-btn.ig:hover { background: rgba(225,48,108,0.15); border-color: rgba(225,48,108,0.4); color: #ff8ec0; }
-
     .stats-row { display: flex; gap: 10px; margin-bottom: 26px; }
     .stat-box { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 10px; text-align: center; }
     .stat-num { font-size: 22px; font-weight: 700; color: #c8a0ff; letter-spacing: -0.02em; }
@@ -270,6 +263,24 @@
 
     .sec-title { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
     .win-section { margin-bottom: 28px; }
+
+    /* TECH STACK TERMINAL TABLE (MATCHING IMAGE 3) */
+    .term-box {
+      background: #14141d;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      font-family: 'Fira Code', monospace;
+      margin-bottom: 26px;
+    }
+    .term-prompt { color: rgba(255,255,255,0.95); font-weight: 600; margin-bottom: 16px; font-size: 13px; }
+    .term-prompt span { color: #5cb4ff; }
+    .term-table { width: 100%; border-collapse: collapse; }
+    .term-table th { text-align: left; padding: 6px 10px 12px; color: rgba(255,255,255,0.45); font-weight: 500; font-size: 12px; border-bottom: 1px dashed rgba(255,255,255,0.15); }
+    .term-table td { padding: 10px 10px; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+    .term-check { color: #28C840; font-weight: 700; margin-right: 6px; }
+    .term-cat { color: #28C840; font-weight: 500; white-space: nowrap; }
+    .term-tech { color: rgba(255,255,255,0.9); }
 
     /* Experience Cards */
     .exp-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; transition: background 0.15s; }
@@ -312,83 +323,37 @@
     .cert-org { font-size: 10px; font-weight: 700; color: #c8a0ff; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
     .cert-name { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.88); line-height: 1.35; }
 
+    /* CONTACT ME COLOR TILES (MATCHING IMAGE 2) */
+    .contact-heading { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .contact-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 20px; line-height: 1.5; }
+    .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; width: 100%; margin-bottom: 26px; }
+    .contact-tile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 105px;
+      padding: 14px;
+      border-radius: 16px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+    .contact-tile:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 10px 24px rgba(0,0,0,0.5); }
+    .contact-tile-ico { font-size: 24px; }
+    .tile-github { background: #EE5A5A; }
+    .tile-linkedin { background: #29B6F6; }
+    .tile-instagram { background: #E6673D; }
+    .tile-email { background: #2ECC71; }
+
     /* Resume Banner */
     .res-banner { background: linear-gradient(135deg, rgba(167,107,255,0.18), rgba(100,80,255,0.1)); border: 1px solid rgba(167,107,255,0.28); border-radius: 14px; padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 10px; }
     .res-text h3 { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.95); letter-spacing: -0.01em; }
     .res-text p { font-size: 12px; color: rgba(255,255,255,0.48); margin-top: 4px; }
     .res-btn { font-size: 12px; font-weight: 700; padding: 10px 22px; border-radius: 8px; background: #c8a0ff; color: #100624; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: all 0.15s; box-shadow: 0 4px 16px rgba(167,107,255,0.3); }
     .res-btn:hover { background: #d8b8ff; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(167,107,255,0.45); }
-
-    /* 2. TECH STACK TERMINAL WINDOW (EXACT MATCH FOR IMAGE 3) */
-    #techstack-window {
-      top: 70px;
-      left: calc(50% - 320px);
-      width: min(640px, 90vw);
-      height: 480px;
-      background: #14141d;
-      border: 1px solid rgba(255,255,255,0.12);
-      font-family: 'Fira Code', monospace;
-    }
-    .term-body {
-      padding: 24px;
-      flex: 1;
-      overflow-y: auto;
-      color: rgba(255,255,255,0.85);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-    .term-prompt { color: rgba(255,255,255,0.95); font-weight: 600; margin-bottom: 20px; font-size: 14px; }
-    .term-prompt span { color: #5cb4ff; }
-    .term-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    .term-table th { text-align: left; padding: 8px 12px 14px; color: rgba(255,255,255,0.5); font-weight: 500; font-size: 12px; border-bottom: 1px dashed rgba(255,255,255,0.15); }
-    .term-table td { padding: 12px 12px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
-    .term-check { color: #28C840; font-weight: 700; margin-right: 6px; }
-    .term-cat { color: #28C840; font-weight: 500; white-space: nowrap; }
-    .term-tech { color: rgba(255,255,255,0.9); }
-    .term-footer { padding: 12px 20px; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.06); display: flex; gap: 8px; flex-wrap: wrap; }
-    .term-cmd-btn { font-family: 'Fira Code', monospace; font-size: 11px; padding: 4px 10px; border-radius: 4px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #c8a0ff; cursor: pointer; transition: all 0.15s; }
-    .term-cmd-btn:hover { background: rgba(167,107,255,0.2); border-color: #c8a0ff; }
-
-    /* 3. CONTACT ME WINDOW (EXACT MATCH FOR IMAGE 2) */
-    #contact-window {
-      top: 90px;
-      left: calc(50% - 280px);
-      width: min(560px, 90vw);
-      height: 440px;
-      background: #1c1c1f;
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-    .contact-body {
-      padding: 30px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .contact-avatar { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.15); margin-bottom: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.5); }
-    .contact-heading { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.02em; margin-bottom: 6px; }
-    .contact-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 28px; line-height: 1.5; }
-    .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 100%; }
-    .contact-tile {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 110px;
-      padding: 16px 14px;
-      border-radius: 18px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 700;
-      font-size: 14px;
-      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-    .contact-tile:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 12px 28px rgba(0,0,0,0.5); }
-    .contact-tile-ico { font-size: 26px; }
-    .tile-github { background: #EE5A5A; }
-    .tile-linkedin { background: #29B6F6; }
-    .tile-instagram { background: #E6673D; }
-    .tile-email { background: #2ECC71; }
 
     /* CERT MODAL */
     #cert-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
@@ -417,21 +382,20 @@
 <div id="desktop">
   <img id="wallpaper" src="macos_wallpaper.jpg" alt="wallpaper"/>
 
-  <!-- MENU BAR -->
+  <!-- MENU BAR (CLEAN - ONLY CORE ITEMS) -->
   <div id="menubar">
     <div class="menubar-left">
-      <span class="menubar-apple" onclick="showWallpaperMenu()">🍎</span>
+      <span class="menubar-apple" onclick="switchWallpaper()">🍎</span>
       <span class="menubar-brand">Prajwal's Portfolio</span>
       <span class="menubar-item" onclick="openWindow('main-window'); goTo('about-sec')">About</span>
+      <span class="menubar-item" onclick="openWindow('main-window'); goTo('techstack-sec')">Tech Stack</span>
       <span class="menubar-item" onclick="openWindow('main-window'); goTo('proj-sec')">Projects</span>
-      <span class="menubar-item" onclick="openWindow('techstack-window')">Tech Stack</span>
       <span class="menubar-item" onclick="openWindow('main-window'); goTo('cert-sec')">Certificates</span>
-      <span class="menubar-item" onclick="openWindow('contact-window')">Contact</span>
+      <span class="menubar-item" onclick="openWindow('main-window'); goTo('contact-sec')">Contact</span>
       <span class="menubar-item" onclick="switchWallpaper()">🎨 Change Wallpaper</span>
     </div>
     <div class="menubar-right">
-      <span class="menubar-icon" title="Terminal" onclick="openWindow('techstack-window')">💻</span>
-      <span class="menubar-icon" title="Ask AI" onclick="openAskMe()">✨</span>
+      <span class="menubar-icon" title="Ask Gemini AI" onclick="openAskMe()">⚡</span>
       <span id="menubar-time"></span>
     </div>
   </div>
@@ -443,7 +407,7 @@
       <div id="welcome-small"></div>
       <div id="welcome-large"></div>
     </div>
-    <!-- Desktop Icons Grid -->
+    <!-- Desktop Icons Grid (Right Sidebar - ONLY PROJECTS, CERTS & RESUME) -->
     <div class="desktop-icon-grid">
       <div class="desktop-icon" onclick="openWindow('main-window'); goTo('viper-card')">
         <div class="desktop-icon-emoji">📁</div>
@@ -457,17 +421,9 @@
         <div class="desktop-icon-emoji">📁</div>
         <span class="desktop-icon-label">Pencilastic</span>
       </div>
-      <div class="desktop-icon" onclick="openWindow('techstack-window')">
-        <div class="desktop-icon-emoji">💻</div>
-        <span class="desktop-icon-label">Tech Stack</span>
-      </div>
       <div class="desktop-icon" onclick="openWindow('main-window'); goTo('cert-sec')">
         <div class="desktop-icon-emoji">🏆</div>
         <span class="desktop-icon-label">Certificates</span>
-      </div>
-      <div class="desktop-icon" onclick="openWindow('contact-window')">
-        <div class="desktop-icon-emoji">📬</div>
-        <span class="desktop-icon-label">Contact Me</span>
       </div>
       <div class="desktop-icon" onclick="document.querySelector('.res-btn').click()">
         <div class="desktop-icon-emoji">📄</div>
@@ -476,7 +432,7 @@
     </div>
   </div>
 
-  <!-- WINDOW 1: PORTFOLIO / FINDER WINDOW -->
+  <!-- MAIN PORTFOLIO WINDOW (MIDDLE CENTRED WINDOW) -->
   <div id="main-window" class="mac-window" style="display:none;" onclick="bringToFront('main-window')">
     <div class="mac-titlebar">
       <div class="tls">
@@ -515,20 +471,58 @@
         that directly shapes my UI/UX design systems and Python web development work.
       </p>
 
-      <!-- SOCIAL -->
-      <div class="social-row">
-        <a href="https://github.com/PrajwalSharma08" target="_blank" class="soc-btn">GitHub</a>
-        <a href="https://www.linkedin.com/in/prajwal-sharma-015b98296" target="_blank" class="soc-btn li">LinkedIn</a>
-        <a href="mailto:manjumanoj1177@gmail.com" class="soc-btn em">Email</a>
-        <a href="https://instagram.com/ps_artist_661" target="_blank" class="soc-btn ig">Instagram</a>
-      </div>
-
       <!-- STATS -->
       <div class="stats-row">
         <div class="stat-box"><div class="stat-num">3+</div><div class="stat-lbl">Major Projects</div></div>
         <div class="stat-box"><div class="stat-num">8</div><div class="stat-lbl">Certifications</div></div>
         <div class="stat-box"><div class="stat-num">4</div><div class="stat-lbl">Hackathons</div></div>
         <div class="stat-box"><div class="stat-num">2026</div><div class="stat-lbl">Graduation</div></div>
+      </div>
+
+      <!-- TECH STACK TERMINAL TABLE (MATCHING IMAGE 3) -->
+      <div class="win-section" id="techstack-sec">
+        <div class="sec-title">Tech Stack</div>
+        <div class="term-box">
+          <div class="term-prompt">@Prajwal % <span>show tech stack</span></div>
+          <table class="term-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Technologies</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="term-cat"><span class="term-check">✓</span> Language</td>
+                <td class="term-tech">Python, JavaScript, C / C++, HTML5, CSS3, SQL</td>
+              </tr>
+              <tr>
+                <td class="term-cat"><span class="term-check">✓</span> Frontend</td>
+                <td class="term-tech">HTML5, CSS3, JavaScript (ES6+), Glassmorphic UI</td>
+              </tr>
+              <tr>
+                <td class="term-cat"><span class="term-check">✓</span> UI/UX Design</td>
+                <td class="term-tech">Figma, Wireframing, High-Fidelity Prototyping, Design Systems</td>
+              </tr>
+              <tr>
+                <td class="term-cat"><span class="term-check">✓</span> Backend</td>
+                <td class="term-tech">Python (Automation, Scripting, Market Sentiment Logic)</td>
+              </tr>
+              <tr>
+                <td class="term-cat"><span class="term-check">✓</span> Database</td>
+                <td class="term-tech">SQL, Relational Databases</td>
+              </tr>
+              <tr>
+                <td class="term-cat"><span class="term-check">✓</span> Dev Tools</td>
+                <td class="term-tech">Git, GitHub, VS Code, Canva, Figma Desktop</td>
+              </tr>
+              <tr>
+                <td class="term-cat"><span class="term-check">✓</span> Specializations</td>
+                <td class="term-tech">Pencil Portraiture, Brand Identity, AI/ML (Learning)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- EXPERIENCE -->
@@ -654,6 +648,32 @@
         </div>
       </div>
 
+      <!-- CONTACT ME COLOR TILES (MATCHING IMAGE 2) -->
+      <div class="win-section" id="contact-sec">
+        <div class="sec-title">Contact & Socials</div>
+        <h2 class="contact-heading">Let's Connect</h2>
+        <p class="contact-sub">Got an idea? A bug to squash? Or just wanna talk tech? I'm in.</p>
+        
+        <div class="contact-grid">
+          <a href="https://github.com/PrajwalSharma08" target="_blank" class="contact-tile tile-github">
+            <div class="contact-tile-ico">🐙</div>
+            <div>Github</div>
+          </a>
+          <a href="https://www.linkedin.com/in/prajwal-sharma-015b98296" target="_blank" class="contact-tile tile-linkedin">
+            <div class="contact-tile-ico">💼</div>
+            <div>LinkedIn</div>
+          </a>
+          <a href="https://instagram.com/ps_artist_661" target="_blank" class="contact-tile tile-instagram">
+            <div class="contact-tile-ico">📷</div>
+            <div>Instagram</div>
+          </a>
+          <a href="mailto:manjumanoj1177@gmail.com" class="contact-tile tile-email">
+            <div class="contact-tile-ico">✉️</div>
+            <div>Email</div>
+          </a>
+        </div>
+      </div>
+
       <!-- RESUME BANNER -->
       <div class="res-banner">
         <div class="res-text">
@@ -666,120 +686,26 @@
     </div><!-- /win-scroll -->
   </div><!-- /main-window -->
 
-  <!-- WINDOW 2: TECH STACK TERMINAL (EXACT MATCH FOR IMAGE 3) -->
-  <div id="techstack-window" class="mac-window" style="display:none;" onclick="bringToFront('techstack-window')">
-    <div class="mac-titlebar">
-      <div class="tls">
-        <div class="tl tl-r" onclick="closeWindow('techstack-window')" title="Close"></div>
-        <div class="tl tl-y" onclick="closeWindow('techstack-window')" title="Minimize"></div>
-        <div class="tl tl-g" title="Zoom"></div>
-      </div>
-      <div class="win-title-text">Tech Stack</div>
-    </div>
-    <div class="term-body">
-      <div class="term-prompt">@Prajwal % <span>show tech stack</span></div>
-      <table class="term-table">
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Technologies</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Language</td>
-            <td class="term-tech">Python, JavaScript, C / C++, HTML5, CSS3, SQL</td>
-          </tr>
-          <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Frontend</td>
-            <td class="term-tech">HTML5, CSS3, JavaScript (ES6+), Glassmorphic UI</td>
-          </tr>
-          <tr>
-            <td class="term-cat"><span class="term-check">✓</span> UI/UX Design</td>
-            <td class="term-tech">Figma, Wireframing, High-Fidelity Prototyping, Design Systems</td>
-          </tr>
-          <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Backend</td>
-            <td class="term-tech">Python (Automation, Scripting, Market Sentiment Logic)</td>
-          </tr>
-          <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Database</td>
-            <td class="term-tech">SQL, Relational Databases</td>
-          </tr>
-          <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Dev Tools</td>
-            <td class="term-tech">Git, GitHub, VS Code, Canva, Figma Desktop</td>
-          </tr>
-          <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Specializations</td>
-            <td class="term-tech">Pencil Portraiture, Brand Identity, AI/ML (Learning)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="term-footer">
-      <button class="term-cmd-btn" onclick="openWindow('main-window'); goTo('proj-sec')">show projects</button>
-      <button class="term-cmd-btn" onclick="openWindow('main-window'); goTo('cert-sec')">show certs</button>
-      <button class="term-cmd-btn" onclick="openWindow('contact-window')">show contact</button>
-    </div>
-  </div>
-
-  <!-- WINDOW 3: CONTACT ME WINDOW (EXACT MATCH FOR IMAGE 2) -->
-  <div id="contact-window" class="mac-window" style="display:none;" onclick="bringToFront('contact-window')">
-    <div class="mac-titlebar">
-      <div class="tls">
-        <div class="tl tl-r" onclick="closeWindow('contact-window')" title="Close"></div>
-        <div class="tl tl-y" onclick="closeWindow('contact-window')" title="Minimize"></div>
-        <div class="tl tl-g" title="Zoom"></div>
-      </div>
-      <div class="win-title-text">Contact Me</div>
-    </div>
-    <div class="contact-body">
-      <img src="profile_portrait.jpg" alt="Prajwal" class="contact-avatar"/>
-      <h2 class="contact-heading">Let's Connect</h2>
-      <p class="contact-sub">Got an idea? A bug to squash? Or just wanna talk tech? I'm in.</p>
-      
-      <div class="contact-grid">
-        <a href="https://github.com/PrajwalSharma08" target="_blank" class="contact-tile tile-github">
-          <div class="contact-tile-ico">🐙</div>
-          <div>Github</div>
-        </a>
-        <a href="https://www.linkedin.com/in/prajwal-sharma-015b98296" target="_blank" class="contact-tile tile-linkedin">
-          <div class="contact-tile-ico">💼</div>
-          <div>LinkedIn</div>
-        </a>
-        <a href="https://instagram.com/ps_artist_661" target="_blank" class="contact-tile tile-instagram">
-          <div class="contact-tile-ico">📷</div>
-          <div>Instagram</div>
-        </a>
-        <a href="mailto:manjumanoj1177@gmail.com" class="contact-tile tile-email">
-          <div class="contact-tile-ico">✉️</div>
-          <div>Email</div>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- DOCK -->
+  <!-- DOCK BAR (BOTTOM NAVIGATION) -->
   <div id="dock">
     <div class="dock-item" onclick="openWindow('main-window'); goTo('about-sec')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#4a90d9,#2575b8)">🔍</div>
       <div class="dock-tooltip">Portfolio</div>
       <div class="dock-dot"></div>
     </div>
+    <div class="dock-item" onclick="openWindow('main-window'); goTo('techstack-sec')">
+      <div class="dock-icon" style="background:linear-gradient(135deg,#2c3e50,#1a252f)">💻</div>
+      <div class="dock-tooltip">Tech Stack</div>
+    </div>
     <div class="dock-item" onclick="openWindow('main-window'); goTo('proj-sec')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#5ac8fa,#007aff)">🌐</div>
       <div class="dock-tooltip">Projects</div>
-    </div>
-    <div class="dock-item" onclick="openWindow('techstack-window')">
-      <div class="dock-icon" style="background:linear-gradient(135deg,#2c3e50,#1a252f)">💻</div>
-      <div class="dock-tooltip">Tech Stack</div>
     </div>
     <div class="dock-item" onclick="openWindow('main-window'); goTo('cert-sec')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#ff9f0a,#ff6b00)">📸</div>
       <div class="dock-tooltip">Certificates</div>
     </div>
-    <div class="dock-item" onclick="openWindow('contact-window')">
+    <div class="dock-item" onclick="openWindow('main-window'); goTo('contact-sec')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">👤</div>
       <div class="dock-tooltip">Contact Me</div>
     </div>
@@ -791,24 +717,28 @@
     <div class="dock-sep"></div>
     <div class="dock-item" onclick="openAskMe()" id="askme-dock">
       <div class="dock-icon" style="background:linear-gradient(135deg,#bf5af2,#9b27d4);padding:0 14px;width:auto;gap:7px;min-width:52px;">
-        <span style="font-size:18px">✨</span>
-        <span style="font-size:12px;font-weight:600;color:#fff;white-space:nowrap">Ask Me</span>
+        <span style="font-size:18px">⚡</span>
+        <span style="font-size:12px;font-weight:600;color:#fff;white-space:nowrap">Ask Gemini AI</span>
       </div>
-      <div class="dock-tooltip">Ask AI Assistant</div>
+      <div class="dock-tooltip">Gemini 3.6 Flash AI</div>
     </div>
   </div>
 
 </div><!-- /desktop -->
 
-<!-- ASK ME CHAT MODAL -->
+<!-- GEMINI 3.6 FLASH ASK AI MODAL -->
 <div id="askme-overlay" onclick="closeAskMe()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:89999;backdrop-filter:blur(5px);"></div>
-<div id="askme-panel" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.95);width:min(560px,92vw);max-height:72vh;background:rgba(22,22,30,0.98);border:1px solid rgba(255,255,255,0.14);border-radius:18px;box-shadow:0 32px 90px rgba(0,0,0,0.85);z-index:90000;display:none;flex-direction:column;overflow:hidden;transition:transform 0.22s cubic-bezier(0.34,1.3,0.64,1),opacity 0.2s;opacity:0;">
+<div id="askme-panel" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.95);width:min(580px,92vw);max-height:72vh;background:rgba(20,20,28,0.98);border:1px solid rgba(191,90,242,0.3);border-radius:18px;box-shadow:0 32px 90px rgba(0,0,0,0.85);z-index:90000;display:none;flex-direction:column;overflow:hidden;transition:transform 0.22s cubic-bezier(0.34,1.3,0.64,1),opacity 0.2s;opacity:0;">
   <!-- Titlebar -->
-  <div style="height:44px;background:rgba(35,35,45,0.99);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;padding:0 16px;gap:8px;flex-shrink:0;border-radius:18px 18px 0 0;user-select:none;">
+  <div style="height:46px;background:rgba(32,32,44,0.99);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;padding:0 16px;gap:8px;flex-shrink:0;border-radius:18px 18px 0 0;user-select:none;position:relative;">
     <div style="width:12px;height:12px;border-radius:50%;background:#FF5F57;cursor:pointer;" onclick="closeAskMe()"></div>
     <div style="width:12px;height:12px;border-radius:50%;background:#FEBC2E;"></div>
     <div style="width:12px;height:12px;border-radius:50%;background:#28C840;"></div>
-    <span style="position:absolute;left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);pointer-events:none;">✨ Ask Me Anything</span>
+    <div style="position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;pointer-events:none;">
+      <span style="font-size:14px">⚡</span>
+      <span style="font-size:13px;font-weight:700;color:#c8a0ff;letter-spacing:-0.01em;">Gemini 3.6 Flash</span>
+      <span style="font-size:10px;font-weight:600;padding:1px 6px;border-radius:10px;background:rgba(40,200,64,0.18);color:#28C840;border:1px solid rgba(40,200,64,0.3)">AI Active</span>
+    </div>
   </div>
   <!-- Messages -->
   <div id="chat-msgs" style="flex:1;overflow-y:auto;padding:20px 20px 10px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.15) transparent;"></div>
@@ -816,12 +746,12 @@
   <div id="chat-suggestions" style="padding:0 20px 12px;display:flex;flex-wrap:wrap;gap:6px;"></div>
   <!-- Input -->
   <div style="padding:12px 16px;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:10px;align-items:center;flex-shrink:0;">
-    <input id="chat-input" type="text" placeholder="Ask anything about Prajwal..." autocomplete="off"
+    <input id="chat-input" type="text" placeholder="Ask Gemini 3.6 Flash about Prajwal..." autocomplete="off"
       style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;font-size:13px;color:#fff;font-family:inherit;outline:none;transition:border-color 0.15s;"
       onkeydown="if(event.key==='Enter')sendMsg()"
       onfocus="this.style.borderColor='rgba(191,90,242,0.6)'"
       onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
-    <button onclick="sendMsg()" style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#bf5af2,#9b27d4);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;flex-shrink:0;transition:opacity 0.15s;" onmouseenter="this.style.opacity=0.85" onmouseleave="this.style.opacity=1">↑</button>
+    <button onclick="sendMsg()" style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#bf5af2,#9b27d4);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;flex-shrink:0;transition:opacity 0.15s;" onmouseenter="this.style.opacity=0.85" onmouseleave="this.style.opacity=1">⚡</button>
   </div>
 </div>
 
@@ -955,11 +885,13 @@
     openWindow('main-window');
     const labels = {
       'about-sec':'👤  About Prajwal',
+      'techstack-sec':'💻  Tech Stack',
       'proj-sec':'📁  Featured Projects',
       'viper-card':'🔐  VIPER Project',
       'tradesight-card':'📈  TradeSight AI',
       'pencilastic-card':'✏️  Pencilastic',
       'cert-sec':'🏆  Certificates',
+      'contact-sec':'📬  Contact Me',
     };
     const title = document.getElementById('main-win-title');
     if (title && labels[id]) title.textContent = labels[id];
@@ -1001,8 +933,6 @@
   }
 
   makeDraggable('main-window', '.mac-titlebar');
-  makeDraggable('techstack-window', '.mac-titlebar');
-  makeDraggable('contact-window', '.mac-titlebar');
 
   /* CERTIFICATE PREVIEW MODAL */
   function openCert(src) {
@@ -1013,7 +943,7 @@
     document.getElementById('cert-modal').classList.remove('open');
   }
 
-  /* ASK ME CHATBOT ENGINE */
+  /* GEMINI 3.6 FLASH ASK AI CHATBOT ENGINE */
   function openAskMe() {
     const panel = document.getElementById('askme-panel');
     const overlay = document.getElementById('askme-overlay');
@@ -1025,7 +955,7 @@
     }, 10);
 
     if (document.getElementById('chat-msgs').children.length === 0) {
-      addMsg('bot', "Hi there! 👋 I'm Prajwal's portfolio assistant. Ask me anything about his <b>skills, projects, certificates, experience, or hobbies!</b>");
+      addMsg('bot', "Namaste! 👋 Main <b>Gemini 3.6 Flash AI</b> hun — Prajwal Sharma ka portfolio assistant. Aap inke <b>skills, projects, certificates, internship, ya hobbies</b> ke baare mein kuch bhi puch sakte hain!");
       renderSuggestions();
     }
     setTimeout(() => document.getElementById('chat-input').focus(), 300);
@@ -1072,17 +1002,17 @@
     addMsg('user', q);
     inp.value = '';
     
-    // Typing indicator
+    // Gemini 3.6 Flash typing indicator
     const msgs = document.getElementById('chat-msgs');
     const typingEl = document.createElement('div');
-    typingEl.style.cssText = 'align-self:flex-start;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:8px 14px;font-size:12px;color:rgba(255,255,255,0.5);font-style:italic;';
-    typingEl.innerHTML = 'Prajwal Assistant is thinking... 💭';
+    typingEl.style.cssText = 'align-self:flex-start;background:rgba(255,255,255,0.04);border:1px solid rgba(191,90,242,0.2);border-radius:12px;padding:8px 14px;font-size:12px;color:#c8a0ff;font-style:italic;display:flex;align-items:center;gap:6px;';
+    typingEl.innerHTML = '⚡ Gemini 3.6 Flash is thinking...';
     msgs.appendChild(typingEl);
     msgs.scrollTop = msgs.scrollHeight;
 
     setTimeout(() => {
       typingEl.remove();
-      const ans = (typeof getAnswer === 'function') ? getAnswer(q) : `Hi! I am Prajwal's assistant. Ask me about his skills, projects, certificates, or contact info!`;
+      const ans = (typeof getAnswer === 'function') ? getAnswer(q) : `Namaste! Main Prajwal's AI Assistant hun. Aap inke skills, projects, ya certificates ke baare mein puch sakte hain!`;
       addMsg('bot', ans);
     }, 450);
   }
