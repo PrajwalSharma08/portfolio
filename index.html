@@ -107,13 +107,14 @@
       text-shadow: 0 0 25px rgba(200, 160, 255, 0.8);
     }
 
-    /* DESKTOP ICONS GRID (LEFT SIDEBAR — EXTRA LARGE & REFINED) */
+    /* DESKTOP ICONS GRID (LEFT SIDEBAR — 2 COLUMNS, NO OVERFLOW) */
     .desktop-icon-grid {
       position: absolute;
-      top: 24px; left: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
+      top: 18px; left: 24px;
+      display: grid;
+      grid-template-rows: repeat(3, auto);
+      grid-auto-flow: column;
+      gap: 10px 16px;
       z-index: 10;
     }
     .desktop-icon {
@@ -520,8 +521,9 @@
       <div id="welcome-small"></div>
       <div id="welcome-large"></div>
     </div>
-    <!-- Desktop Icons Grid (Left Sidebar — Extra Large Standalone Icons) -->
+    <!-- Desktop Icons Grid (Left Sidebar — 2 Columns Layout) -->
     <div class="desktop-icon-grid">
+      <!-- Column 1 -->
       <div class="desktop-icon" onclick="openWindow('projects-window'); scrollToProj('viper-card')">
         <div class="desktop-icon-emoji">📁</div>
         <span class="desktop-icon-label">VIPER</span>
@@ -534,16 +536,18 @@
         <div class="desktop-icon-emoji">📁</div>
         <span class="desktop-icon-label">Pencilastic</span>
       </div>
-      <div class="desktop-icon" onclick="openWindow('certs-window')">
-        <div class="desktop-icon-emoji">🏆</div>
-        <span class="desktop-icon-label">Certificates</span>
-      </div>
+
+      <!-- Column 2 (Starts next to VIPER at top!) -->
       <div class="desktop-icon" onclick="document.querySelector('.res-btn').click()">
         <div class="doc-icon-graphic">
           <div class="doc-badge">PDF</div>
           <div class="doc-lines"><span></span><span></span><span></span></div>
         </div>
         <span class="desktop-icon-label" style="margin-top:2px;">Resume.pdf</span>
+      </div>
+      <div class="desktop-icon" onclick="openWindow('certs-window')">
+        <div class="desktop-icon-emoji">🏆</div>
+        <span class="desktop-icon-label">Certificates</span>
       </div>
     </div>
   </div>
