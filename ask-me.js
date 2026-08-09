@@ -1,6 +1,6 @@
 /* ════════════════════════════════════════════════════
-   GEMINI 3.6 FLASH AI ENGINE — Prajwal's Portfolio
-   Smart Natural Language Processor & Knowledge Base
+   ASK ABOUT ME — Prajwal's AI Portfolio Engine
+   Synthesizes answers directly from Prajwal's complete resume.
 ════════════════════════════════════════════════════ */
 
 // ── 1. Stop words (noise to ignore) ─────────────────
@@ -14,8 +14,7 @@ const STOP = new Set([
   'i','my','we','our','they','their','you','your',
   'of','in','on','at','to','for','with','from','and','or',
   'but','if','then','so','also','too','as','by','up','be',
-  'get','give','know','want','need','like','think','h',
-  's','t','re','ve','ll','d','m','doing','hai','kya','ho'
+  'get','give','know','want','need','like','think'
 ]);
 
 // ── 2. Synonym → canonical topic map ────────────────
@@ -146,94 +145,94 @@ const suggestions = [
   'How to contact him?'
 ];
 
-// ── 8. Knowledge Base (Gemini 3.6 Flash Intelligence) ─
+// ── 8. Resume Knowledge Base (100% Professional English) ─
 const KB = [
   {
-    keys: ['hi', 'hello', 'hey', 'greetings', 'hola', 'namaste', 'start', 'kaise ho', 'kaisa hai'],
-    ans: `Namaste! 👋 Main <b>Gemini 3.6 Flash AI</b> hun — Prajwal Sharma ka official portfolio assistant. <br><br>Aap Prajwal ke <b>skills, projects, certificates, internship, hackathons, hobbies, ya contact details</b> ke baare mein kuch bhi puch sakte hain!`
+    keys: ['hi', 'hello', 'hey', 'greetings', 'hola', 'namaste', 'start'],
+    ans: `Hello! 👋 How can I help you today?<br><br>I have access to Prajwal's full resume and background. You can ask me about his <b>skills, featured projects, certifications, internship, hackathons, or hobbies!</b>`
   },
   {
-    keys: ['prajwal', 'who', 'about', 'yourself', 'introduce', 'kaun hai', 'kaun h', 'konsa student', 'describe'],
-    ans: `<b>Prajwal Sharma</b> ek <b>UI/UX Designer, Visual Artist, aur Python Developer</b> hain 🚀<br><br>
-🎓 <b>Education:</b> B.Tech in Computer Science & Engineering (2022–2026) from <b>BBS College of Engineering & Technology, Prayagraj</b> (AKTU affiliated).<br>
-🎨 <b>Specialization:</b> Traditional graphite pencil portraiture ko modern UI/UX design & Python engineering ke sath combine karte hain.<br>
-💼 <b>Status:</b> Actively looking for Internship & Freelance opportunities!`
+    keys: ['prajwal', 'who', 'about', 'yourself', 'introduce', 'background', 'describe', 'summary'],
+    ans: `<b>Prajwal Sharma</b> is a <b>UI/UX Designer, Visual Artist, and Python Developer</b> based in Prayagraj, India 🚀<br><br>
+🎓 <b>Education:</b> B.Tech in Computer Science & Engineering (2022–2026) from <b>BBS College of Engineering & Technology, Prayagraj</b> (affiliated with AKTU).<br>
+🎨 <b>Background:</b> He blends traditional graphite pencil portraiture with modern UI/UX design systems and Python web development.<br>
+💼 <b>Status:</b> Actively seeking Internship and Pre-Placement opportunities in UI/UX Design & Software Engineering!`
   },
   {
-    keys: ['internship', 'intern', 'codsoft', 'job', 'work experience', 'placement', 'kya kar raha hai', 'kya kr rha h', 'internship hai kya'],
-    ans: `Prajwal ne <b>CodSoft mein Python Programming Internship</b> complete ki hai! 🐍<br><br>
-• Python scripting, automation, aur software engineering fundamentals par kaam kiya.<br>
-• Filhaal final year B.Tech CSE student hain (graduating 2026).<br>
-• <b>Actively open for new Internship roles</b> in UI/UX Design, Python Dev, or Web Development.<br><br>
+    keys: ['internship', 'intern', 'codsoft', 'job', 'work experience', 'placement', 'working', 'experience'],
+    ans: `Prajwal completed a <b>Python Programming Internship at CodSoft</b> 🐍<br><br>
+• Developed Python scripting projects, automation tools, and strengthened core software engineering fundamentals.<br>
+• Served as <b>Head Coordinator for Nova Fest</b> at BBS College — managing end-to-end design, branding, and event logistics.<br>
+• <b>Actively seeking new Internship opportunities</b> in UI/UX Design, Python Development, or Front-End Engineering.<br><br>
 📧 Contact for Internships: <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a>`
   },
   {
-    keys: ['hobby', 'hobbies', 'free time', 'interest', 'passion', 'kya pasand hai', 'kya krta h free time', 'drawing', 'art', 'pencil'],
-    ans: `Prajwal ki hobbies & passions 🎨<br><br>
-✏️ <b>Pencil Portraiture:</b> Graphite pencil portraits banana unka sabse bada passion hai! Years of art experience gives him a sharp eye for visual detail.<br>
-🎨 <b>UI/UX Design:</b> Free time mein premium interfaces aur design systems craft karna.<br>
-🐍 <b>Python & Coding:</b> Automation tools aur scripting projects build karna.<br>
-🌐 <b>Web Dev:</b> Creative CSS animations aur modern web layouts experiment karna.<br>
-🎭 <b>Brand Identity:</b> Logos aur brand visual identity design karna.`
+    keys: ['hobby', 'hobbies', 'free time', 'interest', 'passion', 'drawing', 'art', 'pencil', 'portrait'],
+    ans: `Prajwal's Hobbies & Creative Pursuits 🎨<br><br>
+✏️ <b>Graphite Pencil Portraiture:</b> Years of self-taught graphite portrait drawing. This artistic foundation gives him an exceptional eye for detail, light, shadow, and visual balance.<br>
+🎨 <b>UI/UX Design:</b> Designing high-fidelity interactive prototypes and design systems in Figma.<br>
+🐍 <b>Python Scripting:</b> Creating automation scripts and experimenting with algorithms for fun.<br>
+🌐 <b>Web Development:</b> Crafting responsive web interfaces with modern CSS animations and glassmorphism.<br>
+🎭 <b>Brand Identity:</b> Designing logos, visual identities, and event branding.`
   },
   {
-    keys: ['skill', 'skills', 'python', 'figma', 'html', 'css', 'javascript', 'git', 'sql', 'c++', 'tech stack', 'technology', 'tools', 'kya janta hai', 'kya aata hai'],
-    ans: `Prajwal ka full Tech & Design Stack 💻<br><br>
-<b>Programming:</b> 🐍 Python · 🌐 HTML5 · 🎨 CSS3 · ⚡ JavaScript · 💻 C/C++ · 🗄️ SQL<br>
-<b>Design & Tools:</b> 🖌️ Figma (UI/UX) · 🔀 Git & GitHub · 📱 Responsive Web Design<br>
-<b>Creative:</b> ✏️ Pencil Portraiture · 🎭 Brand Identity Design<br>
-<b>Learning:</b> 🤖 AI/ML Engineering · ☁️ Cloud Platforms`
+    keys: ['skill', 'skills', 'python', 'figma', 'html', 'css', 'javascript', 'git', 'sql', 'c++', 'tech stack', 'technology', 'tools'],
+    ans: `Prajwal's Resume Tech & Design Stack 💻<br><br>
+• <b>Programming Languages:</b> Python, C / C++, HTML5, CSS3, JavaScript (ES6+), SQL<br>
+• <b>UI/UX & Design:</b> Figma, Wireframing, High-Fidelity Prototyping, Brand Identity Systems<br>
+• <b>Tools & Version Control:</b> Git, GitHub, VS Code, Canva, Figma Desktop<br>
+• <b>Specializations:</b> Pencil Portraiture, Responsive Web Design, AI/ML (Learning)`
   },
   {
     keys: ['viper', 'security', 'cyber', 'monitoring', 'threat'],
     ans: `<b>VIPER — AI Security Interface</b> 🔐<br><br>
-Prajwal ka flagship UI/UX project — ek AI-powered Security Operations Center interface:<br>
+Prajwal's flagship UI/UX project — a concept for an AI-powered Security Operations Center:<br>
 • 🗺️ Real-time threat map visualization<br>
-• 🚨 Cyber threat alert panels with severity indicators<br>
-• 🌑 Cyber-dark aesthetic (deep blacks + neon cyan accents)<br><br>
-Figma mein fully designed with complete design system & components. <a href="viper-case-study.html" style="color:#c8a0ff">View Case Study →</a>`
+• 🚨 Active threat alert panels with severity indicators<br>
+• 🌑 Cyber-dark aesthetic (deep obsidian black + cyan accents)<br><br>
+Built fully in <b>Figma</b> as a comprehensive design system. <a href="viper-case-study.html" style="color:#c8a0ff">View Case Study →</a>`
   },
   {
     keys: ['tradesight', 'trade sight', 'fintech', 'stock', 'yukti', 'market'],
     ans: `<b>TradeSight AI — Fintech Platform</b> 📈<br><br>
-Built at <b>Yukti Hackathon 2024 (AKTU)</b> — Finalist project!<br>
-• 🤖 AI stock market sentiment analysis dashboard<br>
+Developed for <b>Yukti Hackathon 2024 (AKTU Finalist)</b>:<br>
+• 🤖 AI sentiment analysis dashboard for stock market trends<br>
 • 📊 Real-time candlestick chart UI concept<br>
-• 💛 Luxury gold & dark brown brand identity<br>
-• 🐍 Python backend for sentiment calculation.<br><br>
+• 💛 Luxury gold & dark brown visual identity<br>
+• 🐍 Python backend logic for sentiment analysis.<br><br>
 <a href="tradesight-case-study.html" style="color:#c8a0ff">View Case Study →</a>`
   },
   {
     keys: ['pencilastic', 'gallery', 'art website'],
     ans: `<b>Pencilastic — Digital Art Gallery</b> ✏️<br><br>
-Prajwal ki personal digital gallery website for graphite pencil portraits:<br>
-• Minimal white layout with elegant typography<br>
-• Curated artwork showcase bridging traditional art with web dev<br>
-• Built with HTML5, CSS3, and JavaScript.`
+Prajwal's personal digital gallery website for graphite pencil portraiture:<br>
+• Clean, minimal white layout with elegant typography<br>
+• Curated artwork showcase bridging traditional art with web development<br>
+• Built using HTML5, CSS3, and JavaScript.`
   },
   {
     keys: ['certificate', 'certificates', 'certification', 'tata', 'deloitte', 'google', 'codsoft', 'hackwithindia', 'gfg'],
-    ans: `Prajwal ke paas <b>8 Professional Certificates</b> hain 🏆<br><br>
-🔵 <b>Tata Group</b> — Data Visualisation: Empowering Business<br>
-🔵 <b>Tata Group</b> — Cybersecurity Analyst Job Simulation<br>
-🟢 <b>Deloitte</b> — Technology Consulting Job Simulation<br>
-🔴 <b>Google</b> — AI Essentials Certificate<br>
-☁️ <b>Google Cloud</b> — Generative AI Fundamentals<br>
-🐍 <b>CodSoft</b> — Python Programming Internship<br>
-💡 <b>HackWithIndia</b> — Hackathon Participation<br>
-🧩 <b>GeeksforGeeks</b> — Syntax Error Hackathon`
+    ans: `Prajwal holds <b>8 Professional Certifications</b> 🏆<br><br>
+🔵 <b>Tata Group:</b> Data Visualisation: Empowering Business<br>
+🔵 <b>Tata Group:</b> Cybersecurity Analyst Job Simulation<br>
+🟢 <b>Deloitte:</b> Technology Consulting Job Simulation<br>
+🔴 <b>Google:</b> AI Essentials Certificate<br>
+☁️ <b>Google Cloud:</b> Generative AI Fundamentals<br>
+🐍 <b>CodSoft:</b> Python Programming Internship<br>
+💡 <b>HackWithIndia:</b> Hackathon Participation Certificate<br>
+🧩 <b>GeeksforGeeks:</b> Syntax Error Hackathon Certificate`
   },
   {
     keys: ['hackathon', 'yukti', 'lovable', 'hackwithindia', 'gfg', 'competition'],
-    ans: `Prajwal ne <b>4 Hackathons</b> mein participate kiya hai 🏆<br><br>
+    ans: `Prajwal's Hackathon Achievements 🏆<br><br>
 🥈 <b>Yukti Hackathon 2024 (AKTU):</b> Finalist with TradeSight AI<br>
-🚀 <b>Lovable Hackathon:</b> Top 5,000 / 25,000 globally (Top 20% worldwide 🌍)<br>
+🚀 <b>Lovable Global Hackathon:</b> Top 5,000 out of 25,000 participants globally (Top 20% worldwide 🌍)<br>
 💻 <b>HackWithIndia:</b> Certificate participant<br>
 🧩 <b>GFG Syntax Error:</b> Hackathon participant`
   },
   {
-    keys: ['contact', 'email', 'reach', 'linkedin', 'github', 'instagram', 'phone', 'contact info', 'kaise milen'],
-    ans: `Prajwal se contact karne ke tareeqe 📬<br><br>
+    keys: ['contact', 'email', 'reach', 'linkedin', 'github', 'instagram', 'phone', 'contact info'],
+    ans: `Ways to Connect with Prajwal 📬<br><br>
 📧 <b>Email:</b> <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a><br>
 💼 <b>LinkedIn:</b> <a href="https://www.linkedin.com/in/prajwal-sharma-015b98296" target="_blank" style="color:#5cb4ff">linkedin.com/in/prajwal-sharma-015b98296</a><br>
 🐙 <b>GitHub:</b> <a href="https://github.com/PrajwalSharma08" target="_blank" style="color:#c8a0ff">github.com/PrajwalSharma08</a><br>
@@ -241,21 +240,21 @@ Prajwal ki personal digital gallery website for graphite pencil portraits:<br>
   },
   {
     keys: ['resume', 'cv', 'download', 'pdf'],
-    ans: `Prajwal ka Resume aap direct portfolio se download kar sakte hain! 📄<br><br>
-Portfolio window mein <b>"📄 Download PDF"</b> button click karein, ya bottom dock mein Resume icon click karein.`
+    ans: `Prajwal's resume is available for instant download! 📄<br><br>
+Click the <b>📄 Resume icon</b> in the bottom dock or click the <b>'Download PDF'</b> button inside the Portfolio window.`
   }
 ];
 
 // ── 9. Find best-matching answer ─────────────────────
 function getAnswer(q) {
-  if (!q || typeof q !== 'string') return `Mujhse Prajwal ke baare mein kuch bhi puchhiye! Jaise: <i>"What are his skills?"</i> 😊`;
+  if (!q || typeof q !== 'string') return `Ask me anything about Prajwal! For example: <i>"What are his skills?"</i> 😊`;
   const lower = q.toLowerCase().trim();
-  if (lower === 'tell' || lower === 'tell me' || lower === 'details' || lower === 'more' || lower === 'batao' || lower === 'kuch batao') {
-    return `<b>Prajwal Sharma</b> ek B.Tech CSE student, UI/UX Designer, Visual Artist, aur Python Developer hain! 🚀<br><br>Aap kya jaan-na chahte hain?<br>• 🎨 <b>Skills & Tech Stack</b><br>• 🔐 <b>VIPER & Projects</b><br>• 🏆 <b>Certificates & Hackathons</b><br>• 🐍 <b>Internship Experience</b>`;
+  if (lower === 'tell' || lower === 'tell me' || lower === 'details' || lower === 'more') {
+    return `<b>Prajwal Sharma</b> is a B.Tech CSE student, UI/UX Designer, Visual Artist, and Python Developer! 🚀<br><br>What would you like to explore?<br>• 🎨 <b>Skills & Tech Stack</b><br>• 🔐 <b>VIPER & Projects</b><br>• 🏆 <b>Certificates & Hackathons</b><br>• 🐍 <b>Internship Experience</b>`;
   }
   const tokens = tokenize(q);
   if (!tokens.length) {
-    return `Mujhse Prajwal ke baare mein puchhiye! Jaise:<br><i>"What are his skills?"</i> ya <i>"Tell me about VIPER"</i> 😊`;
+    return `Ask me anything about Prajwal's resume! For example:<br><i>"What are his skills?"</i> or <i>"Tell me about VIPER"</i> 😊`;
   }
   let best = null, bestScore = 0;
   for (const entry of KB) {
@@ -263,12 +262,12 @@ function getAnswer(q) {
     if (s > bestScore) { bestScore = s; best = entry; }
   }
   if (best && bestScore >= 0.07) return best.ans;
-  return `Main is sawaal ka exact jawab nahi dhoond paaya! 🤔<br><br>
-Aap ye try kar sakte hain:<br>
+  return `I searched Prajwal's resume for that, but couldn't find an exact match! 🤔<br><br>
+Try asking about:<br>
 • <i>"What are his skills?"</i><br>
 • <i>"Tell me about VIPER project"</i><br>
 • <i>"Is he doing any internship?"</i><br>
 • <i>"What are his hobbies?"</i><br>
-• <i>"How can I contact him?"</i><br><br>
-Ya direct email karein: <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a>`;
+• <i>"How to contact him?"</i><br><br>
+Or email directly: <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a>`;
 }
