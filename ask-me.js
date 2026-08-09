@@ -8,9 +8,7 @@ const STOP = new Set([
   'is','are','was','were','the','a','an','he','his','him',
   'does','did','do','has','have','had','will','can','could',
   'would','should','may','might','must','shall',
-  'what','who','how','where','when','which','why',
-  'tell','me','about','any','some','please','give','show',
-  'prajwal','sharma','this','that','these','those','it',
+  'this','that','these','those','it',
   'i','my','we','our','they','their','you','your',
   'of','in','on','at','to','for','with','from','and','or',
   'but','if','then','so','also','too','as','by','up','be',
@@ -254,27 +252,81 @@ Click the <b>📄 Resume icon</b> in the bottom dock or click the <b>'Download P
 
 // ── 9. Find best-matching answer ─────────────────────
 function getAnswer(q) {
-  if (!q || typeof q !== 'string') return `Ask me anything about Prajwal! For example: <i>"What are his skills?"</i> 😊`;
-  const lower = q.toLowerCase().trim();
-  if (lower === 'tell' || lower === 'tell me' || lower === 'details' || lower === 'more') {
-    return `<b>Prajwal Sharma</b> is a B.Tech CSE student, UI/UX Designer, Visual Artist, and Python Developer! 🚀<br><br>What would you like to explore?<br>• 🎨 <b>Skills & Tech Stack</b><br>• 🔐 <b>VIPER & Projects</b><br>• 🏆 <b>Certificates & Hackathons</b><br>• 🐍 <b>Internship Experience</b>`;
+  if (!q || typeof q !== 'string') return KB.find(k => k.keys.includes('prajwal')).ans;
+  const lower = q.toLowerCase().trim().replace(/[?!.,;:'"]/g, '');
+
+  // 1. Direct Intent Matching (Catches exact questions immediately)
+  if (
+    lower.includes('who is prajwal') ||
+    lower.includes('who is he') ||
+    lower.includes('about prajwal') ||
+    lower === 'who' ||
+    lower === 'prajwal' ||
+    lower === 'prajwal sharma' ||
+    lower === 'bio' ||
+    lower === 'intro' ||
+    lower === 'introduction'
+  ) {
+    return KB.find(k => k.keys.includes('prajwal')).ans;
   }
+
+  if (lower.includes('intern') || lower.includes('codsoft') || lower.includes('experience') || lower.includes('work')) {
+    return KB.find(k => k.keys.includes('internship')).ans;
+  }
+
+  if (lower.includes('hobby') || lower.includes('hobbies') || lower.includes('art') || lower.includes('drawing') || lower.includes('portrait')) {
+    return KB.find(k => k.keys.includes('hobby')).ans;
+  }
+
+  if (lower.includes('project') || lower.includes('projects') || lower.includes('built') || lower.includes('made')) {
+    return KB.find(k => k.keys.includes('project')).ans;
+  }
+
+  if (lower.includes('viper')) {
+    return KB.find(k => k.keys.includes('viper')).ans;
+  }
+
+  if (lower.includes('tradesight') || lower.includes('trade sight')) {
+    return KB.find(k => k.keys.includes('tradesight')).ans;
+  }
+
+  if (lower.includes('pencilastic')) {
+    return KB.find(k => k.keys.includes('pencilastic')).ans;
+  }
+
+  if (lower.includes('skill') || lower.includes('skills') || lower.includes('tech') || lower.includes('stack') || lower.includes('coding')) {
+    return KB.find(k => k.keys.includes('skill')).ans;
+  }
+
+  if (lower.includes('certif') || lower.includes('tata') || lower.includes('deloitte') || lower.includes('google')) {
+    return KB.find(k => k.keys.includes('certificate')).ans;
+  }
+
+  if (lower.includes('hackathon') || lower.includes('yukti') || lower.includes('lovable')) {
+    return KB.find(k => k.keys.includes('hackathon')).ans;
+  }
+
+  if (lower.includes('contact') || lower.includes('email') || lower.includes('linkedin') || lower.includes('github') || lower.includes('instagram') || lower.includes('phone')) {
+    return KB.find(k => k.keys.includes('contact')).ans;
+  }
+
+  if (lower.includes('resume') || lower.includes('cv') || lower.includes('download')) {
+    return KB.find(k => k.keys.includes('resume')).ans;
+  }
+
+  // 2. Token Score Matching for arbitrary queries
   const tokens = tokenize(q);
   if (!tokens.length) {
-    return `Ask me anything about Prajwal's resume! For example:<br><i>"What are his skills?"</i> or <i>"Tell me about VIPER"</i> 😊`;
+    return KB.find(k => k.keys.includes('prajwal')).ans;
   }
+
   let best = null, bestScore = 0;
   for (const entry of KB) {
     const s = scoreEntry(entry, tokens);
     if (s > bestScore) { bestScore = s; best = entry; }
   }
-  if (best && bestScore >= 0.07) return best.ans;
-  return `I searched Prajwal's resume for that, but couldn't find an exact match! 🤔<br><br>
-Try asking about:<br>
-• <i>"What are his skills?"</i><br>
-• <i>"Tell me about VIPER project"</i><br>
-• <i>"Is he doing any internship?"</i><br>
-• <i>"What are his certificates?"</i><br>
-• <i>"How to contact him?"</i><br><br>
-Or email directly: <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a>`;
+  if (best && bestScore >= 0.05) return best.ans;
+
+  // Fallback: Default to Prajwal Bio summary
+  return KB.find(k => k.keys.includes('prajwal')).ans;
 }
