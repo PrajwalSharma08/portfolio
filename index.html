@@ -352,8 +352,10 @@
     <div class="menubar-left">
       <span class="menubar-apple">🍎</span>
       <span class="menubar-brand">Prajwal's Portfolio</span>
-      <span class="menubar-item" onclick="openWin(); scrollTo('proj-sec')">Projects</span>
-      <span class="menubar-item" onclick="openWin(); scrollTo('contact-sec')">Contact</span>
+      <span class="menubar-item" onclick="goTo('about-sec')">About</span>
+      <span class="menubar-item" onclick="goTo('proj-sec')">Projects</span>
+      <span class="menubar-item" onclick="goTo('cert-sec')">Certificates</span>
+      <span class="menubar-item" onclick="goTo('contact-sec')">Contact</span>
       <span class="menubar-item" onclick="document.querySelector('.res-btn').click()">Resume</span>
     </div>
     <div class="menubar-right">
@@ -373,19 +375,19 @@
     </div>
     <!-- Desktop Icons -->
     <div class="desktop-icon-grid">
-      <div class="desktop-icon" onclick="openWin(); scrollTo('proj-sec')">
+      <div class="desktop-icon" onclick="goTo('viper-card')">
         <div class="desktop-icon-emoji">📁</div>
         <span class="desktop-icon-label">VIPER</span>
       </div>
-      <div class="desktop-icon" onclick="openWin(); scrollTo('proj-sec')">
+      <div class="desktop-icon" onclick="goTo('tradesight-card')">
         <div class="desktop-icon-emoji">📁</div>
         <span class="desktop-icon-label">TradeSight AI</span>
       </div>
-      <div class="desktop-icon" onclick="openWin(); scrollTo('proj-sec')">
+      <div class="desktop-icon" onclick="goTo('pencilastic-card')">
         <div class="desktop-icon-emoji">📁</div>
         <span class="desktop-icon-label">Pencilastic</span>
       </div>
-      <div class="desktop-icon" onclick="openWin(); scrollTo('cert-sec')">
+      <div class="desktop-icon" onclick="goTo('cert-sec')">
         <div class="desktop-icon-emoji">🏆</div>
         <span class="desktop-icon-label">Certificates</span>
       </div>
@@ -410,7 +412,7 @@
     <div id="win-scroll">
 
       <!-- HERO -->
-      <div class="win-hero">
+      <div class="win-hero" id="about-sec">
         <img src="profile_portrait.jpg" alt="Prajwal Sharma" class="win-avatar"/>
         <div>
           <div class="win-name">Prajwal Sharma</div>
@@ -525,7 +527,7 @@
       <!-- PROJECTS -->
       <div class="win-section" id="proj-sec">
         <div class="sec-title">Projects</div>
-        <div class="proj-card">
+        <div class="proj-card" id="viper-card">
           <div class="proj-head">
             <div class="proj-ico"><img src="viper_project.png" alt="VIPER"/></div>
             <div class="proj-acts">
@@ -539,7 +541,7 @@
             <span class="tech-tag">Figma</span><span class="tech-tag">UI/UX</span><span class="tech-tag">Branding</span><span class="tech-tag">Dark Design</span>
           </div>
         </div>
-        <div class="proj-card">
+        <div class="proj-card" id="tradesight-card">
           <div class="proj-head">
             <div class="proj-ico"><img src="tradesight_project.png" alt="TradeSight"/></div>
             <div class="proj-acts">
@@ -553,7 +555,7 @@
             <span class="tech-tag">Python</span><span class="tech-tag">UI/UX</span><span class="tech-tag">Branding</span><span class="tech-tag">Figma</span><span class="tech-tag">HTML/CSS</span>
           </div>
         </div>
-        <div class="proj-card">
+        <div class="proj-card" id="pencilastic-card">
           <div class="proj-head">
             <div class="proj-ico"><img src="pencilastic_project.png" alt="Pencilastic"/></div>
             <div class="proj-acts">
@@ -644,16 +646,16 @@
 
   <!-- DOCK -->
   <div id="dock">
-    <div class="dock-item" onclick="openWin(); document.getElementById('win-scroll').scrollTo({top:0,behavior:'smooth'})">
+    <div class="dock-item" onclick="goTo('about-sec')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#4a90d9,#2575b8)">🔍</div>
       <div class="dock-tooltip">About</div>
       <div class="dock-dot"></div>
     </div>
-    <div class="dock-item" onclick="openWin(); scrollTo('proj-sec')">
+    <div class="dock-item" onclick="goTo('proj-sec')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#5ac8fa,#007aff)">🌐</div>
       <div class="dock-tooltip">Projects</div>
     </div>
-    <div class="dock-item" onclick="openWin(); scrollTo('cert-sec')">
+    <div class="dock-item" onclick="goTo('cert-sec')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#ff9f0a,#ff6b00)">📸</div>
       <div class="dock-tooltip">Certificates</div>
     </div>
@@ -786,12 +788,24 @@
     win.style.animation = 'windowIn 0.25s cubic-bezier(0.34,1.3,0.64,1) forwards';
   }
 
-  function scrollTo(id) {
+  function goTo(id) {
     openWin();
+    // Update titlebar label based on section
+    const labels = {
+      'about-sec':'👤  About Prajwal',
+      'proj-sec':'📁  Projects',
+      'viper-card':'🔐  VIPER Project',
+      'tradesight-card':'📈  TradeSight AI',
+      'pencilastic-card':'✏️  Pencilastic',
+      'cert-sec':'🏆  Certificates',
+      'contact-sec':'📬  Contact',
+    };
+    const title = document.querySelector('.win-title');
+    if (title && labels[id]) title.textContent = labels[id];
     setTimeout(() => {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
-    }, 320);
+    }, 300);
   }
 
   /* CERT MODAL */
