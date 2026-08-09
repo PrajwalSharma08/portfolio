@@ -397,7 +397,7 @@
   </div>
 
   <!-- MAIN WINDOW -->
-  <div id="main-window">
+  <div id="main-window" style="display:none;">
     <div id="titlebar">
       <div class="tls">
         <div class="tl tl-r" id="tl-close" title="Close"></div>
@@ -827,36 +827,33 @@
      ASK ME — KNOWLEDGE BASE & ENGINE
   ────────────────────────────────── */
   const KB = [
-    // Identity
-    { keys:['name','who','yourself','prajwal','introduce'], ans: `Hi! I'm <b>Prajwal Sharma</b> — a B.Tech CSE student at BBS College of Engineering & Technology, Prayagraj. I'm a UI/UX Designer, Visual Artist, and Python Developer. I love building beautiful digital experiences that blend traditional art with modern technology. 🎨` },
-    { keys:['college','university','study','education','bbs','engineering','prayagraj','btech','cse'], ans: `I'm currently pursuing <b>B.Tech in Computer Science & Engineering</b> from <b>BBS College of Engineering & Technology, Prayagraj</b> (2022–2026). It's affiliated with AKTU, UP. 📚` },
-    { keys:['skill','know','tech','stack','language','tools','work with'], ans: `My tech skills include:<br><br>🐍 <b>Python</b> · 🌐 <b>HTML5 & CSS3</b> · ⚡ <b>JavaScript</b> · 🖌️ <b>Figma</b> · 🔀 <b>Git & GitHub</b> · 💻 <b>C / C++</b> · 🗄️ <b>SQL</b><br><br>Design skills: <b>UI/UX Design, Brand Identity, Visual Art, Pencil Portraiture</b> 🎨` },
-    { keys:['python'], ans: `Yes, Python is one of my core skills! 🐍 I've used Python for AI/ML learning, scripting, and was selected for a <b>Python Programming Internship at CodSoft</b>. I'm continuously exploring Python for web backends and automation.` },
-    { keys:['figma','design','uiux','ui/ux','ui ux','interface'], ans: `Figma is my primary design tool! 🖌️ I use it for high-fidelity UI/UX design, wireframing, and prototyping. My major projects — <b>VIPER</b> and <b>TradeSight AI</b> — were both fully designed in Figma with complete design systems.` },
-    // Projects
-    { keys:['project','build','made','created','viper','tradesight','pencilastic'], ans: `I've built some exciting projects!<br><br>🔐 <b>VIPER</b> — AI Security Interface (UI/UX design, threat maps, cyber aesthetic)<br>📈 <b>TradeSight AI</b> — Fintech brand & platform (Yukti Hackathon 2024)<br>✏️ <b>Pencilastic</b> — Digital art gallery (pencil portrait showcase)<br><br>Click the project icons on the desktop to explore! 🚀` },
+    // Specific first — more specific keywords beat generic ones via scoring
+    { keys:['internship','intern','doing internship','any internship','current work'], ans: `Prajwal did a <b>Python Programming Internship at CodSoft</b>! 🐍<br><br>He built scripting projects and strengthened his Python fundamentals during this internship. He is currently a student and <b>actively looking for new internship opportunities</b> in UI/UX Design, Python, or Web Development.<br><br>📧 Contact: manjumanoj1177@gmail.com` },
+    { keys:['hobby','hobbies','free time','spare time','fun','enjoy','leisure'], ans: `Prajwal's hobbies & passions:<br><br>✏️ <b>Pencil Portraiture</b> — He's been drawing graphite portraits for years. This is his biggest passion!<br>🎨 <b>UI/UX Design</b> — Creating premium interfaces even in his free time<br>🐍 <b>Python & Coding</b> — Building small tools and automation scripts<br>🌐 <b>Web Dev</b> — Experimenting with new web designs<br>🎭 <b>Brand Design</b> — Creating brand identities from scratch` },
+    { keys:['available','open to','looking for','hire','fresher','opportunity','collab','freelance'], ans: `Yes! Prajwal is <b>actively open to opportunities</b> 🚀<br><br>✅ Internships (UI/UX, Python, Web Dev)<br>✅ Freelance design & branding projects<br>✅ Collaborations on creative-tech projects<br>✅ Remote work (anywhere!)<br><br>Graduating in <b>2026</b>. Reach out at:<br>📧 manjumanoj1177@gmail.com` },
     { keys:['viper'], ans: `<b>VIPER</b> is an AI-powered security monitoring system UI/UX concept. 🔐<br><br>It features threat map visualizations, real-time alert panels, active tracking indicators, and a cyber-dark aesthetic with cyan accents — designed for security operations teams. Built entirely in Figma.` },
-    { keys:['tradesight','trade sight'], ans: `<b>TradeSight AI</b> is a full fintech brand + UI system I built at <b>Yukti Hackathon 2024</b>. 📈<br><br>It includes an AI sentiment analysis dashboard, candlestick chart UI, complete brand identity with luxury gold & dark brown aesthetic, and Python backend for market analysis.` },
-    { keys:['pencilastic','pencil','art','gallery','portrait','drawing'], ans: `<b>Pencilastic</b> is my digital art gallery — showcasing my graphite pencil portrait artwork. ✏️<br><br>I've been doing pencil portraiture for years, and this project bridges my traditional art roots with web development. Clean minimal layout with elegant typography.` },
-    // Experience
-    { keys:['experience','work','job','internship','intern'], ans: `My experience highlights:<br><br>🐍 <b>CodSoft</b> — Python Programming Intern<br>🎤 <b>Nova Fest BBS College</b> — Head Coordinator (Design & Branding)<br>🏆 <b>Yukti Hackathon 2024</b> — Finalist<br>🚀 <b>Lovable Hackathon</b> — Top 5K out of 25K teams globally 🌍` },
-    { keys:['hackathon','competition','contest'], ans: `I've participated in several hackathons!<br><br>🏆 <b>Yukti Hackathon 2024</b> (AKTU) — Finalist with TradeSight AI<br>🚀 <b>Lovable Hackathon</b> — Top 5K / 25K participants globally (Top 20%!)<br>💻 <b>HackWithIndia</b> — Participant<br>🧩 <b>GFG Syntax Error</b> — Participant` },
-    { keys:['nova','fest','event','coordinator'], ans: `I was the <b>Head Coordinator</b> for Nova Fest at BBS College! 🎤<br><br>I led the complete design and branding, created all visual materials, and coordinated the entire event. It was a great experience managing a large-scale college cultural fest.` },
-    // Certificates
-    { keys:['certificate','certification','course','achieved','certified'], ans: `I have <b>8 professional certificates</b>! 🏆<br><br>🔵 <b>Tata Group</b> — Data Visualisation & Cybersecurity Analyst<br>🟢 <b>Deloitte</b> — Technology Consulting<br>🔴 <b>Google</b> — AI Essentials<br>☁️ <b>Google Cloud</b> — Generative AI Fundamentals<br>🐍 <b>CodSoft</b> — Python Internship<br>💡 <b>HackWithIndia, GFG</b> — Hackathons<br><br>See them all in the Certificates section! 📜` },
-    { keys:['google','ai','artificial intelligence','generative','cloud'], ans: `I have two Google certificates!<br><br>🔴 <b>Google AI Essentials</b> — Core AI concepts, prompt engineering, responsible AI<br>☁️ <b>Google Cloud — Generative AI Fundamentals</b> — Vertex AI, foundation models, LLMs<br><br>I'm actively learning AI/ML engineering! 🤖` },
-    { keys:['tata'], ans: `I completed two Tata Group job simulations:<br><br>📊 <b>Data Visualisation: Empowering Business with Effective Insights</b><br>🔐 <b>Cybersecurity Analyst Job Simulation</b><br><br>Great practical exposure to enterprise-level thinking! 💼` },
-    { keys:['deloitte'], ans: `I completed the <b>Deloitte Technology Consulting Job Simulation</b>! 💼<br><br>It gave me exposure to real consulting workflows, technology strategy, and business problem-solving at a global firm level.` },
-    // Contact
-    { keys:['contact','reach','email','hire','connect','collab','opportunity'], ans: `You can reach Prajwal here:<br><br>📧 <b>Email:</b> manjumanoj1177@gmail.com<br>💼 <b>LinkedIn:</b> linkedin.com/in/prajwal-sharma-015b98296<br>🐙 <b>GitHub:</b> github.com/PrajwalSharma08<br>📷 <b>Instagram:</b> @ps_artist_661<br><br>He's <b>open to internships, freelance design, and collaborations!</b> 🚀` },
-    { keys:['linkedin'], ans: `Here's Prajwal's LinkedIn: <a href="https://www.linkedin.com/in/prajwal-sharma-015b98296" target="_blank" style="color:#5cb4ff;">linkedin.com/in/prajwal-sharma-015b98296</a> 💼<br><br>Feel free to connect! He's actively looking for opportunities.` },
-    { keys:['github'], ans: `Prajwal's GitHub: <a href="https://github.com/PrajwalSharma08" target="_blank" style="color:#c8a0ff;">github.com/PrajwalSharma08</a> 🐙<br><br>Check out his repos and projects there!` },
-    // Resume
-    { keys:['resume','cv','download'], ans: `You can <b>download Prajwal's resume</b> directly from the portfolio! 📄<br><br>Just click the 📄 Resume icon in the dock at the bottom, or the "Download PDF" button inside the main window. It's always up to date!` },
-    // Personal
-    { keys:['hobby','interest','passion','like','love'], ans: `Prajwal is passionate about:<br><br>✏️ <b>Pencil Portraiture</b> — his artistic roots, graphite & graphite-on-paper<br>🎨 <b>UI/UX Design</b> — crafting premium digital experiences<br>🐍 <b>Python & AI</b> — exploring automation and ML<br>🌐 <b>Web Development</b> — building beautiful responsive interfaces<br>🎭 <b>Brand Identity</b> — creating visual systems from scratch` },
-    { keys:['location','city','from','india','up'], ans: `Prajwal is from <b>Prayagraj, Uttar Pradesh, India</b> 🇮🇳<br><br>He's studying at BBS College of Engineering & Technology there, and is available for remote internships and collaborations worldwide.` },
-    { keys:['available','open','fresher','hire'], ans: `Yes! Prajwal is <b>open to opportunities</b> 🚀<br><br>✅ Internships (UI/UX, Python, Web Dev)<br>✅ Freelance design projects<br>✅ Collaborations on creative tech projects<br>✅ Remote work<br><br>Graduating in <b>2026</b>. Reach out at manjumanoj1177@gmail.com!` },
+    { keys:['tradesight','trade sight','fintech'], ans: `<b>TradeSight AI</b> is a full fintech brand + UI system Prajwal built at <b>Yukti Hackathon 2024</b>. 📈<br><br>It includes an AI sentiment analysis dashboard, candlestick chart UI, luxury gold & dark brown brand identity, and Python backend for market analysis.` },
+    { keys:['pencilastic'], ans: `<b>Pencilastic</b> is Prajwal's digital art gallery — showcasing his graphite pencil portrait artwork. ✏️<br><br>It bridges traditional art with web development. Clean minimal layout with elegant typography and a curated gallery grid.` },
+    { keys:['pencil','portrait','drawing','sketch','art','artistic','artist'], ans: `Prajwal is a <b>self-taught pencil portrait artist</b>! ✏️<br><br>He has years of experience in graphite portraiture. His art background directly influences how he approaches UI/UX — strong eye for detail, value, and composition. Check out <b>Pencilastic</b> — his digital art gallery project!` },
+    { keys:['hackathon','competition','contest','yukti','lovable'], ans: `Prajwal has competed in several hackathons!<br><br>🏆 <b>Yukti Hackathon 2024</b> (AKTU) — Finalist with TradeSight AI<br>🚀 <b>Lovable Hackathon</b> — Top 5K / 25K participants globally (Top 20%!)<br>💻 <b>HackWithIndia</b> — Participant & Certificate<br>🧩 <b>GFG Syntax Error</b> — Participant` },
+    { keys:['nova','fest','event','coordinator','college event'], ans: `Prajwal was the <b>Head Coordinator</b> for <b>Nova Fest</b> at BBS College! 🎤<br><br>He led complete design, branding, and event coordination. Managed all visual materials and oversaw the entire large-scale college cultural festival.` },
+    { keys:['certificate','certification','certified','credentials'], ans: `Prajwal has <b>8 professional certificates</b>! 🏆<br><br>🔵 <b>Tata Group</b> — Data Visualisation & Cybersecurity Analyst<br>🟢 <b>Deloitte</b> — Technology Consulting<br>🔴 <b>Google</b> — AI Essentials<br>☁️ <b>Google Cloud</b> — Generative AI Fundamentals<br>🐍 <b>CodSoft</b> — Python Internship<br>💡 <b>HackWithIndia, GFG</b> — Hackathons<br><br>All visible in the Certificates section! 📜` },
+    { keys:['google','generative','vertex','llm'], ans: `Prajwal has two Google certificates!<br><br>🔴 <b>Google AI Essentials</b> — Prompt engineering, responsible AI<br>☁️ <b>Google Cloud — Generative AI Fundamentals</b> — Vertex AI, foundation models, LLMs<br><br>He's actively learning AI/ML engineering! 🤖` },
+    { keys:['tata','cybersecurity','data visualisation'], ans: `Prajwal completed two Tata Group job simulations:<br><br>📊 <b>Data Visualisation: Empowering Business</b><br>🔐 <b>Cybersecurity Analyst Job Simulation</b><br><br>Great enterprise-level exposure! 💼` },
+    { keys:['deloitte','consulting'], ans: `Prajwal completed the <b>Deloitte Technology Consulting Job Simulation</b>! 💼<br><br>Exposure to real consulting workflows, technology strategy, and global firm-level problem-solving.` },
+    { keys:['skill','skills','tech stack','technology','tools','know','good at','expertise'], ans: `Prajwal's tech skills:<br><br>🐍 <b>Python</b> · 🌐 <b>HTML5 & CSS3</b> · ⚡ <b>JavaScript</b> · 🖌️ <b>Figma</b> · 🔀 <b>Git & GitHub</b> · 💻 <b>C / C++</b> · 🗄️ <b>SQL</b><br><br>Design: <b>UI/UX Design, Brand Identity, Visual Art, Pencil Portraiture</b> 🎨<br><br>Learning: <b>AI/ML Engineering</b> 🤖` },
+    { keys:['python'], ans: `Python is one of Prajwal's core skills! 🐍<br><br>He used Python for his <b>CodSoft internship</b>, AI/ML learning, scripting projects, and the backend of TradeSight AI (Yukti Hackathon). Always exploring more Python applications!` },
+    { keys:['figma','ui/ux','uiux','interface design','wireframe','prototype'], ans: `Figma is Prajwal's primary design tool! 🖌️<br><br>He uses it for high-fidelity UI/UX design, wireframing, and prototyping. Both <b>VIPER</b> and <b>TradeSight AI</b> were fully designed in Figma with complete design systems and component libraries.` },
+    { keys:['project','projects','built','made','created','portfolio projects'], ans: `Prajwal's key projects:<br><br>🔐 <b>VIPER</b> — AI Security Interface UI/UX<br>📈 <b>TradeSight AI</b> — Fintech brand & platform (Yukti Hackathon)<br>✏️ <b>Pencilastic</b> — Digital pencil art gallery<br><br>Explore them via the desktop icons or Projects section! 🚀` },
+    { keys:['college','university','bbs','education','btech','b.tech','cse','aktu','prayagraj'], ans: `Prajwal is pursuing <b>B.Tech in Computer Science & Engineering</b> from <b>BBS College of Engineering & Technology, Prayagraj</b> (2022–2026), affiliated with AKTU, UP. 📚` },
+    { keys:['contact','reach','email','connect','message'], ans: `Reach Prajwal here:<br><br>📧 <b>Email:</b> manjumanoj1177@gmail.com<br>💼 <b>LinkedIn:</b> <a href="https://www.linkedin.com/in/prajwal-sharma-015b98296" target="_blank" style="color:#5cb4ff">linkedin.com/in/prajwal-sharma-015b98296</a><br>🐙 <b>GitHub:</b> <a href="https://github.com/PrajwalSharma08" target="_blank" style="color:#c8a0ff">github.com/PrajwalSharma08</a><br>📷 <b>Instagram:</b> @ps_artist_661<br><br>He's open to internships & collaborations! 🚀` },
+    { keys:['linkedin'], ans: `Prajwal's LinkedIn: <a href="https://www.linkedin.com/in/prajwal-sharma-015b98296" target="_blank" style="color:#5cb4ff;">linkedin.com/in/prajwal-sharma-015b98296</a> 💼<br><br>Connect with him — he's actively looking for opportunities!` },
+    { keys:['github'], ans: `Prajwal's GitHub: <a href="https://github.com/PrajwalSharma08" target="_blank" style="color:#c8a0ff;">github.com/PrajwalSharma08</a> 🐙<br><br>Check out his code repositories and projects there!` },
+    { keys:['resume','cv','download'], ans: `Download Prajwal's resume directly from the portfolio! 📄<br><br>Click the 📄 Resume icon in the dock at the bottom, or the "Download PDF" button inside the main window. Always up to date!` },
+    { keys:['location','city','from','india','where'], ans: `Prajwal is from <b>Prayagraj, Uttar Pradesh, India</b> 🇮🇳<br><br>Studying at BBS College there — available for remote work and collaborations worldwide!` },
+    { keys:['experience','work experience','background'], ans: `Prajwal's experience:<br><br>🐍 <b>CodSoft</b> — Python Programming Intern<br>🎤 <b>Nova Fest, BBS College</b> — Head Coordinator (Design & Branding)<br>🏆 <b>Yukti Hackathon 2024</b> — Finalist (TradeSight AI)<br>🚀 <b>Lovable Hackathon</b> — Top 5K / 25K globally` },
+    // Generic identity — last, only if nothing else matched
+    { keys:['who','name','yourself','introduce','about prajwal','tell me about'], ans: `Hi! I'm <b>Prajwal Sharma</b> 👋<br><br>B.Tech CSE student at BBS College, Prayagraj. I'm a UI/UX Designer, Visual Artist, and Python Developer — passionate about blending traditional art with modern digital design.<br><br>Ask me about my <b>skills, projects, certificates, or experience!</b> 🎨` },
   ];
 
   const suggestions = [
@@ -873,9 +870,8 @@
       panel.style.opacity = '1';
       panel.style.transform = 'translate(-50%,-50%) scale(1)';
     }, 10);
-    // Init chat if empty
     if (document.getElementById('chat-msgs').children.length === 0) {
-      addMsg('bot', "Hi there! 👋 I'm Prajwal's AI assistant. I can answer anything about his <b>education, skills, projects, certificates, experience</b>, or how to <b>contact</b> him. What would you like to know?");
+      addMsg('bot', "Hi there! 👋 I'm Prajwal's portfolio assistant. Ask me anything about his <b>skills, projects, certificates, experience, or hobbies!</b>");
       renderSuggestions();
     }
     setTimeout(() => document.getElementById('chat-input').focus(), 300);
@@ -886,10 +882,7 @@
     const overlay = document.getElementById('askme-overlay');
     panel.style.opacity = '0';
     panel.style.transform = 'translate(-50%,-50%) scale(0.95)';
-    setTimeout(() => {
-      panel.style.display = 'none';
-      overlay.style.display = 'none';
-    }, 200);
+    setTimeout(() => { panel.style.display = 'none'; overlay.style.display = 'none'; }, 200);
   }
 
   function addMsg(role, html) {
@@ -898,20 +891,10 @@
     el.style.cssText = role === 'user'
       ? 'align-self:flex-end;max-width:80%;background:rgba(191,90,242,0.18);border:1px solid rgba(191,90,242,0.28);border-radius:12px 12px 3px 12px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,0.88);line-height:1.6;'
       : 'align-self:flex-start;max-width:86%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px 12px 12px 3px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,0.78);line-height:1.6;';
-    if (role === 'bot') {
-      // Typing effect
-      el.innerHTML = '';
-      msgs.appendChild(el);
-      msgs.scrollTop = msgs.scrollHeight;
-      let i = 0;
-      const stripped = html;
-      // Fast-render HTML with small delay
-      setTimeout(() => { el.innerHTML = stripped; msgs.scrollTop = msgs.scrollHeight; }, 120);
-    } else {
-      el.innerHTML = html;
-      msgs.appendChild(el);
-      msgs.scrollTop = msgs.scrollHeight;
-    }
+    el.innerHTML = '';
+    msgs.appendChild(el);
+    msgs.scrollTop = msgs.scrollHeight;
+    setTimeout(() => { el.innerHTML = html; msgs.scrollTop = msgs.scrollHeight; }, role === 'bot' ? 120 : 0);
   }
 
   function renderSuggestions() {
@@ -922,17 +905,21 @@
   }
 
   function askSuggestion(btn, q) {
-    btn.parentElement.innerHTML = ''; // hide suggestions after click
+    btn.parentElement.innerHTML = '';
     document.getElementById('chat-input').value = q;
     sendMsg();
   }
 
+  /* Scoring-based matcher: finds KB entry with MOST keyword matches */
   function getAnswer(q) {
     const lower = q.toLowerCase();
+    let bestEntry = null, bestScore = 0;
     for (const entry of KB) {
-      if (entry.keys.some(k => lower.includes(k))) return entry.ans;
+      const score = entry.keys.filter(k => lower.includes(k)).length;
+      if (score > bestScore) { bestScore = score; bestEntry = entry; }
     }
-    return `Hmm, I'm not sure about that specific detail! 🤔<br><br>You can always <b>email Prajwal directly</b> at <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff;">manjumanoj1177@gmail.com</a> or check his <a href="Prajwal_Sharma_Resume.pdf" target="_blank" style="color:#c8a0ff;">resume PDF</a>. Try asking about his <b>skills, projects, certificates, or education!</b>`;
+    if (bestEntry) return bestEntry.ans;
+    return `Hmm, I didn't catch that! 🤔<br><br>Try asking about:<br>• <b>Skills</b> ("What are his skills?")<br>• <b>Projects</b> ("Tell me about VIPER")<br>• <b>Certificates</b> ("What certificates does he have?")<br>• <b>Hobbies</b> ("What are his hobbies?")<br>• <b>Contact</b> ("How to reach him?")`;
   }
 
   function sendMsg() {
@@ -941,8 +928,7 @@
     if (!q) return;
     addMsg('user', q);
     inp.value = '';
-    const ans = getAnswer(q);
-    setTimeout(() => addMsg('bot', ans), 400);
+    setTimeout(() => addMsg('bot', getAnswer(q)), 400);
   }
 
   document.addEventListener('keydown', e => {
