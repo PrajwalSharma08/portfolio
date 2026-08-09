@@ -7,7 +7,7 @@
   <meta name="description" content="Prajwal Sharma's interactive macOS portfolio. B.Tech CSE · UI/UX Designer · Visual Artist · Python Developer."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0c051a; color: #fff; }
@@ -63,61 +63,131 @@
       z-index: 1;
     }
 
-    /* WELCOME BIG HERO TEXT */
+    /* WELCOME BIG HERO TEXT — CENTERED & STYLISH */
     #welcome-wrap {
       position: absolute;
-      bottom: 40px; left: 50px;
+      top: 46%; left: 50%;
+      transform: translate(-50%, -50%);
       z-index: 2;
       pointer-events: none;
       user-select: none;
+      text-align: center;
+      width: min(92vw, 920px);
     }
     #welcome-small {
-      font-size: clamp(16px, 2vw, 24px);
-      font-weight: 300;
+      font-family: 'Outfit', 'Inter', sans-serif;
+      font-size: clamp(16px, 2.2vw, 26px);
+      font-weight: 400;
       color: rgba(255,255,255,0.85);
-      line-height: 1.2;
-      letter-spacing: -0.01em;
+      line-height: 1.3;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
     }
     #welcome-large {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(48px, 7vw, 108px);
+      font-family: 'Syne', 'Outfit', sans-serif;
+      font-size: clamp(60px, 9.5vw, 136px);
       font-weight: 800;
-      color: rgba(255,255,255,0.95);
-      line-height: 0.9;
-      letter-spacing: -0.03em;
-      text-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      color: #ffffff;
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      text-transform: lowercase;
+      text-shadow: 0 16px 50px rgba(0,0,0,0.75), 0 0 35px rgba(200, 160, 255, 0.22);
     }
     .hover-letter {
       display: inline-block;
-      transition: color 0.15s, transform 0.15s;
+      transition: color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
       pointer-events: all;
       cursor: default;
     }
-    .hover-letter:hover { color: #c8a0ff; transform: translateY(-4px); }
+    .hover-letter:hover {
+      color: #c8a0ff;
+      transform: translateY(-6px) scale(1.08);
+      text-shadow: 0 0 25px rgba(200, 160, 255, 0.8);
+    }
 
-    /* DESKTOP ICONS GRID (RIGHT SIDEBAR) */
+    /* DESKTOP ICONS GRID (LEFT SIDEBAR — ENLARGED & REFINED) */
     .desktop-icon-grid {
       position: absolute;
-      top: 16px; right: 24px;
+      top: 24px; left: 24px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
       z-index: 10;
     }
     .desktop-icon {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
-      padding: 8px 10px;
-      border-radius: 10px;
+      gap: 6px;
+      padding: 10px 14px;
+      border-radius: 14px;
       cursor: pointer;
-      transition: background 0.15s, transform 0.15s;
-      min-width: 82px;
+      transition: background 0.18s, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+      min-width: 92px;
     }
-    .desktop-icon:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
-    .desktop-icon-emoji { font-size: 38px; line-height: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6)); }
-    .desktop-icon-label { font-size: 11px; font-weight: 500; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.9); text-align: center; line-height: 1.2; }
+    .desktop-icon:hover {
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(10px);
+      transform: translateY(-3px) scale(1.05);
+    }
+    .desktop-icon-emoji {
+      font-size: 52px;
+      line-height: 1;
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.65));
+    }
+    .desktop-icon-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.95), 0 0 3px rgba(0,0,0,0.9);
+      text-align: center;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    /* Realistic macOS PDF Document Icon */
+    .doc-icon-graphic {
+      width: 44px; height: 54px;
+      background: linear-gradient(180deg, #ffffff 0%, #f0f2f5 100%);
+      border-radius: 5px 12px 5px 5px;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5), inset 0 1px 0 #ffffff;
+      border: 1px solid rgba(255,255,255,0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 7px 6px;
+      margin-bottom: 2px;
+    }
+    .doc-icon-graphic::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 13px; height: 13px;
+      background: #d1d5db;
+      border-radius: 0 0 0 4px;
+      box-shadow: -1px 1px 3px rgba(0,0,0,0.25);
+    }
+    .doc-badge {
+      position: absolute;
+      top: 13px; left: 50%;
+      transform: translateX(-50%);
+      background: #ef4444;
+      color: #fff;
+      font-size: 8.5px;
+      font-weight: 800;
+      padding: 1px 5px;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+    }
+    .doc-lines { display: flex; flex-direction: column; gap: 3px; margin-top: 20px; }
+    .doc-lines span { height: 2px; background: #94a3b8; border-radius: 2px; }
+    .doc-lines span:nth-child(1) { width: 85%; }
+    .doc-lines span:nth-child(2) { width: 100%; }
+    .doc-lines span:nth-child(3) { width: 60%; }
 
     /* DOCK BAR */
     #dock {
@@ -407,15 +477,14 @@
 <div id="desktop">
   <img id="wallpaper" src="macos_wallpaper.jpg" alt="wallpaper"/>
 
-  <!-- MENU BAR (NO DUPLICATE ITEMS) -->
+  <!-- MENU BAR -->
   <div id="menubar">
     <div class="menubar-left">
-      <span class="menubar-apple" onclick="switchWallpaper()">🍎</span>
+      <span class="menubar-apple">🍎</span>
       <span class="menubar-brand">Prajwal's Portfolio</span>
       <span class="menubar-item" onclick="openWindow('main-window'); goTo('about-sec')">About</span>
       <span class="menubar-item" onclick="openWindow('main-window'); goTo('proj-sec')">Projects</span>
       <span class="menubar-item" onclick="openWindow('main-window'); goTo('cert-sec')">Certificates</span>
-      <span class="menubar-item" onclick="switchWallpaper()">🎨 Change Wallpaper</span>
     </div>
     <div class="menubar-right">
       <span class="menubar-icon" title="Ask About Me" onclick="openAskMe()">✨</span>
@@ -425,12 +494,12 @@
 
   <!-- DESKTOP AREA -->
   <div id="desktop-area">
-    <!-- Welcome Big Text -->
+    <!-- Welcome Big Text (Centered) -->
     <div id="welcome-wrap">
       <div id="welcome-small"></div>
       <div id="welcome-large"></div>
     </div>
-    <!-- Desktop Icons Grid (Right Sidebar - NO DUPLICATE ITEMS) -->
+    <!-- Desktop Icons Grid (Left Sidebar — Enlarged) -->
     <div class="desktop-icon-grid">
       <div class="desktop-icon" onclick="openWindow('main-window'); goTo('viper-card')">
         <div class="desktop-icon-emoji">📁</div>
@@ -449,8 +518,11 @@
         <span class="desktop-icon-label">Certificates</span>
       </div>
       <div class="desktop-icon" onclick="document.querySelector('.res-btn').click()">
-        <div class="desktop-icon-emoji">📄</div>
-        <span class="desktop-icon-label">Resume.pdf</span>
+        <div class="doc-icon-graphic">
+          <div class="doc-badge">PDF</div>
+          <div class="doc-lines"><span></span><span></span><span></span></div>
+        </div>
+        <span class="desktop-icon-label" style="margin-top:2px;">Resume.pdf</span>
       </div>
     </div>
   </div>
