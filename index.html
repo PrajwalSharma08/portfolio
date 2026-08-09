@@ -48,7 +48,7 @@
       user-select: none;
     }
     .menubar-left { display: flex; align-items: center; gap: 16px; }
-    .menubar-apple { font-size: 15px; cursor: pointer; }
+    .menubar-apple { font-size: 15px; cursor: default; }
     .menubar-brand { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.95); letter-spacing: -0.01em; }
     .menubar-item { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.78); cursor: pointer; transition: color 0.15s, background 0.15s; padding: 2px 8px; border-radius: 4px; }
     .menubar-item:hover { color: #fff; background: rgba(255,255,255,0.1); }
@@ -296,22 +296,16 @@
       white-space: nowrap;
     }
 
-    /* 1. PORTFOLIO / FINDER WINDOW (MAIN WINDOW) */
-    #main-window {
-      top: 45px;
-      left: calc(50% - 410px);
-      width: min(820px, 92vw);
-      height: calc(100vh - 140px);
-    }
-    #win-scroll {
+    /* WINDOW SCROLL CONTAINER */
+    .win-scroll {
       flex: 1;
       overflow-y: auto;
-      padding: 28px 30px 44px;
+      padding: 26px 28px 40px;
       scrollbar-width: thin;
       scrollbar-color: rgba(255,255,255,0.18) transparent;
     }
-    #win-scroll::-webkit-scrollbar { width: 6px; }
-    #win-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+    .win-scroll::-webkit-scrollbar { width: 6px; }
+    .win-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
 
     /* Hero Section */
     .win-hero { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
@@ -348,7 +342,7 @@
     .exp-meta { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; display: flex; gap: 10px; }
 
     /* Project Cards */
-    .proj-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 18px; margin-bottom: 12px; transition: background 0.15s; }
+    .proj-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 18px; margin-bottom: 14px; transition: background 0.15s; }
     .proj-card:hover { background: rgba(255,255,255,0.06); }
     .proj-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
     .proj-ico { width: 46px; height: 46px; border-radius: 10px; overflow: hidden; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 24px; }
@@ -375,9 +369,33 @@
     .cert-org { font-size: 10px; font-weight: 700; color: #c8a0ff; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
     .cert-name { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.88); line-height: 1.35; }
 
-    /* 2. DEDICATED TECH STACK TERMINAL WINDOW (EXACT MATCH FOR IMAGE 3) */
+    /* 1. ABOUT ME WINDOW */
+    #main-window {
+      top: 45px;
+      left: calc(50% - 390px);
+      width: min(780px, 92vw);
+      height: calc(100vh - 140px);
+    }
+
+    /* 2. DEDICATED PROJECTS WINDOW */
+    #projects-window {
+      top: 55px;
+      left: calc(50% - 390px);
+      width: min(780px, 92vw);
+      height: calc(100vh - 150px);
+    }
+
+    /* 3. DEDICATED CERTIFICATES WINDOW */
+    #certs-window {
+      top: 65px;
+      left: calc(50% - 400px);
+      width: min(800px, 92vw);
+      height: calc(100vh - 150px);
+    }
+
+    /* 4. DEDICATED TECH STACK TERMINAL WINDOW */
     #techstack-window {
-      top: 60px;
+      top: 75px;
       left: calc(50% - 320px);
       width: min(640px, 90vw);
       height: 490px;
@@ -402,9 +420,9 @@
     .term-cat { color: #28C840; font-weight: 500; white-space: nowrap; }
     .term-tech { color: rgba(255,255,255,0.9); }
 
-    /* 3. DEDICATED CONTACT ME WINDOW (EXACT MATCH FOR USER SCREENSHOT) */
+    /* 5. DEDICATED CONTACT ME WINDOW */
     #contact-window {
-      top: 80px;
+      top: 85px;
       left: calc(50% - 280px);
       width: min(560px, 90vw);
       height: 440px;
@@ -463,6 +481,7 @@
       #mobile-view { display: block; }
       #desktop { display: none; }
       .contact-grid { grid-template-columns: repeat(2, 1fr); }
+      .certs-grid { grid-template-columns: 1fr; }
     }
     .mob-inner { max-width: 480px; margin: 0 auto; padding: 24px 18px 60px; }
     .mob-hero { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-top: 16px; }
@@ -482,9 +501,11 @@
     <div class="menubar-left">
       <span class="menubar-apple">🍎</span>
       <span class="menubar-brand">Prajwal's Portfolio</span>
-      <span class="menubar-item" onclick="openWindow('main-window'); goTo('about-sec')">About</span>
-      <span class="menubar-item" onclick="openWindow('main-window'); goTo('proj-sec')">Projects</span>
-      <span class="menubar-item" onclick="openWindow('main-window'); goTo('cert-sec')">Certificates</span>
+      <span class="menubar-item" onclick="openWindow('main-window')">About</span>
+      <span class="menubar-item" onclick="openWindow('projects-window')">Projects</span>
+      <span class="menubar-item" onclick="openWindow('certs-window')">Certificates</span>
+      <span class="menubar-item" onclick="openWindow('techstack-window')">Tech Stack</span>
+      <span class="menubar-item" onclick="openWindow('contact-window')">Contact</span>
     </div>
     <div class="menubar-right">
       <span class="menubar-icon" title="Ask About Me" onclick="openAskMe()">✨</span>
@@ -499,21 +520,21 @@
       <div id="welcome-small"></div>
       <div id="welcome-large"></div>
     </div>
-    <!-- Desktop Icons Grid (Left Sidebar — Enlarged) -->
+    <!-- Desktop Icons Grid (Left Sidebar — Extra Large Standalone Icons) -->
     <div class="desktop-icon-grid">
-      <div class="desktop-icon" onclick="openWindow('main-window'); goTo('viper-card')">
+      <div class="desktop-icon" onclick="openWindow('projects-window'); scrollToProj('viper-card')">
         <div class="desktop-icon-emoji">📁</div>
         <span class="desktop-icon-label">VIPER</span>
       </div>
-      <div class="desktop-icon" onclick="openWindow('main-window'); goTo('tradesight-card')">
+      <div class="desktop-icon" onclick="openWindow('projects-window'); scrollToProj('tradesight-card')">
         <div class="desktop-icon-emoji">📁</div>
         <span class="desktop-icon-label">TradeSight AI</span>
       </div>
-      <div class="desktop-icon" onclick="openWindow('main-window'); goTo('pencilastic-card')">
+      <div class="desktop-icon" onclick="openWindow('projects-window'); scrollToProj('pencilastic-card')">
         <div class="desktop-icon-emoji">📁</div>
         <span class="desktop-icon-label">Pencilastic</span>
       </div>
-      <div class="desktop-icon" onclick="openWindow('main-window'); goTo('cert-sec')">
+      <div class="desktop-icon" onclick="openWindow('certs-window')">
         <div class="desktop-icon-emoji">🏆</div>
         <span class="desktop-icon-label">Certificates</span>
       </div>
@@ -527,7 +548,7 @@
     </div>
   </div>
 
-  <!-- WINDOW 1: PORTFOLIO / FINDER WINDOW (ABOUT, PROJECTS, CERTS, RESUME) -->
+  <!-- WINDOW 1: DEDICATED ABOUT ME WINDOW -->
   <div id="main-window" class="mac-window" style="display:none;" onclick="bringToFront('main-window')">
     <div class="mac-titlebar">
       <div class="tls">
@@ -535,12 +556,12 @@
         <div class="tl tl-y" onclick="closeWindow('main-window')" title="Minimize"></div>
         <div class="tl tl-g" title="Zoom"></div>
       </div>
-      <div class="win-title-text" id="main-win-title">📁  prajwal.dev — Portfolio</div>
+      <div class="win-title-text">👤  About Prajwal</div>
     </div>
 
-    <div id="win-scroll">
+    <div class="win-scroll">
       <!-- HERO -->
-      <div class="win-hero" id="about-sec">
+      <div class="win-hero">
         <img src="profile_portrait.jpg" alt="Prajwal Sharma" class="win-avatar"/>
         <div>
           <div class="win-name">Prajwal Sharma</div>
@@ -611,92 +632,6 @@
         </div>
       </div>
 
-      <!-- FEATURED PROJECTS -->
-      <div class="win-section" id="proj-sec">
-        <div class="sec-title">Featured Projects</div>
-        <div class="proj-card" id="viper-card">
-          <div class="proj-head">
-            <div class="proj-ico"><img src="viper_project.png" alt="VIPER"/></div>
-            <div class="proj-acts">
-              <a href="viper-case-study.html" class="proj-btn lv"><span class="live-dot"></span>Case Study</a>
-              <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
-            </div>
-          </div>
-          <div class="proj-name">VIPER — AI Security Interface</div>
-          <div class="proj-desc">High-fidelity UI/UX concept for an AI-powered security monitoring system. Features threat map visualizations, real-time alert panels, and a cyber-dark aesthetic with cyan accents.</div>
-          <div class="tech-tags">
-            <span class="tech-tag">Figma</span><span class="tech-tag">UI/UX</span><span class="tech-tag">Branding</span><span class="tech-tag">Cyber Dark</span>
-          </div>
-        </div>
-        <div class="proj-card" id="tradesight-card">
-          <div class="proj-head">
-            <div class="proj-ico"><img src="tradesight_project.png" alt="TradeSight"/></div>
-            <div class="proj-acts">
-              <a href="tradesight-case-study.html" class="proj-btn lv"><span class="live-dot"></span>Case Study</a>
-              <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
-            </div>
-          </div>
-          <div class="proj-name">TradeSight AI — Fintech Platform</div>
-          <div class="proj-desc">Complete brand identity and UI system for an AI-powered fintech platform built at Yukti Hackathon 2024. Luxury gold & dark brown aesthetic with AI sentiment analysis dashboards.</div>
-          <div class="tech-tags">
-            <span class="tech-tag">Python</span><span class="tech-tag">UI/UX</span><span class="tech-tag">Figma</span><span class="tech-tag">HTML/CSS</span>
-          </div>
-        </div>
-        <div class="proj-card" id="pencilastic-card">
-          <div class="proj-head">
-            <div class="proj-ico"><img src="pencilastic_project.png" alt="Pencilastic"/></div>
-            <div class="proj-acts">
-              <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn lv"><span class="live-dot"></span>View</a>
-              <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
-            </div>
-          </div>
-          <div class="proj-name">Pencilastic — Digital Art Gallery</div>
-          <div class="proj-desc">Minimal digital art gallery website showcasing graphite pencil portrait artwork. Clean layout with elegant typography bridging traditional art with web development.</div>
-          <div class="tech-tags">
-            <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Art Gallery</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CERTIFICATES GRID -->
-      <div class="win-section" id="cert-sec">
-        <div class="sec-title">Certifications (8 Total)</div>
-        <div class="certs-grid">
-          <div class="cert-card" onclick="openCert('cert_tata.png')">
-            <img src="cert_tata.png" class="cert-thumb" alt="Tata"/>
-            <div class="cert-info"><div class="cert-org">Tata Group</div><div class="cert-name">Data Visualisation: Empowering Business</div></div>
-          </div>
-          <div class="cert-card" onclick="openCert('cert_tata_cybersecurity.png')">
-            <img src="cert_tata_cybersecurity.png" class="cert-thumb" alt="Tata Cyber"/>
-            <div class="cert-info"><div class="cert-org">Tata Group</div><div class="cert-name">Cybersecurity Analyst Job Simulation</div></div>
-          </div>
-          <div class="cert-card" onclick="openCert('cert_deloitte.png')">
-            <img src="cert_deloitte.png" class="cert-thumb" alt="Deloitte"/>
-            <div class="cert-info"><div class="cert-org">Deloitte</div><div class="cert-name">Technology Consulting Job Simulation</div></div>
-          </div>
-          <div class="cert-card" onclick="openCert('cert_google.png')">
-            <img src="cert_google.png" class="cert-thumb" alt="Google"/>
-            <div class="cert-info"><div class="cert-org">Google</div><div class="cert-name">AI Essentials Certificate</div></div>
-          </div>
-          <div class="cert-card" onclick="openCert('cert_google_cloud.png')">
-            <img src="cert_google_cloud.png" class="cert-thumb" alt="Google Cloud"/>
-            <div class="cert-info"><div class="cert-org">Google Cloud</div><div class="cert-name">Generative AI Fundamentals</div></div>
-          </div>
-          <div class="cert-card" onclick="openCert('cert_codsoft.png')">
-            <img src="cert_codsoft.png" class="cert-thumb" alt="CodSoft"/>
-            <div class="cert-info"><div class="cert-org">CodSoft</div><div class="cert-name">Python Programming Internship</div></div>
-          </div>
-          <div class="cert-card" onclick="openCert('cert_hackwithindia.jpg')">
-            <img src="cert_hackwithindia.jpg" class="cert-thumb" alt="HackWithIndia"/>
-            <div class="cert-info"><div class="cert-org">HackWithIndia</div><div class="cert-name">Hackathon Participation Certificate</div></div>
-          </div>
-          <div class="cert-card" onclick="openCert('cert_gfg_syntax.png')">
-            <img src="cert_gfg_syntax.png" class="cert-thumb" alt="GFG"/>
-            <div class="cert-info"><div class="cert-org">GeeksforGeeks</div><div class="cert-name">Syntax Error Hackathon</div></div>
-          </div>
-        </div>
-      </div>
-
       <!-- RESUME BANNER -->
       <div class="res-banner">
         <div class="res-text">
@@ -706,10 +641,122 @@
         <a href="Prajwal_Sharma_Resume.pdf" download class="res-btn">📄 Download PDF</a>
       </div>
 
-    </div><!-- /win-scroll -->
-  </div><!-- /main-window -->
+    </div>
+  </div>
 
-  <!-- WINDOW 2: DEDICATED TECH STACK TERMINAL WINDOW (OPENS DIRECTLY WHEN TECH STACK IS CLICKED) -->
+  <!-- WINDOW 2: DEDICATED FEATURED PROJECTS WINDOW -->
+  <div id="projects-window" class="mac-window" style="display:none;" onclick="bringToFront('projects-window')">
+    <div class="mac-titlebar">
+      <div class="tls">
+        <div class="tl tl-r" onclick="closeWindow('projects-window')" title="Close"></div>
+        <div class="tl tl-y" onclick="closeWindow('projects-window')" title="Minimize"></div>
+        <div class="tl tl-g" title="Zoom"></div>
+      </div>
+      <div class="win-title-text">📁  Featured Projects</div>
+    </div>
+    <div class="win-scroll">
+      <div class="sec-title" style="margin-bottom:16px;">Selected Work & Design Systems</div>
+      
+      <!-- VIPER CARD -->
+      <div class="proj-card" id="viper-card">
+        <div class="proj-head">
+          <div class="proj-ico"><img src="viper_project.png" alt="VIPER"/></div>
+          <div class="proj-acts">
+            <a href="viper-case-study.html" class="proj-btn lv"><span class="live-dot"></span>Case Study</a>
+            <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
+          </div>
+        </div>
+        <div class="proj-name">VIPER — AI Security Interface</div>
+        <div class="proj-desc">High-fidelity UI/UX concept for an AI-powered Security Operations Center. Features real-time threat map visualizations, active alert panels, and a cyber-dark aesthetic with cyan accents.</div>
+        <div class="tech-tags">
+          <span class="tech-tag">Figma</span><span class="tech-tag">UI/UX</span><span class="tech-tag">Branding</span><span class="tech-tag">Cyber Dark</span>
+        </div>
+      </div>
+
+      <!-- TRADESIGHT CARD -->
+      <div class="proj-card" id="tradesight-card">
+        <div class="proj-head">
+          <div class="proj-ico"><img src="tradesight_project.png" alt="TradeSight"/></div>
+          <div class="proj-acts">
+            <a href="tradesight-case-study.html" class="proj-btn lv"><span class="live-dot"></span>Case Study</a>
+            <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
+          </div>
+        </div>
+        <div class="proj-name">TradeSight AI — Fintech Platform</div>
+        <div class="proj-desc">Complete brand identity and UI system for an AI-powered fintech platform built at Yukti Hackathon 2024 (AKTU Finalist). Luxury gold & dark brown visual aesthetic with AI stock sentiment analysis dashboards.</div>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span><span class="tech-tag">UI/UX</span><span class="tech-tag">Figma</span><span class="tech-tag">HTML/CSS</span>
+        </div>
+      </div>
+
+      <!-- PENCILASTIC CARD -->
+      <div class="proj-card" id="pencilastic-card">
+        <div class="proj-head">
+          <div class="proj-ico"><img src="pencilastic_project.png" alt="Pencilastic"/></div>
+          <div class="proj-acts">
+            <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn lv"><span class="live-dot"></span>View</a>
+            <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
+          </div>
+        </div>
+        <div class="proj-name">Pencilastic — Digital Art Gallery</div>
+        <div class="proj-desc">Minimal digital art gallery website showcasing graphite pencil portrait artwork. Clean layout with elegant typography bridging traditional art with web development.</div>
+        <div class="tech-tags">
+          <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Art Gallery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WINDOW 3: DEDICATED CERTIFICATES WINDOW -->
+  <div id="certs-window" class="mac-window" style="display:none;" onclick="bringToFront('certs-window')">
+    <div class="mac-titlebar">
+      <div class="tls">
+        <div class="tl tl-r" onclick="closeWindow('certs-window')" title="Close"></div>
+        <div class="tl tl-y" onclick="closeWindow('certs-window')" title="Minimize"></div>
+        <div class="tl tl-g" title="Zoom"></div>
+      </div>
+      <div class="win-title-text">🏆  Certifications (8 Total)</div>
+    </div>
+    <div class="win-scroll">
+      <div class="sec-title" style="margin-bottom:16px;">Verified Professional Credentials (Click to preview)</div>
+      <div class="certs-grid">
+        <div class="cert-card" onclick="openCert('cert_tata.png')">
+          <img src="cert_tata.png" class="cert-thumb" alt="Tata"/>
+          <div class="cert-info"><div class="cert-org">Tata Group</div><div class="cert-name">Data Visualisation: Empowering Business</div></div>
+        </div>
+        <div class="cert-card" onclick="openCert('cert_tata_cybersecurity.png')">
+          <img src="cert_tata_cybersecurity.png" class="cert-thumb" alt="Tata Cyber"/>
+          <div class="cert-info"><div class="cert-org">Tata Group</div><div class="cert-name">Cybersecurity Analyst Job Simulation</div></div>
+        </div>
+        <div class="cert-card" onclick="openCert('cert_deloitte.png')">
+          <img src="cert_deloitte.png" class="cert-thumb" alt="Deloitte"/>
+          <div class="cert-info"><div class="cert-org">Deloitte</div><div class="cert-name">Technology Consulting Job Simulation</div></div>
+        </div>
+        <div class="cert-card" onclick="openCert('cert_google.png')">
+          <img src="cert_google.png" class="cert-thumb" alt="Google"/>
+          <div class="cert-info"><div class="cert-org">Google</div><div class="cert-name">AI Essentials Certificate</div></div>
+        </div>
+        <div class="cert-card" onclick="openCert('cert_google_cloud.png')">
+          <img src="cert_google_cloud.png" class="cert-thumb" alt="Google Cloud"/>
+          <div class="cert-info"><div class="cert-org">Google Cloud</div><div class="cert-name">Generative AI Fundamentals</div></div>
+        </div>
+        <div class="cert-card" onclick="openCert('cert_codsoft.png')">
+          <img src="cert_codsoft.png" class="cert-thumb" alt="CodSoft"/>
+          <div class="cert-info"><div class="cert-org">CodSoft</div><div class="cert-name">Python Programming Internship</div></div>
+        </div>
+        <div class="cert-card" onclick="openCert('cert_hackwithindia.jpg')">
+          <img src="cert_hackwithindia.jpg" class="cert-thumb" alt="HackWithIndia"/>
+          <div class="cert-info"><div class="cert-org">HackWithIndia</div><div class="cert-name">Hackathon Participation Certificate</div></div>
+        </div>
+        <div class="cert-card" onclick="openCert('cert_gfg_syntax.png')">
+          <img src="cert_gfg_syntax.png" class="cert-thumb" alt="GFG"/>
+          <div class="cert-info"><div class="cert-org">GeeksforGeeks</div><div class="cert-name">Syntax Error Hackathon</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WINDOW 4: DEDICATED TECH STACK TERMINAL WINDOW -->
   <div id="techstack-window" class="mac-window" style="display:none;" onclick="bringToFront('techstack-window')">
     <div class="mac-titlebar">
       <div class="tls">
@@ -717,7 +764,7 @@
         <div class="tl tl-y" onclick="closeWindow('techstack-window')" title="Minimize"></div>
         <div class="tl tl-g" title="Zoom"></div>
       </div>
-      <div class="win-title-text">Tech Stack</div>
+      <div class="win-title-text">💻  Tech Stack — prajwal@macbook</div>
     </div>
     <div class="term-body">
       <div class="term-prompt">@Prajwal % <span>show tech stack</span></div>
@@ -762,7 +809,7 @@
     </div>
   </div>
 
-  <!-- WINDOW 3: DEDICATED CONTACT ME WINDOW (EXACT MATCH FOR USER SCREENSHOT WITH PRAJWAL'S PHOTO) -->
+  <!-- WINDOW 5: DEDICATED CONTACT ME WINDOW -->
   <div id="contact-window" class="mac-window" style="display:none;" onclick="bringToFront('contact-window')">
     <div class="mac-titlebar">
       <div class="tls">
@@ -770,7 +817,7 @@
         <div class="tl tl-y" onclick="closeWindow('contact-window')" title="Minimize"></div>
         <div class="tl tl-g" title="Zoom"></div>
       </div>
-      <div class="win-title-text">Contact Me</div>
+      <div class="win-title-text">📬  Contact Me</div>
     </div>
     <div class="contact-body">
       <img src="profile_portrait.jpg" alt="Prajwal Sharma" class="contact-avatar"/>
@@ -800,22 +847,22 @@
 
   <!-- DOCK BAR (BOTTOM NAVIGATION) -->
   <div id="dock">
-    <div class="dock-item" onclick="openWindow('main-window'); goTo('about-sec')">
+    <div class="dock-item" onclick="openWindow('main-window')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#4a90d9,#2575b8)">🔍</div>
       <div class="dock-tooltip">Portfolio</div>
       <div class="dock-dot"></div>
     </div>
-    <div class="dock-item" onclick="openWindow('techstack-window')">
-      <div class="dock-icon" style="background:linear-gradient(135deg,#2c3e50,#1a252f)">💻</div>
-      <div class="dock-tooltip">Tech Stack</div>
-    </div>
-    <div class="dock-item" onclick="openWindow('main-window'); goTo('proj-sec')">
+    <div class="dock-item" onclick="openWindow('projects-window')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#5ac8fa,#007aff)">🌐</div>
       <div class="dock-tooltip">Projects</div>
     </div>
-    <div class="dock-item" onclick="openWindow('main-window'); goTo('cert-sec')">
+    <div class="dock-item" onclick="openWindow('certs-window')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#ff9f0a,#ff6b00)">📸</div>
       <div class="dock-tooltip">Certificates</div>
+    </div>
+    <div class="dock-item" onclick="openWindow('techstack-window')">
+      <div class="dock-icon" style="background:linear-gradient(135deg,#2c3e50,#1a252f)">💻</div>
+      <div class="dock-tooltip">Tech Stack</div>
     </div>
     <div class="dock-item" onclick="openWindow('contact-window')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">👤</div>
@@ -925,8 +972,8 @@
   </div>
 </div>
 
-<!-- NLP ENGINE JS FIRST -->
-<script src="ask-me.js"></script>
+<!-- NLP ENGINE JS WITH CACHE BUSTING -->
+<script src="ask-me.js?v=3"></script>
 
 <!-- MAIN APP CONTROLLER SCRIPT -->
 <script>
@@ -948,26 +995,6 @@
   }
   makeHover("Hey, I'm Prajwal! welcome to my", document.getElementById('welcome-small'));
   makeHover("portfolio", document.getElementById('welcome-large'));
-
-  /* WALLPAPER SWITCHER */
-  const wallpapers = ['macos_wallpaper.jpg', 'hero_bg.png', 'cyber', 'slate'];
-  let wpIdx = 0;
-  function switchWallpaper() {
-    wpIdx = (wpIdx + 1) % wallpapers.length;
-    const wpEl = document.getElementById('wallpaper');
-    const deskEl = document.getElementById('desktop');
-    const wp = wallpapers[wpIdx];
-    if (wp === 'cyber') {
-      wpEl.style.opacity = '0';
-      deskEl.style.background = 'radial-gradient(circle at 50% 50%, #1a1c2e 0%, #0a0b12 100%)';
-    } else if (wp === 'slate') {
-      wpEl.style.opacity = '0';
-      deskEl.style.background = 'linear-gradient(135deg, #1f2232 0%, #11131d 100%)';
-    } else {
-      wpEl.src = wp;
-      wpEl.style.opacity = '1';
-    }
-  }
 
   /* WINDOW MANAGEMENT & FOCUS */
   let topZ = 1000;
@@ -993,20 +1020,9 @@
     if (win) win.style.display = 'none';
   }
 
-  function goTo(id) {
-    openWindow('main-window');
-    const labels = {
-      'about-sec':'👤  About Prajwal',
-      'proj-sec':'📁  Featured Projects',
-      'viper-card':'🔐  VIPER Project',
-      'tradesight-card':'📈  TradeSight AI',
-      'pencilastic-card':'✏️  Pencilastic',
-      'cert-sec':'🏆  Certificates',
-    };
-    const title = document.getElementById('main-win-title');
-    if (title && labels[id]) title.textContent = labels[id];
+  function scrollToProj(cardId) {
     setTimeout(() => {
-      const el = document.getElementById(id);
+      const el = document.getElementById(cardId);
       if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
     }, 280);
   }
@@ -1043,6 +1059,8 @@
   }
 
   makeDraggable('main-window', '.mac-titlebar');
+  makeDraggable('projects-window', '.mac-titlebar');
+  makeDraggable('certs-window', '.mac-titlebar');
   makeDraggable('techstack-window', '.mac-titlebar');
   makeDraggable('contact-window', '.mac-titlebar');
 
