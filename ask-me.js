@@ -1,9 +1,9 @@
 /* ════════════════════════════════════════════════════
-   ASK ABOUT ME — Prajwal's AI Portfolio Engine
-   Synthesizes answers directly from Prajwal's complete resume.
+   ASK ABOUT ME — Prajwal's AI Resume Assistant
+   Synthesizes answers from Prajwal's complete resume.
 ════════════════════════════════════════════════════ */
 
-// ── 1. Stop words (noise to ignore) ─────────────────
+// ── 1. Stop words ────────────────────────────────────
 const STOP = new Set([
   'is','are','was','were','the','a','an','he','his','him',
   'does','did','do','has','have','had','will','can','could',
@@ -15,24 +15,24 @@ const STOP = new Set([
   'get','give','know','want','need','like','think','all'
 ]);
 
-// ── 2. Synonym → canonical topic map ────────────────
+// ── 2. Synonym → Canonical Topic Mapping ──────────────
 const SYN = {
   // internship / work
   'intern':'internship','interning':'internship','interned':'internship',
   'job':'work','jobs':'work','employed':'work','employment':'work',
   'working':'work','placement':'internship','training':'internship',
-  'work':'work','career':'work',
+  'work':'work','career':'work','codsoft':'internship','experience':'internship',
   // hobby
   'hobbies':'hobby','interest':'hobby','interests':'hobby',
   'passion':'hobby','passions':'hobby','enjoy':'hobby','enjoying':'hobby',
   'leisure':'hobby','spare':'hobby','fun':'hobby','drawing':'hobby',
-  'likes':'hobby','loves':'hobby','recreation':'hobby','art':'hobby',
+  'likes':'hobby','loves':'hobby','recreation':'hobby','art':'hobby','portrait':'hobby','pencil':'hobby',
   // skill / tech
   'skills':'skill','tech':'skill','technology':'skill','stack':'skill',
   'technologies':'skill','language':'skill','languages':'skill',
   'tools':'skill','tool':'skill','knows':'skill','know':'skill',
   'expertise':'skill','proficient':'skill','capable':'skill',
-  'programming':'skill','framework':'skill',
+  'programming':'skill','framework':'skill','coding':'skill','code':'skill','python':'skill','figma':'skill',
   // project
   'projects':'project','built':'project','build':'project',
   'made':'project','created':'project','developed':'project',
@@ -48,30 +48,20 @@ const SYN = {
   'college':'education','university':'education','bbs':'education',
   'btech':'education','studying':'education','study':'education',
   'studied':'education','degree':'education','student':'education',
-  'academics':'education','academic':'education',
+  'academics':'education','academic':'education','aktu':'education','prayagraj':'education',
   // hackathon
   'hackathons':'hackathon','competition':'hackathon','contest':'hackathon',
   'competitions':'hackathon','challenges':'hackathon','compete':'hackathon',
-  'competed':'hackathon','contests':'hackathon',
+  'competed':'hackathon','contests':'hackathon','yukti':'hackathon','lovable':'hackathon',
   // contact
   'reach':'contact','email':'contact','connect':'contact',
   'message':'contact','hire':'contact','collaborate':'contact',
-  'collab':'contact','dm':'contact','linkedin':'contact','number':'contact',
-  // availability
-  'available':'available','open':'available','fresher':'available',
-  'opportunity':'available','opportunities':'available','seeking':'available',
-  'looking':'available','freelance':'available','remote':'available',
-  'recruit':'available','employ':'available',
-  // python
-  'py':'python','scripting':'python','script':'python',
-  'automation':'python','coding':'python','code':'python',
-  // design
-  'design':'figma','designing':'figma','uiux':'figma','prototype':'figma',
-  'wireframe':'figma','wireframes':'figma','interface':'figma',
-  'mockup':'figma','branding':'figma','ui':'figma','ux':'figma',
+  'collab':'contact','dm':'contact','linkedin':'contact','number':'contact','social':'contact',
+  // resume
+  'cv':'resume','pdf':'resume','download':'resume'
 };
 
-// ── 3. Levenshtein distance (typo tolerance) ─────────
+// ── 3. Levenshtein Distance (Typo Tolerance) ──────────
 function lev(a, b) {
   if (!a.length) return b.length;
   if (!b.length) return a.length;
@@ -87,7 +77,7 @@ function lev(a, b) {
   return dp[a.length][b.length];
 }
 
-// ── 4. Normalize query → clean tokens ───────────────
+// ── 4. Tokenizer ─────────────────────────────────────
 function tokenize(q) {
   const raw = q.toLowerCase()
     .replace(/[?!.,;:'"]/g, ' ')
@@ -103,7 +93,7 @@ function tokenize(q) {
   return [...out];
 }
 
-// ── 5. Token ↔ KB-key similarity score ──────────────
+// ── 5. Token Similarity ──────────────────────────────
 function tokScore(qTok, kbKey) {
   if (qTok === kbKey) return 1.0;
   if (kbKey.includes(' ') && kbKey.includes(qTok)) return 0.9;
@@ -118,7 +108,7 @@ function tokScore(qTok, kbKey) {
   return 0;
 }
 
-// ── 6. Score an entire KB entry ──────────────────────
+// ── 6. KB Score Calculator ───────────────────────────
 function scoreEntry(entry, tokens) {
   if (!tokens.length) return 0;
   let total = 0;
@@ -133,7 +123,7 @@ function scoreEntry(entry, tokens) {
   return (total / tokens.length) + (matchCount * 0.15);
 }
 
-// ── 7. Suggestions ───────────────────────────────────
+// ── 7. Default Suggestions ───────────────────────────
 const suggestions = [
   'Who is Prajwal?',
   'What are his skills?',
@@ -143,81 +133,76 @@ const suggestions = [
   'How to contact him?'
 ];
 
-// ── 8. Resume Knowledge Base ─────────────────────────
+// ── 8. Comprehensive Knowledge Base (Resume + AI Synthesis) ──
 const KB = [
   {
-    keys: ['hi', 'hello', 'hey', 'greetings', 'hola', 'namaste', 'start'],
-    ans: `Hello! 👋 How can I help you today?<br><br>I have access to Prajwal's full resume and background. You can ask me about his <b>skills, featured projects, certifications, internship, hackathons, or hobbies!</b>`
+    keys: ['prajwal', 'who', 'about', 'yourself', 'introduce', 'background', 'describe', 'summary', 'bio', 'who is prajwal'],
+    ans: `<b>Prajwal Sharma</b> is a <b>UI/UX Designer, Visual Artist, and Python Developer</b> based in Prayagraj, India 🚀<br><br>
+🎓 <b>Education:</b> Pursuing B.Tech in Computer Science & Engineering (2022–2026) at <b>BBS College of Engineering & Technology, Prayagraj</b> (affiliated with AKTU).<br>
+🎨 <b>Creative Approach:</b> Background in graphite pencil portraiture translates into a keen eye for visual balance, typography, and clean UI design systems.<br>
+💼 <b>Status:</b> Actively seeking Internship and Pre-Placement opportunities in UI/UX Design, Front-End Engineering, and Python Software Development!`
   },
   {
     keys: ['project', 'projects', 'work', 'built', 'created', 'developed', 'made', 'apps', 'websites'],
     ans: `Prajwal's Featured Portfolio Projects 🚀<br><br>
-🔐 <b>VIPER — AI Security Interface:</b> High-fidelity UI/UX concept for an AI Security Operations Center featuring threat maps, real-time alerts, and cyber-dark aesthetic. <a href="viper-case-study.html" style="color:#c8a0ff">View Case Study →</a><br><br>
-📈 <b>TradeSight AI — Fintech Platform:</b> Developed for Yukti Hackathon 2024 (AKTU Finalist). AI sentiment analysis dashboard for stock market trends with luxury gold branding. <a href="tradesight-case-study.html" style="color:#c8a0ff">View Case Study →</a><br><br>
-✏️ <b>Pencilastic — Digital Art Gallery:</b> Minimal web gallery showcasing graphite pencil portrait artwork, built with HTML5, CSS3, and JavaScript.`
+🔐 <b>VIPER — AI Security Operations Center UI:</b> High-fidelity UI/UX concept featuring threat map visualizations, active alert panels, and a cyber-dark aesthetic. <a href="viper-case-study.html" style="color:#c8a0ff">View Case Study →</a><br><br>
+📈 <b>TradeSight AI — Fintech Platform:</b> Stock market sentiment analysis dashboard built at Yukti Hackathon 2024 (AKTU Finalist) with luxury gold visual identity. <a href="tradesight-case-study.html" style="color:#c8a0ff">View Case Study →</a><br><br>
+✏️ <b>Pencilastic — Digital Art Gallery:</b> Minimal web gallery showcasing graphite portrait artwork, built with HTML5, CSS3, and JavaScript.`
   },
   {
     keys: ['viper', 'security', 'cyber', 'monitoring', 'threat'],
-    ans: `<b>VIPER — AI Security Interface</b> 🔐<br><br>
-Prajwal's flagship UI/UX project — a concept for an AI-powered Security Operations Center:<br>
-• 🗺️ Real-time threat map visualization<br>
-• 🚨 Active threat alert panels with severity indicators<br>
-• 🌑 Cyber-dark aesthetic (deep obsidian black + cyan accents)<br><br>
-Built fully in <b>Figma</b> as a comprehensive design system. <a href="viper-case-study.html" style="color:#c8a0ff">View Case Study →</a>`
+    ans: `<b>VIPER — AI Security Operations Center Interface</b> 🔐<br><br>
+Prajwal's flagship UI/UX project designed in Figma:<br>
+• 🗺️ Real-time global threat map visualization<br>
+• 🚨 Incident response panels with severity indicators<br>
+• 🌑 Cyber-dark aesthetic (deep obsidian black + electric cyan accents)<br><br>
+<a href="viper-case-study.html" style="color:#c8a0ff">View VIPER Case Study →</a>`
   },
   {
     keys: ['tradesight', 'trade sight', 'fintech', 'stock', 'yukti', 'market'],
     ans: `<b>TradeSight AI — Fintech Platform</b> 📈<br><br>
-Developed for <b>Yukti Hackathon 2024 (AKTU Finalist)</b>:<br>
+Built for <b>Yukti Hackathon 2024 (AKTU Finalist)</b>:<br>
 • 🤖 AI sentiment analysis dashboard for stock market trends<br>
-• 📊 Real-time candlestick chart UI concept<br>
-• 💛 Luxury gold & dark brown visual identity<br>
-• 🐍 Python backend logic for sentiment analysis.<br><br>
-<a href="tradesight-case-study.html" style="color:#c8a0ff">View Case Study →</a>`
+• 📊 Interactive candlestick chart UI concept<br>
+• 💛 Luxury gold & dark brown visual branding<br>
+• 🐍 Python backend logic for market sentiment analysis.<br><br>
+<a href="tradesight-case-study.html" style="color:#c8a0ff">View TradeSight Case Study →</a>`
   },
   {
     keys: ['pencilastic', 'gallery', 'art website', 'drawing website'],
     ans: `<b>Pencilastic — Digital Art Gallery</b> ✏️<br><br>
 Prajwal's personal digital gallery website for graphite pencil portraiture:<br>
-• Clean, minimal white layout with elegant typography<br>
-• Curated artwork showcase bridging traditional art with web development<br>
+• Clean, minimal layout with elegant typography<br>
+• Showcases realistic graphite portrait artwork<br>
 • Built using HTML5, CSS3, and JavaScript.`
   },
   {
-    keys: ['prajwal', 'who', 'about', 'yourself', 'introduce', 'background', 'describe', 'summary'],
-    ans: `<b>Prajwal Sharma</b> is a <b>UI/UX Designer, Visual Artist, and Python Developer</b> based in Prayagraj, India 🚀<br><br>
-🎓 <b>Education:</b> B.Tech in Computer Science & Engineering (2022–2026) from <b>BBS College of Engineering & Technology, Prayagraj</b> (affiliated with AKTU).<br>
-🎨 <b>Background:</b> He blends traditional graphite pencil portraiture with modern UI/UX design systems and Python web development.<br>
-💼 <b>Status:</b> Actively seeking Internship and Pre-Placement opportunities in UI/UX Design & Software Engineering!`
-  },
-  {
     keys: ['internship', 'intern', 'codsoft', 'job', 'work experience', 'placement', 'working', 'experience'],
-    ans: `Prajwal completed a <b>Python Programming Internship at CodSoft</b> 🐍<br><br>
-• Developed Python scripting projects, automation tools, and strengthened core software engineering fundamentals.<br>
-• Served as <b>Head Coordinator for Nova Fest</b> at BBS College — managing end-to-end design, branding, and event logistics.<br>
-• <b>Actively seeking new Internship opportunities</b> in UI/UX Design, Python Development, or Front-End Engineering.<br><br>
-📧 Contact for Internships: <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a>`
+    ans: `Prajwal's Experience & Internship Background 🐍<br><br>
+• <b>CodSoft:</b> Python Programming Intern — Built Python automation scripts and core software utilities.<br>
+• <b>Nova Fest (BBS College):</b> Head Coordinator — Led event branding, visual design, and logistics coordination.<br>
+• <b>Current Goal:</b> Open for Internship & Pre-Placement roles in UI/UX Design, Front-End Dev, and Python Development.<br><br>
+📧 Contact: <a href="mailto:manjumanoj1177@gmail.com" style="color:#c8a0ff">manjumanoj1177@gmail.com</a>`
   },
   {
     keys: ['hobby', 'hobbies', 'free time', 'interest', 'passion', 'drawing', 'art', 'pencil', 'portrait', 'passions'],
     ans: `Prajwal's Hobbies & Creative Pursuits 🎨<br><br>
-✏️ <b>Graphite Pencil Portraiture:</b> Years of self-taught graphite portrait drawing. This artistic foundation gives him an exceptional eye for detail, light, shadow, and visual balance.<br>
-🎨 <b>UI/UX Design:</b> Designing high-fidelity interactive prototypes and design systems in Figma.<br>
-🐍 <b>Python Scripting:</b> Creating automation scripts and experimenting with algorithms for fun.<br>
-🌐 <b>Web Development:</b> Crafting responsive web interfaces with modern CSS animations and glassmorphism.<br>
-🎭 <b>Brand Identity:</b> Designing logos, visual identities, and event branding.`
+✏️ <b>Graphite Pencil Portraiture:</b> Self-taught artist specializing in realistic pencil portraits. This artistic discipline sharpens his eye for shading, spacing, and micro-details in UI design.<br>
+🎨 <b>UI/UX & Prototyping:</b> Designing glassmorphic web concepts in Figma.<br>
+🐍 <b>Python Scripting:</b> Automation and building utility scripts.<br>
+🌐 <b>Web Development:</b> Experimenting with interactive CSS animations.`
   },
   {
     keys: ['skill', 'skills', 'python', 'figma', 'html', 'css', 'javascript', 'git', 'sql', 'c++', 'tech stack', 'technology', 'tools', 'coding'],
-    ans: `Prajwal's Resume Tech & Design Stack 💻<br><br>
+    ans: `Prajwal's Technical & Design Stack 💻<br><br>
 • <b>Programming Languages:</b> Python, C / C++, HTML5, CSS3, JavaScript (ES6+), SQL<br>
-• <b>UI/UX & Design:</b> Figma, Wireframing, High-Fidelity Prototyping, Brand Identity Systems<br>
-• <b>Tools & Version Control:</b> Git, GitHub, VS Code, Canva, Figma Desktop<br>
-• <b>Specializations:</b> Pencil Portraiture, Responsive Web Design, AI/ML (Learning)`
+• <b>UI/UX & Design:</b> Figma, Wireframing, High-Fidelity Interactive Prototyping, Brand Identity<br>
+• <b>Dev Tools & Version Control:</b> Git, GitHub, VS Code, Canva, Figma Desktop<br>
+• <b>Specializations:</b> Pencil Portraiture, Responsive Glassmorphic Web Design, AI Interfaces`
   },
   {
     keys: ['certificate', 'certificates', 'certification', 'certifications', 'tata', 'deloitte', 'google', 'codsoft', 'hackwithindia', 'gfg'],
-    ans: `Prajwal holds <b>8 Professional Certifications</b> 🏆<br><br>
+    ans: `Prajwal holds <b>8 Verified Certifications</b> 🏆<br><br>
 🔵 <b>Tata Group:</b> Data Visualisation: Empowering Business<br>
 🔵 <b>Tata Group:</b> Cybersecurity Analyst Job Simulation<br>
 🟢 <b>Deloitte:</b> Technology Consulting Job Simulation<br>
@@ -231,9 +216,16 @@ Prajwal's personal digital gallery website for graphite pencil portraiture:<br>
     keys: ['hackathon', 'hackathons', 'yukti', 'lovable', 'hackwithindia', 'gfg', 'competition', 'contest'],
     ans: `Prajwal's Hackathon Achievements 🏆<br><br>
 🥈 <b>Yukti Hackathon 2024 (AKTU):</b> Finalist with TradeSight AI<br>
-🚀 <b>Lovable Global Hackathon:</b> Top 5,000 out of 25,000 participants globally (Top 20% worldwide 🌍)<br>
-💻 <b>HackWithIndia:</b> Certificate participant<br>
-🧩 <b>GFG Syntax Error:</b> Hackathon participant`
+🚀 <b>Lovable Global AI Hackathon:</b> Placed Top 5,000 out of 25,000 participants worldwide (Top 20% globally 🌍)<br>
+💻 <b>HackWithIndia & GFG Syntax Error:</b> Participation Certificates`
+  },
+  {
+    keys: ['education', 'college', 'university', 'bbs', 'btech', 'cse', 'aktu', 'degree', 'student', 'prayagraj', 'study'],
+    ans: `Prajwal's Academic Background 🎓<br><br>
+• <b>Degree:</b> B.Tech in Computer Science & Engineering (2022–2026)<br>
+• <b>College:</b> BBS College of Engineering & Technology, Prayagraj<br>
+• <b>Affiliation:</b> Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow<br>
+• <b>Focus Areas:</b> Software Engineering, Web Development, UI/UX Design`
   },
   {
     keys: ['contact', 'email', 'reach', 'linkedin', 'github', 'instagram', 'phone', 'contact info', 'connect', 'social', 'socials'],
@@ -246,16 +238,16 @@ Prajwal's personal digital gallery website for graphite pencil portraiture:<br>
   {
     keys: ['resume', 'cv', 'download', 'pdf'],
     ans: `Prajwal's resume is available for instant download! 📄<br><br>
-Click the <b>📄 Resume icon</b> in the bottom dock or click the <b>'Download PDF'</b> button inside the Portfolio window.`
+Click the <b>📄 Resume icon</b> on the desktop or click the <b>'Download PDF'</b> button inside the Portfolio window.`
   }
 ];
 
-// ── 9. Find best-matching answer ─────────────────────
+// ── 9. Intelligent Response Synthesizer ─────────────────
 function getAnswer(q) {
   if (!q || typeof q !== 'string') return KB.find(k => k.keys.includes('prajwal')).ans;
   const lower = q.toLowerCase().trim().replace(/[?!.,;:'"]/g, '');
 
-  // 1. Direct Intent Matching (Catches exact questions immediately)
+  // 1. Direct High-Priority Intent Matches
   if (
     lower.includes('who is prajwal') ||
     lower.includes('who is he') ||
@@ -306,6 +298,10 @@ function getAnswer(q) {
     return KB.find(k => k.keys.includes('hackathon')).ans;
   }
 
+  if (lower.includes('education') || lower.includes('college') || lower.includes('university') || lower.includes('aktu') || lower.includes('btech')) {
+    return KB.find(k => k.keys.includes('education')).ans;
+  }
+
   if (lower.includes('contact') || lower.includes('email') || lower.includes('linkedin') || lower.includes('github') || lower.includes('instagram') || lower.includes('phone')) {
     return KB.find(k => k.keys.includes('contact')).ans;
   }
@@ -314,7 +310,7 @@ function getAnswer(q) {
     return KB.find(k => k.keys.includes('resume')).ans;
   }
 
-  // 2. Token Score Matching for arbitrary queries
+  // 2. Tokenizer Matching
   const tokens = tokenize(q);
   if (!tokens.length) {
     return KB.find(k => k.keys.includes('prajwal')).ans;
@@ -327,6 +323,6 @@ function getAnswer(q) {
   }
   if (best && bestScore >= 0.05) return best.ans;
 
-  // Fallback: Default to Prajwal Bio summary
+  // Fallback: Default to Prajwal Bio
   return KB.find(k => k.keys.includes('prajwal')).ans;
 }
