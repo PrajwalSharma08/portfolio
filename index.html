@@ -910,18 +910,6 @@
     sendMsg();
   }
 
-  /* Scoring-based matcher: finds KB entry with MOST keyword matches */
-  function getAnswer(q) {
-    const lower = q.toLowerCase();
-    let bestEntry = null, bestScore = 0;
-    for (const entry of KB) {
-      const score = entry.keys.filter(k => lower.includes(k)).length;
-      if (score > bestScore) { bestScore = score; bestEntry = entry; }
-    }
-    if (bestEntry) return bestEntry.ans;
-    return `Hmm, I didn't catch that! 🤔<br><br>Try asking about:<br>• <b>Skills</b> ("What are his skills?")<br>• <b>Projects</b> ("Tell me about VIPER")<br>• <b>Certificates</b> ("What certificates does he have?")<br>• <b>Hobbies</b> ("What are his hobbies?")<br>• <b>Contact</b> ("How to reach him?")`;
-  }
-
   function sendMsg() {
     const inp = document.getElementById('chat-input');
     const q = inp.value.trim();
@@ -935,5 +923,6 @@
     if (e.key === 'Escape') { closeAskMe(); closeCert(); }
   });
 </script>
+<script src="ask-me.js"></script>
 </body>
 </html>
