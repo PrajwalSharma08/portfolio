@@ -8,613 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0c051a; color: #fff; }
-
-    /* DESKTOP CONTAINER — ROYAL BLUE GRADIENT */
-    #desktop {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      background: radial-gradient(circle at 50% 35%, #1e40af 0%, #1e3a8a 50%, #0b132b 100%);
-      transition: background 0.5s ease;
-    }
-    #wallpaper {
-      display: none;
-    }
-
-    /* MENU BAR */
-    #menubar {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 30px;
-      background: rgba(15, 12, 25, 0.65);
-      backdrop-filter: blur(25px) saturate(1.8);
-      -webkit-backdrop-filter: blur(25px) saturate(1.8);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-      z-index: 90000;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      user-select: none;
-    }
-    .menubar-left { display: flex; align-items: center; gap: 16px; }
-    .menubar-apple { font-size: 15px; cursor: default; }
-    .menubar-brand { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.95); letter-spacing: -0.01em; }
-    .menubar-item { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.78); cursor: pointer; transition: color 0.15s, background 0.15s; padding: 2px 8px; border-radius: 4px; }
-    .menubar-item:hover { color: #fff; background: rgba(255,255,255,0.1); }
-    .menubar-right { display: flex; align-items: center; gap: 12px; }
-    .menubar-icon { font-size: 13px; color: rgba(255,255,255,0.75); cursor: pointer; }
-    #menubar-time { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.9); min-width: 60px; text-align: right; }
-
-    /* DESKTOP AREA */
-    #desktop-area {
-      position: absolute;
-      top: 30px; left: 0; right: 0; bottom: 85px;
-      z-index: 1;
-    }
-
-    /* WELCOME BIG HERO TEXT — CENTERED & LOWERED */
-    #welcome-wrap {
-      position: absolute;
-      top: 54%; left: 46%;
-      transform: translate(-50%, -40%);
-      z-index: 2;
-      pointer-events: none;
-      user-select: none;
-      text-align: center;
-      width: min(88vw, 840px);
-    }
-    #welcome-small {
-      font-family: 'Outfit', 'Inter', sans-serif;
-      font-size: clamp(15px, 2vw, 24px);
-      font-weight: 400;
-      color: rgba(255,255,255,0.85);
-      line-height: 1;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.85);
-    }
-    #welcome-large {
-      font-family: 'Syne', 'Outfit', sans-serif;
-      font-size: clamp(56px, 9vw, 130px);
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 0.88;
-      letter-spacing: -0.04em;
-      text-transform: lowercase;
-      text-shadow: 0 16px 50px rgba(0,0,0,0.8), 0 0 35px rgba(200, 160, 255, 0.22);
-    }
-    .hover-letter {
-      display: inline-block;
-      vertical-align: baseline;
-      transition: color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-      pointer-events: all;
-      cursor: default;
-    }
-    .hover-letter:hover {
-      color: #c8a0ff;
-      transform: translateY(-6px) scale(1.08);
-      text-shadow: 0 0 25px rgba(200, 160, 255, 0.8);
-    }
-
-    /* 9:16 PORTRAIT CARD ON RIGHT SIDEBAR */
-    .desktop-portrait-card {
-      position: absolute;
-      top: 48%;
-      right: 48px;
-      transform: translateY(-50%);
-      height: min(56vh, 430px);
-      aspect-ratio: 9/16;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.2);
-      z-index: 5;
-      cursor: pointer;
-      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s;
-    }
-    .desktop-portrait-card:hover {
-      transform: translateY(-54%) scale(1.04);
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.85), 0 0 30px rgba(200, 160, 255, 0.4);
-    }
-    .portrait-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .portrait-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 45%, rgba(10, 10, 18, 0.88) 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 16px 14px;
-      user-select: none;
-    }
-    .portrait-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: -0.01em;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-    }
-    .portrait-role {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.7);
-      margin-top: 2px;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
-    }
-
-    /* DESKTOP ICONS GRID (LEFT SIDEBAR — 2 COLUMNS, NO OVERFLOW) */
-    .desktop-icon-grid {
-      position: absolute;
-      top: 18px; left: 24px;
-      display: grid;
-      grid-template-rows: repeat(3, auto);
-      grid-auto-flow: column;
-      gap: 10px 16px;
-      z-index: 10;
-    }
-    .desktop-icon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 14px;
-      border-radius: 16px;
-      cursor: pointer;
-      transition: background 0.18s, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
-      min-width: 106px;
-    }
-    .desktop-icon:hover {
-      background: rgba(0, 0, 0, 0.22);
-      backdrop-filter: blur(12px);
-      transform: translateY(-4px) scale(1.06);
-    }
-    .desktop-icon-emoji {
-      font-size: 68px;
-      line-height: 1;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
-    }
-    .desktop-icon-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: #ffffff;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.95), 0 0 5px rgba(0,0,0,0.9);
-      text-align: center;
-      line-height: 1.25;
-      letter-spacing: -0.01em;
-    }
-
-    /* Realistic macOS PDF Document Icon — Extra Large */
-    .doc-icon-graphic {
-      width: 54px; height: 66px;
-      background: linear-gradient(180deg, #ffffff 0%, #f0f2f5 100%);
-      border-radius: 6px 14px 6px 6px;
-      position: relative;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.55), inset 0 1px 0 #ffffff;
-      border: 1px solid rgba(255,255,255,0.7);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 8px 7px;
-      margin-bottom: 2px;
-    }
-    .doc-icon-graphic::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 15px; height: 15px;
-      background: #cbd5e1;
-      border-radius: 0 0 0 5px;
-      box-shadow: -1px 1px 3px rgba(0,0,0,0.25);
-    }
-    .doc-badge {
-      position: absolute;
-      top: 15px; left: 50%;
-      transform: translateX(-50%);
-      background: #ef4444;
-      color: #fff;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 2px 6px;
-      border-radius: 4px;
-      letter-spacing: 0.05em;
-      box-shadow: 0 3px 8px rgba(239, 68, 68, 0.45);
-    }
-    .doc-lines { display: flex; flex-direction: column; gap: 4px; margin-top: 24px; }
-    .doc-lines span { height: 2px; background: #94a3b8; border-radius: 2px; }
-    .doc-lines span:nth-child(1) { width: 85%; }
-    .doc-lines span:nth-child(2) { width: 100%; }
-    .doc-lines span:nth-child(3) { width: 60%; }
-
-    /* DOCK BAR */
-    #dock {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 90000;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 8px 16px;
-      background: rgba(255,255,255,0.14);
-      backdrop-filter: blur(35px) saturate(1.8);
-      -webkit-backdrop-filter: blur(35px) saturate(1.8);
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.25);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
-    }
-    .dock-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      cursor: pointer;
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .dock-item:hover { transform: scale(1.35) translateY(-8px); }
-    .dock-item:hover .dock-tooltip { opacity: 1; transform: translateX(-50%) translateY(-6px); }
-    .dock-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-    }
-    .dock-tooltip {
-      position: absolute;
-      bottom: calc(100% + 8px);
-      left: 50%;
-      transform: translateX(-50%) translateY(0);
-      background: rgba(18,18,24,0.95);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 8px;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.15s;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .dock-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.8); border-radius: 50%; margin-top: 3px; }
-    .dock-sep { width: 1px; height: 38px; background: rgba(255,255,255,0.25); margin: 0 4px; align-self: center; }
-
-    /* MAC OS WINDOW BASE CLASS */
-    .mac-window {
-      position: absolute;
-      background: rgba(18, 18, 24, 0.97);
-      backdrop-filter: blur(35px) saturate(1.6);
-      -webkit-backdrop-filter: blur(35px) saturate(1.6);
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 32px 90px rgba(0,0,0,0.8);
-      display: flex;
-      flex-direction: column;
-      z-index: 500;
-      overflow: hidden;
-      animation: macWinIn 0.25s cubic-bezier(0.34,1.3,0.64,1) forwards;
-    }
-    @keyframes macWinIn {
-      from { opacity: 0; transform: scale(0.94); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-
-    /* Window Titlebar */
-    .mac-titlebar {
-      height: 42px;
-      background: rgba(32, 32, 40, 0.99);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      flex-shrink: 0;
-      cursor: grab;
-      position: relative;
-      border-radius: 14px 14px 0 0;
-      user-select: none;
-    }
-    .mac-titlebar:active { cursor: grabbing; }
-    .tls { display: flex; gap: 8px; }
-    .tl { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; transition: opacity 0.15s; }
-    .tl:hover { opacity: 0.8; }
-    .tl-r { background: #FF5F57; }
-    .tl-y { background: #FEBC2E; }
-    .tl-g { background: #28C840; }
-    .win-title-text {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      font-size: 13px; font-weight: 500;
-      color: rgba(255,255,255,0.55);
-      pointer-events: none;
-      white-space: nowrap;
-    }
-
-    /* WINDOW SCROLL CONTAINER */
-    .win-scroll {
-      flex: 1;
-      overflow-y: auto;
-      padding: 26px 28px 40px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,0.18) transparent;
-    }
-    .win-scroll::-webkit-scrollbar { width: 6px; }
-    .win-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
-
-    /* Hero Section */
-    .win-hero { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
-    .win-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.15); box-shadow: 0 8px 24px rgba(0,0,0,0.4); flex-shrink: 0; }
-    .win-name { font-size: 24px; font-weight: 700; color: rgba(255,255,255,0.95); letter-spacing: -0.02em; line-height: 1.2; }
-    .win-role { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
-
-    .badges-row { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
-    .badge-pill { font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 100px; border: 1px solid; display: flex; align-items: center; gap: 5px; }
-    .badge-pill.hi { background: rgba(167,107,255,0.15); color: #c8a0ff; border-color: rgba(167,107,255,0.35); box-shadow: 0 0 12px rgba(167,107,255,0.2); }
-    .badge-pill.lo { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.65); border-color: rgba(255,255,255,0.08); }
-
-    .win-bio { font-size: 13px; color: rgba(255,255,255,0.58); line-height: 1.7; margin-bottom: 20px; }
-
-    .stats-row { display: flex; gap: 10px; margin-bottom: 26px; }
-    .stat-box { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 10px; text-align: center; }
-    .stat-num { font-size: 22px; font-weight: 700; color: #c8a0ff; letter-spacing: -0.02em; }
-    .stat-lbl { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 3px; }
-
-    .sec-title { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
-    .win-section { margin-bottom: 28px; }
-
-    /* Experience Cards */
-    .exp-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; transition: background 0.15s; }
-    .exp-card:hover { background: rgba(255,255,255,0.06); }
-    .exp-ico { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-    .exp-main { flex: 1; min-width: 0; }
-    .exp-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 2px; }
-    .exp-org { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.92); }
-    .exp-badge { font-size: 10px; font-weight: 500; padding: 2px 10px; border-radius: 100px; flex-shrink: 0; margin-left: 8px; }
-    .exp-badge.ac { background: rgba(167,107,255,0.15); color: #c8a0ff; border: 1px solid rgba(167,107,255,0.3); }
-    .exp-badge.dn { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.1); }
-    .exp-role { font-size: 13px; color: rgba(255,255,255,0.5); }
-    .exp-meta { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; display: flex; gap: 10px; }
-
-    /* Project Cards */
-    .proj-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 18px; margin-bottom: 14px; transition: background 0.15s; }
-    .proj-card:hover { background: rgba(255,255,255,0.06); }
-    .proj-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
-    .proj-ico { width: 46px; height: 46px; border-radius: 10px; overflow: hidden; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-    .proj-ico img { width: 100%; height: 100%; object-fit: cover; }
-    .proj-acts { display: flex; gap: 8px; }
-    .proj-btn { font-size: 11px; font-weight: 600; padding: 6px 12px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 5px; transition: all 0.15s; }
-    .proj-btn.lv { background: rgba(40,200,64,0.12); border: 1px solid rgba(40,200,64,0.3); color: #28C840; }
-    .proj-btn.lv:hover { background: rgba(40,200,64,0.22); box-shadow: 0 0 12px rgba(40,200,64,0.4); }
-    .live-dot { width: 6px; height: 6px; background: #28C840; border-radius: 50%; box-shadow: 0 0 6px #28C840; animation: pulse 1.5s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.45} }
-    .proj-btn.gh { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.09); color: rgba(255,255,255,0.75); }
-    .proj-btn.gh:hover { background: rgba(255,255,255,0.14); color: #fff; }
-    .proj-name { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.95); margin-bottom: 4px; letter-spacing: -0.01em; }
-    .proj-desc { font-size: 13px; color: rgba(255,255,255,0.52); line-height: 1.6; margin-bottom: 14px; }
-    .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tech-tag { font-size: 10px; font-weight: 500; padding: 3px 9px; border-radius: 5px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.45); }
-
-    /* Certificates Grid */
-    .certs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .cert-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.15s; }
-    .cert-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); border-color: rgba(200,160,255,0.3); }
-    .cert-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .cert-info { padding: 12px 14px; }
-    .cert-org { font-size: 10px; font-weight: 700; color: #c8a0ff; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
-    .cert-name { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.88); line-height: 1.35; }
-
-    /* 1. ABOUT ME WINDOW */
-    #main-window {
-      top: 45px;
-      left: calc(50% - 390px);
-      width: min(780px, 92vw);
-      height: calc(100vh - 140px);
-    }
-
-    /* 2. DEDICATED PROJECTS WINDOW */
-    #projects-window {
-      top: 55px;
-      left: calc(50% - 390px);
-      width: min(780px, 92vw);
-      height: calc(100vh - 150px);
-    }
-
-    /* 3. DEDICATED CERTIFICATES WINDOW */
-    #certs-window {
-      top: 65px;
-      left: calc(50% - 400px);
-      width: min(800px, 92vw);
-      height: calc(100vh - 150px);
-    }
-
-    /* 4. DEDICATED TECH STACK TERMINAL WINDOW */
-    #techstack-window {
-      top: 75px;
-      left: calc(50% - 320px);
-      width: min(640px, 90vw);
-      height: 490px;
-      background: #14141d;
-      border: 1px solid rgba(255,255,255,0.12);
-      font-family: 'Fira Code', monospace;
-    }
-    .term-body {
-      padding: 24px;
-      flex: 1;
-      overflow-y: auto;
-      color: rgba(255,255,255,0.85);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-    .term-prompt { color: rgba(255,255,255,0.95); font-weight: 600; margin-bottom: 18px; font-size: 14px; }
-    .term-prompt span { color: #5cb4ff; }
-    .term-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    .term-table th { text-align: left; padding: 8px 12px 14px; color: rgba(255,255,255,0.5); font-weight: 500; font-size: 12px; border-bottom: 1px dashed rgba(255,255,255,0.15); }
-    .term-table td { padding: 12px 12px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
-    .term-check { color: #28C840; font-weight: 700; margin-right: 6px; }
-    .term-cat { color: #28C840; font-weight: 500; white-space: nowrap; }
-    .term-tech { color: rgba(255,255,255,0.9); }
-
-    /* 5. DEDICATED CONTACT ME WINDOW */
-    #contact-window {
-      top: 85px;
-      left: calc(50% - 280px);
-      width: min(560px, 90vw);
-      height: 440px;
-      background: #1c1c1f;
-      border: 1px solid rgba(255,255,255,0.14);
-    }
-    .contact-body {
-      padding: 32px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .contact-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.18); margin-bottom: 20px; box-shadow: 0 8px 22px rgba(0,0,0,0.55); }
-    .contact-heading { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.02em; margin-bottom: 6px; }
-    .contact-sub { font-size: 13px; color: rgba(255,255,255,0.52); margin-bottom: 28px; line-height: 1.5; }
-    .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 100%; }
-    .contact-tile {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 110px;
-      padding: 16px 14px;
-      border-radius: 18px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 700;
-      font-size: 14px;
-      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-    .contact-tile:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 12px 28px rgba(0,0,0,0.5); }
-    .contact-tile-ico { font-size: 26px; }
-    .tile-github { background: #EE5A5A; }
-    .tile-linkedin { background: #29B6F6; }
-    .tile-instagram { background: #E6673D; }
-    .tile-email { background: #2ECC71; }
-
-    /* Resume Banner */
-    .res-banner { background: linear-gradient(135deg, rgba(167,107,255,0.18), rgba(100,80,255,0.1)); border: 1px solid rgba(167,107,255,0.28); border-radius: 14px; padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 10px; }
-    .res-text h3 { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.95); letter-spacing: -0.01em; }
-    .res-text p { font-size: 12px; color: rgba(255,255,255,0.48); margin-top: 4px; }
-    .res-btn { font-size: 12px; font-weight: 700; padding: 10px 22px; border-radius: 8px; background: #c8a0ff; color: #100624; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: all 0.15s; box-shadow: 0 4px 16px rgba(167,107,255,0.3); }
-    .res-btn:hover { background: #d8b8ff; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(167,107,255,0.45); }
-
-    /* CERT MODAL */
-    #cert-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-    #cert-modal.open { display: flex; }
-    #cert-modal-img { max-width: 88%; max-height: 85vh; border-radius: 10px; box-shadow: 0 24px 70px rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.15); }
-    #cert-close { position: absolute; top: 20px; right: 26px; color: #fff; font-size: 34px; cursor: pointer; opacity: 0.7; transition: opacity 0.15s; line-height: 1; }
-    #cert-close:hover { opacity: 1; }
-
-    /* MOBILE VIEW & RESPONSIVE DESIGN SYSTEM */
-    #mobile-view {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 50% 25%, #1e40af 0%, #1e3a8a 55%, #0b132b 100%);
-      z-index: 99000;
-      overflow-y: auto;
-      color: #fff;
-    }
-    @media (max-width: 767px) {
-      #mobile-view { display: block; }
-      #desktop { display: none; }
-      #askme-panel {
-        width: 94vw !important;
-        max-height: 85vh !important;
-        border-radius: 20px !important;
-      }
-    }
-    .mob-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      height: 50px;
-      background: rgba(15, 18, 32, 0.88);
-      backdrop-filter: blur(20px) saturate(1.8);
-      -webkit-backdrop-filter: blur(20px) saturate(1.8);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-    }
-    .mob-brand { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
-    .mob-ai-btn {
-      font-size: 11px;
-      font-weight: 700;
-      padding: 5px 12px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #bf5af2, #9b27d4);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 4px 12px rgba(191, 90, 242, 0.4);
-    }
-    .mob-inner { max-width: 520px; margin: 0 auto; padding: 18px 16px 90px; }
-    .mob-hero-card {
-      background: rgba(18, 18, 24, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 20px;
-      padding: 20px;
-      margin-bottom: 20px;
-      backdrop-filter: blur(15px);
-    }
-    
-    /* Fixed Bottom App Navigation Bar */
-    .mob-bottom-nav {
-      position: fixed;
-      bottom: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(94vw, 440px);
-      height: 56px;
-      background: rgba(20, 24, 40, 0.92);
-      backdrop-filter: blur(25px) saturate(1.8);
-      -webkit-backdrop-filter: blur(25px) saturate(1.8);
-      border-radius: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.65);
-      z-index: 99999;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      padding: 0 6px;
-    }
-    .mob-nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      font-size: 10px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.7);
-      text-decoration: none;
-      cursor: pointer;
-      padding: 4px 6px;
-      border-radius: 12px;
-      transition: color 0.15s, background 0.15s;
-    }
-    .mob-nav-item:active { color: #c8a0ff; background: rgba(255,255,255,0.1); }
-    .mob-nav-icon { font-size: 18px; line-height: 1; }
-  </style>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
@@ -655,6 +49,7 @@
         <div class="portrait-role">UI/UX · Developer · Artist</div>
       </div>
     </div>
+
     <!-- Desktop Icons Grid (Left Sidebar — 2 Columns Layout) -->
     <div class="desktop-icon-grid">
       <!-- Column 1 -->
@@ -698,91 +93,103 @@
     </div>
 
     <div class="win-scroll">
-      <!-- HERO -->
+      <!-- Profile Header -->
       <div class="win-hero">
         <img src="profile_portrait.jpg" alt="Prajwal Sharma" class="win-avatar"/>
         <div>
-          <div class="win-name">Prajwal Sharma</div>
-          <div class="win-role">UI/UX Designer · Visual Artist · Python Developer</div>
+          <h1 class="win-name">Prajwal Sharma</h1>
+          <p class="win-role">UI/UX Designer · Visual Artist · Python Developer</p>
         </div>
       </div>
 
-      <!-- BADGES -->
+      <!-- Badges -->
       <div class="badges-row">
         <span class="badge-pill hi">🟢 Open for Internships 2026</span>
         <span class="badge-pill lo">🎨 UI/UX Design</span>
         <span class="badge-pill lo">Python</span>
         <span class="badge-pill lo">Figma</span>
         <span class="badge-pill lo">HTML/CSS</span>
-        <span class="badge-pill lo">Visual Art</span>
+        <span class="badge-pill lo">C++</span>
       </div>
 
-      <!-- BIO -->
+      <!-- Bio -->
       <p class="win-bio">
-        B.Tech CSE student at BBS College of Engineering & Technology, Prayagraj (2022–2026).
-        Operating at the intersection of visual artistry and functional digital design.
-        My roots are in graphite pencil portraiture — years of art experience built a sharp eye for detail
-        that directly shapes my UI/UX design systems and Python web development work.
+        B.Tech Computer Science & Engineering student at <b>BBS College of Engineering & Technology, Prayagraj</b> (affiliated with AKTU).
+        I operate at the intersection of visual artistry and functional digital systems — blending graphite pencil portraiture precision with high-fidelity UI/UX design and Python development.
       </p>
 
-      <!-- STATS -->
+      <!-- Stats -->
       <div class="stats-row">
-        <div class="stat-box"><div class="stat-num">3+</div><div class="stat-lbl">Major Projects</div></div>
+        <div class="stat-box"><div class="stat-num">3+</div><div class="stat-lbl">Featured Projects</div></div>
         <div class="stat-box"><div class="stat-num">8</div><div class="stat-lbl">Certifications</div></div>
         <div class="stat-box"><div class="stat-num">4</div><div class="stat-lbl">Hackathons</div></div>
         <div class="stat-box"><div class="stat-num">2026</div><div class="stat-lbl">Graduation</div></div>
       </div>
 
-      <!-- EXPERIENCE -->
+      <!-- Experience & Achievements -->
+      <div class="sec-title">Experience & Achievements</div>
       <div class="win-section">
-        <div class="sec-title">Experience & Achievements</div>
         <div class="exp-card">
           <div class="exp-ico">🐍</div>
           <div class="exp-main">
-            <div class="exp-top"><span class="exp-org">CodSoft</span><span class="exp-badge ac">Internship</span></div>
-            <div class="exp-role">Python Programming Intern — Built scripting & automation tools</div>
-            <div class="exp-meta"><span>Python</span><span>Scripting</span></div>
+            <div class="exp-top">
+              <div class="exp-org">CodSoft</div>
+              <span class="exp-badge dn">Completed</span>
+            </div>
+            <div class="exp-role">Python Programming Intern</div>
+            <div class="exp-meta"><span>Virtual Internship</span><span>•</span><span>CodSoft Domain</span></div>
           </div>
         </div>
+
         <div class="exp-card">
-          <div class="exp-ico">🏆</div>
+          <div class="exp-ico">🥈</div>
           <div class="exp-main">
-            <div class="exp-top"><span class="exp-org">Yukti Hackathon 2024</span><span class="exp-badge dn">Finalist</span></div>
-            <div class="exp-role">Built TradeSight AI — Fintech brand & dashboard UI system</div>
-            <div class="exp-meta"><span>AKTU</span><span>Fintech Track</span></div>
+            <div class="exp-top">
+              <div class="exp-org">Yukti Hackathon 2024 (AKTU)</div>
+              <span class="exp-badge ac">Finalist</span>
+            </div>
+            <div class="exp-role">TradeSight AI — Fintech Platform</div>
+            <div class="exp-meta"><span>State Level</span><span>•</span><span>Fintech & AI Sentiment</span></div>
           </div>
         </div>
+
         <div class="exp-card">
-          <div class="exp-ico">🚀</div>
+          <div class="exp-ico">🌍</div>
           <div class="exp-main">
-            <div class="exp-top"><span class="exp-org">Lovable Hackathon</span><span class="exp-badge ac">Top 5K / 25K</span></div>
-            <div class="exp-role">Global AI Hackathon — Top 20% worldwide</div>
-            <div class="exp-meta"><span>Global</span><span>Remote</span></div>
+            <div class="exp-top">
+              <div class="exp-org">Lovable Global AI Hackathon</div>
+              <span class="exp-badge ac">Top 20% Worldwide</span>
+            </div>
+            <div class="exp-role">Global Participant (Top 5,000 / 25,000)</div>
+            <div class="exp-meta"><span>Worldwide</span><span>•</span><span>AI Product Prototyping</span></div>
           </div>
         </div>
+
         <div class="exp-card">
-          <div class="exp-ico">🎤</div>
+          <div class="exp-ico">🎭</div>
           <div class="exp-main">
-            <div class="exp-top"><span class="exp-org">Nova Fest — BBS College</span><span class="exp-badge dn">Head Coordinator</span></div>
-            <div class="exp-role">Led design, branding & full festival coordination</div>
-            <div class="exp-meta"><span>BBS College</span><span>Prayagraj</span></div>
+            <div class="exp-top">
+              <div class="exp-org">Nova Fest — BBS College</div>
+              <span class="exp-badge dn">Coordination</span>
+            </div>
+            <div class="exp-role">Head Coordinator</div>
+            <div class="exp-meta"><span>College Fest</span><span>•</span><span>Branding & Event Design</span></div>
           </div>
         </div>
       </div>
 
-      <!-- RESUME BANNER -->
+      <!-- Resume Download Banner -->
       <div class="res-banner">
         <div class="res-text">
-          <h3>✨ Download My Resume</h3>
-          <p>B.Tech CSE · UI/UX Designer · Python Developer — Open to internships & roles</p>
+          <h3>Need Prajwal's Full Resume?</h3>
+          <p>Download the formatted PDF document containing full academic details & skills.</p>
         </div>
         <a href="Prajwal_Sharma_Resume.pdf" download class="res-btn">📄 Download PDF</a>
       </div>
-
     </div>
   </div>
 
-  <!-- WINDOW 2: DEDICATED FEATURED PROJECTS WINDOW -->
+  <!-- WINDOW 2: DEDICATED PROJECTS WINDOW -->
   <div id="projects-window" class="mac-window" style="display:none;" onclick="bringToFront('projects-window')">
     <div class="mac-titlebar">
       <div class="tls">
@@ -792,10 +199,9 @@
       </div>
       <div class="win-title-text">📁  Featured Projects</div>
     </div>
+
     <div class="win-scroll">
-      <div class="sec-title" style="margin-bottom:16px;">Selected Work & Design Systems</div>
-      
-      <!-- VIPER CARD -->
+      <!-- VIPER -->
       <div class="proj-card" id="viper-card">
         <div class="proj-head">
           <div class="proj-ico"><img src="viper_project.png" alt="VIPER"/></div>
@@ -804,42 +210,60 @@
             <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
           </div>
         </div>
-        <div class="proj-name">VIPER — AI Security Interface</div>
-        <div class="proj-desc">High-fidelity UI/UX concept for an AI-powered Security Operations Center. Features real-time threat map visualizations, active alert panels, and a cyber-dark aesthetic with cyan accents.</div>
+        <div class="proj-name">VIPER — AI Security Operations Center Interface</div>
+        <div class="proj-desc">
+          High-fidelity UI/UX concept designed for an AI Security Operations Center. Features real-time threat map visualization, active incident response panels, severity indicators, and a sleek cyber-dark aesthetic built in Figma.
+        </div>
         <div class="tech-tags">
-          <span class="tech-tag">Figma</span><span class="tech-tag">UI/UX</span><span class="tech-tag">Branding</span><span class="tech-tag">Cyber Dark</span>
+          <span class="tech-tag">Figma</span>
+          <span class="tech-tag">UI/UX Design</span>
+          <span class="tech-tag">Threat Monitoring</span>
+          <span class="tech-tag">Cyber Dark</span>
+          <span class="tech-tag">Design System</span>
         </div>
       </div>
 
-      <!-- TRADESIGHT CARD -->
+      <!-- TradeSight AI -->
       <div class="proj-card" id="tradesight-card">
         <div class="proj-head">
-          <div class="proj-ico"><img src="tradesight_project.png" alt="TradeSight"/></div>
+          <div class="proj-ico"><img src="tradesight_project.png" alt="TradeSight AI"/></div>
           <div class="proj-acts">
             <a href="tradesight-case-study.html" class="proj-btn lv"><span class="live-dot"></span>Case Study</a>
             <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
           </div>
         </div>
-        <div class="proj-name">TradeSight AI — Fintech Platform</div>
-        <div class="proj-desc">Complete brand identity and UI system for an AI-powered fintech platform built at Yukti Hackathon 2024 (AKTU Finalist). Luxury gold & dark brown visual aesthetic with AI stock sentiment analysis dashboards.</div>
+        <div class="proj-name">TradeSight AI — Fintech Market Platform</div>
+        <div class="proj-desc">
+          Developed for <b>Yukti Hackathon 2024 (AKTU Finalist)</b>. AI stock market sentiment analysis dashboard with interactive candlestick charts, luxury gold visual identity, and Python sentiment analysis backend.
+        </div>
         <div class="tech-tags">
-          <span class="tech-tag">Python</span><span class="tech-tag">UI/UX</span><span class="tech-tag">Figma</span><span class="tech-tag">HTML/CSS</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Fintech</span>
+          <span class="tech-tag">Sentiment AI</span>
+          <span class="tech-tag">Figma</span>
+          <span class="tech-tag">AKTU Finalist</span>
         </div>
       </div>
 
-      <!-- PENCILASTIC CARD -->
+      <!-- Pencilastic -->
       <div class="proj-card" id="pencilastic-card">
         <div class="proj-head">
           <div class="proj-ico"><img src="pencilastic_project.png" alt="Pencilastic"/></div>
           <div class="proj-acts">
-            <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn lv"><span class="live-dot"></span>View</a>
+            <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn lv"><span class="live-dot"></span>View Project</a>
             <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
           </div>
         </div>
-        <div class="proj-name">Pencilastic — Digital Art Gallery</div>
-        <div class="proj-desc">Minimal digital art gallery website showcasing graphite pencil portrait artwork. Clean layout with elegant typography bridging traditional art with web development.</div>
+        <div class="proj-name">Pencilastic — Digital Art Gallery Website</div>
+        <div class="proj-desc">
+          Minimalist web gallery showcasing Prajwal's traditional graphite pencil portrait drawings. Features clean white grid layout, responsive typography, and subtle image lightbox transitions.
+        </div>
         <div class="tech-tags">
-          <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Art Gallery</span>
+          <span class="tech-tag">HTML5</span>
+          <span class="tech-tag">CSS3</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Graphite Art</span>
+          <span class="tech-tag">Responsive Gallery</span>
         </div>
       </div>
     </div>
@@ -853,42 +277,74 @@
         <div class="tl tl-y" onclick="closeWindow('certs-window')" title="Minimize"></div>
         <div class="tl tl-g" title="Zoom"></div>
       </div>
-      <div class="win-title-text">🏆  Certifications (8 Total)</div>
+      <div class="win-title-text">🏆  Certifications & Credentials</div>
     </div>
+
     <div class="win-scroll">
-      <div class="sec-title" style="margin-bottom:16px;">Verified Professional Credentials (Click to preview)</div>
+      <div class="sec-title" style="margin-bottom:16px;">Verified Professional Certifications (Click to Preview)</div>
       <div class="certs-grid">
         <div class="cert-card" onclick="openCert('cert_tata.png')">
-          <img src="cert_tata.png" class="cert-thumb" alt="Tata"/>
-          <div class="cert-info"><div class="cert-org">Tata Group</div><div class="cert-name">Data Visualisation: Empowering Business</div></div>
+          <img src="cert_tata.png" class="cert-thumb" alt="Tata Data Vis"/>
+          <div class="cert-info">
+            <div class="cert-org">Tata Group</div>
+            <div class="cert-name">Data Visualisation: Empowering Business</div>
+          </div>
         </div>
+
         <div class="cert-card" onclick="openCert('cert_tata_cybersecurity.png')">
-          <img src="cert_tata_cybersecurity.png" class="cert-thumb" alt="Tata Cyber"/>
-          <div class="cert-info"><div class="cert-org">Tata Group</div><div class="cert-name">Cybersecurity Analyst Job Simulation</div></div>
+          <img src="cert_tata_cybersecurity.png" class="cert-thumb" alt="Tata Cybersecurity"/>
+          <div class="cert-info">
+            <div class="cert-org">Tata Group</div>
+            <div class="cert-name">Cybersecurity Analyst Job Simulation</div>
+          </div>
         </div>
+
         <div class="cert-card" onclick="openCert('cert_deloitte.png')">
           <img src="cert_deloitte.png" class="cert-thumb" alt="Deloitte"/>
-          <div class="cert-info"><div class="cert-org">Deloitte</div><div class="cert-name">Technology Consulting Job Simulation</div></div>
+          <div class="cert-info">
+            <div class="cert-org">Deloitte</div>
+            <div class="cert-name">Technology Consulting Job Simulation</div>
+          </div>
         </div>
+
         <div class="cert-card" onclick="openCert('cert_google.png')">
-          <img src="cert_google.png" class="cert-thumb" alt="Google"/>
-          <div class="cert-info"><div class="cert-org">Google</div><div class="cert-name">AI Essentials Certificate</div></div>
+          <img src="cert_google.png" class="cert-thumb" alt="Google AI"/>
+          <div class="cert-info">
+            <div class="cert-org">Google</div>
+            <div class="cert-name">Google AI Essentials Certificate</div>
+          </div>
         </div>
+
         <div class="cert-card" onclick="openCert('cert_google_cloud.png')">
           <img src="cert_google_cloud.png" class="cert-thumb" alt="Google Cloud"/>
-          <div class="cert-info"><div class="cert-org">Google Cloud</div><div class="cert-name">Generative AI Fundamentals</div></div>
+          <div class="cert-info">
+            <div class="cert-org">Google Cloud</div>
+            <div class="cert-name">Generative AI Fundamentals</div>
+          </div>
         </div>
+
         <div class="cert-card" onclick="openCert('cert_codsoft.png')">
           <img src="cert_codsoft.png" class="cert-thumb" alt="CodSoft"/>
-          <div class="cert-info"><div class="cert-org">CodSoft</div><div class="cert-name">Python Programming Internship</div></div>
+          <div class="cert-info">
+            <div class="cert-org">CodSoft</div>
+            <div class="cert-name">Python Programming Internship</div>
+          </div>
         </div>
+
         <div class="cert-card" onclick="openCert('cert_hackwithindia.jpg')">
           <img src="cert_hackwithindia.jpg" class="cert-thumb" alt="HackWithIndia"/>
-          <div class="cert-info"><div class="cert-org">HackWithIndia</div><div class="cert-name">Hackathon Participation Certificate</div></div>
+          <div class="cert-info">
+            <div class="cert-org">HackWithIndia</div>
+            <div class="cert-name">Hackathon Participation Certificate</div>
+          </div>
         </div>
+
         <div class="cert-card" onclick="openCert('cert_gfg_syntax.png')">
-          <img src="cert_gfg_syntax.png" class="cert-thumb" alt="GFG"/>
-          <div class="cert-info"><div class="cert-org">GeeksforGeeks</div><div class="cert-name">Syntax Error Hackathon</div></div>
+          <img src="cert_gfg_syntax.png" class="cert-thumb" alt="GFG Syntax Error"/>
+          <div class="cert-info">
+            <div class="cert-org">GeeksforGeeks</div>
+            <div class="cert-name">Syntax Error Hackathon Certificate</div>
+          </div>
         </div>
       </div>
     </div>
@@ -902,45 +358,34 @@
         <div class="tl tl-y" onclick="closeWindow('techstack-window')" title="Minimize"></div>
         <div class="tl tl-g" title="Zoom"></div>
       </div>
-      <div class="win-title-text">💻  Tech Stack — prajwal@macbook</div>
+      <div class="win-title-text">💻  Terminal — Tech Stack</div>
     </div>
+
     <div class="term-body">
-      <div class="term-prompt">@Prajwal % <span>show tech stack</span></div>
+      <div class="term-prompt">prajwal@macbook ~ % <span>show-tech-stack --all</span></div>
       <table class="term-table">
         <thead>
           <tr>
-            <th>Category</th>
-            <th>Technologies</th>
+            <th>CATEGORY</th>
+            <th>TECHNOLOGIES & TOOLS</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Language</td>
-            <td class="term-tech">Python, JavaScript, C / C++, HTML5, CSS3, SQL</td>
-          </tr>
-          <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Frontend</td>
-            <td class="term-tech">HTML5, CSS3, JavaScript (ES6+), Glassmorphic UI</td>
+            <td class="term-cat"><span class="term-check">✓</span> Programming</td>
+            <td class="term-tech">Python, C / C++, HTML5, CSS3, JavaScript (ES6+), SQL</td>
           </tr>
           <tr>
             <td class="term-cat"><span class="term-check">✓</span> UI/UX Design</td>
-            <td class="term-tech">Figma, Wireframing, High-Fidelity Prototyping, Design Systems</td>
+            <td class="term-tech">Figma, Wireframing, High-Fidelity Prototyping, Design Systems, Canva</td>
           </tr>
           <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Backend</td>
-            <td class="term-tech">Python (Automation, Scripting, Market Sentiment Logic)</td>
+            <td class="term-cat"><span class="term-check">✓</span> Developer Tools</td>
+            <td class="term-tech">Git, GitHub, VS Code, Figma Desktop, Canva</td>
           </tr>
           <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Database</td>
-            <td class="term-tech">SQL, Relational Databases</td>
-          </tr>
-          <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Dev Tools</td>
-            <td class="term-tech">Git, GitHub, VS Code, Canva, Figma Desktop</td>
-          </tr>
-          <tr>
-            <td class="term-cat"><span class="term-check">✓</span> Specializations</td>
-            <td class="term-tech">Pencil Portraiture, Brand Identity, AI/ML (Learning)</td>
+            <td class="term-cat"><span class="term-check">✓</span> Artistic Crafts</td>
+            <td class="term-tech">Graphite Pencil Portraiture, Brand Identity Design, Responsive Web Design</td>
           </tr>
         </tbody>
       </table>
@@ -983,19 +428,18 @@
     </div>
   </div>
 
-  <!-- DOCK BAR (BOTTOM NAVIGATION) -->
+  <!-- DOCK BAR -->
   <div id="dock">
     <div class="dock-item" onclick="openWindow('main-window')">
-      <div class="dock-icon" style="background:linear-gradient(135deg,#4a90d9,#2575b8)">🔍</div>
-      <div class="dock-tooltip">Portfolio</div>
-      <div class="dock-dot"></div>
+      <div class="dock-icon" style="background:linear-gradient(135deg,#007aff,#0040aa)">👤</div>
+      <div class="dock-tooltip">About Me</div>
     </div>
     <div class="dock-item" onclick="openWindow('projects-window')">
-      <div class="dock-icon" style="background:linear-gradient(135deg,#5ac8fa,#007aff)">🌐</div>
+      <div class="dock-icon" style="background:linear-gradient(135deg,#ff9500,#cc7700)">📁</div>
       <div class="dock-tooltip">Projects</div>
     </div>
     <div class="dock-item" onclick="openWindow('certs-window')">
-      <div class="dock-icon" style="background:linear-gradient(135deg,#ff9f0a,#ff6b00)">📸</div>
+      <div class="dock-icon" style="background:linear-gradient(135deg,#34c759,#248a3d)">🏆</div>
       <div class="dock-tooltip">Certificates</div>
     </div>
     <div class="dock-item" onclick="openWindow('techstack-window')">
@@ -1240,184 +684,8 @@
   </div>
 </div>
 
-<!-- NLP ENGINE JS WITH CACHE BUSTING -->
+<!-- EXTERNAL JS MODULES -->
 <script src="ask-me.js?v=5"></script>
-
-<!-- MAIN APP CONTROLLER SCRIPT -->
-<script>
-  /* TIME CLOCK */
-  function tick() {
-    const n = new Date();
-    const d = n.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
-    const t = n.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:true});
-    document.getElementById('menubar-time').textContent = d + '  ' + t;
-  }
-  tick(); setInterval(tick, 1000);
-
-  /* HOVER TEXT */
-  function makeHover(text, el) {
-    if (!el) return;
-    el.innerHTML = text.split('').map(c =>
-      `<span class="hover-letter">${c===' '?'&nbsp;':c}</span>`
-    ).join('');
-  }
-  makeHover("Hey, I'm Prajwal! welcome to my", document.getElementById('welcome-small'));
-  makeHover("portfolio", document.getElementById('welcome-large'));
-
-  /* WINDOW MANAGEMENT & FOCUS */
-  let topZ = 1000;
-  function bringToFront(winId) {
-    const win = document.getElementById(winId);
-    if (!win) return;
-    topZ += 2;
-    win.style.zIndex = topZ;
-  }
-
-  function openWindow(winId) {
-    const win = document.getElementById(winId);
-    if (!win) return;
-    win.style.display = 'flex';
-    bringToFront(winId);
-    win.style.animation = 'none';
-    win.offsetHeight;
-    win.style.animation = 'macWinIn 0.25s cubic-bezier(0.34,1.3,0.64,1) forwards';
-  }
-
-  function closeWindow(winId) {
-    const win = document.getElementById(winId);
-    if (win) win.style.display = 'none';
-  }
-
-  function scrollToProj(cardId) {
-    setTimeout(() => {
-      const el = document.getElementById(cardId);
-      if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
-    }, 280);
-  }
-
-  /* DRAGGABLE WINDOW SYSTEM */
-  function makeDraggable(winId, handleSelector) {
-    const win = document.getElementById(winId);
-    const handle = win.querySelector(handleSelector);
-    if (!win || !handle) return;
-    let dragging = false, sx, sy, sl, st;
-
-    handle.addEventListener('mousedown', e => {
-      if (e.target.classList.contains('tl')) return;
-      dragging = true;
-      bringToFront(winId);
-      const r = win.getBoundingClientRect();
-      sx = e.clientX; sy = e.clientY; sl = r.left; st = r.top;
-      win.style.left = r.left + 'px';
-      win.style.top = r.top + 'px';
-      win.style.transform = 'none';
-      win.style.transition = 'none';
-      e.preventDefault();
-    });
-
-    document.addEventListener('mousemove', e => {
-      if (!dragging) return;
-      win.style.left = (sl + e.clientX - sx) + 'px';
-      win.style.top = Math.max(30, st + e.clientY - sy) + 'px';
-    });
-
-    document.addEventListener('mouseup', () => {
-      if (dragging) { dragging = false; win.style.transition = ''; }
-    });
-  }
-
-  makeDraggable('main-window', '.mac-titlebar');
-  makeDraggable('projects-window', '.mac-titlebar');
-  makeDraggable('certs-window', '.mac-titlebar');
-  makeDraggable('techstack-window', '.mac-titlebar');
-  makeDraggable('contact-window', '.mac-titlebar');
-
-  /* CERTIFICATE PREVIEW MODAL */
-  function openCert(src) {
-    document.getElementById('cert-modal-img').src = src;
-    document.getElementById('cert-modal').classList.add('open');
-  }
-  function closeCert() {
-    document.getElementById('cert-modal').classList.remove('open');
-  }
-
-  /* ASK ABOUT ME CHATBOT ENGINE */
-  function openAskMe() {
-    const panel = document.getElementById('askme-panel');
-    const overlay = document.getElementById('askme-overlay');
-    panel.style.display = 'flex';
-    overlay.style.display = 'block';
-    setTimeout(() => {
-      panel.style.opacity = '1';
-      panel.style.transform = 'translate(-50%,-50%) scale(1)';
-    }, 10);
-
-    if (document.getElementById('chat-msgs').children.length === 0) {
-      addMsg('bot', "Hi there! 👋 I am Prajwal's AI Assistant. I have analyzed Prajwal's complete resume and background. Ask me anything about his <b>skills, projects, certifications, internship, hackathons, or hobbies!</b>");
-      renderSuggestions();
-    }
-    setTimeout(() => document.getElementById('chat-input').focus(), 300);
-  }
-
-  function closeAskMe() {
-    const panel = document.getElementById('askme-panel');
-    const overlay = document.getElementById('askme-overlay');
-    panel.style.opacity = '0';
-    panel.style.transform = 'translate(-50%,-50%) scale(0.95)';
-    setTimeout(() => { panel.style.display = 'none'; overlay.style.display = 'none'; }, 200);
-  }
-
-  function addMsg(role, html) {
-    const msgs = document.getElementById('chat-msgs');
-    const el = document.createElement('div');
-    el.style.cssText = role === 'user'
-      ? 'align-self:flex-end;max-width:82%;background:rgba(191,90,242,0.22);border:1px solid rgba(191,90,242,0.38);border-radius:14px 14px 3px 14px;padding:10px 15px;font-size:13px;color:rgba(255,255,255,0.92);line-height:1.6;'
-      : 'align-self:flex-start;max-width:86%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px 14px 14px 3px;padding:11px 15px;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.6;';
-    el.innerHTML = html;
-    msgs.appendChild(el);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-
-  function renderSuggestions() {
-    const sg = document.getElementById('chat-suggestions');
-    if (!sg) return;
-    const list = (typeof suggestions !== 'undefined') ? suggestions : ['Who is Prajwal?', 'What are his skills?', 'Tell me about VIPER', 'His certificates?', 'How to contact him?'];
-    sg.innerHTML = list.map(s =>
-      `<button onclick="askSuggestion(this,'${s}')" style="font-size:11px;font-weight:500;padding:5px 12px;border-radius:20px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);cursor:pointer;font-family:inherit;transition:all 0.15s;" onmouseenter="this.style.background='rgba(191,90,242,0.2)';this.style.borderColor='rgba(191,90,242,0.45)';this.style.color='#c8a0ff'" onmouseleave="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.7)'">${s}</button>`
-    ).join('');
-  }
-
-  function askSuggestion(btn, q) {
-    if (btn && btn.parentElement) btn.parentElement.innerHTML = '';
-    document.getElementById('chat-input').value = q;
-    sendMsg();
-  }
-
-  function sendMsg() {
-    const inp = document.getElementById('chat-input');
-    const q = inp.value.trim();
-    if (!q) return;
-    addMsg('user', q);
-    inp.value = '';
-    
-    // Typing indicator
-    const msgs = document.getElementById('chat-msgs');
-    const typingEl = document.createElement('div');
-    typingEl.style.cssText = 'align-self:flex-start;background:rgba(255,255,255,0.04);border:1px solid rgba(191,90,242,0.2);border-radius:12px;padding:8px 14px;font-size:12px;color:#c8a0ff;font-style:italic;display:flex;align-items:center;gap:6px;';
-    typingEl.innerHTML = 'Analyzing resume & background... 💭';
-    msgs.appendChild(typingEl);
-    msgs.scrollTop = msgs.scrollHeight;
-
-    setTimeout(() => {
-      typingEl.remove();
-      const ans = (typeof getAnswer === 'function') ? getAnswer(q) : `Hi there! 👋 Ask me anything about Prajwal's skills, projects, certifications, or experience!`;
-      addMsg('bot', ans);
-    }, 450);
-  }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeAskMe(); closeCert(); }
-  });
-</script>
+<script src="script.js"></script>
 </body>
 </html>
