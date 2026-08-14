@@ -1,0 +1,36 @@
+<!-- DOCK BAR -->
+<div id="dock">
+  <div class="dock-item" onclick="openWindow('main-window')">
+    <div class="dock-icon" style="background:linear-gradient(135deg,#007aff,#0040aa)">👤</div>
+    <div class="dock-tooltip">About Me</div>
+  </div>
+  <div class="dock-item" onclick="openWindow('projects-window')">
+    <div class="dock-icon" style="background:linear-gradient(135deg,#ff9500,#cc7700)">📁</div>
+    <div class="dock-tooltip">Projects</div>
+  </div>
+  <div class="dock-item" onclick="openWindow('certs-window')">
+    <div class="dock-icon" style="background:linear-gradient(135deg,#34c759,#248a3d)">🏆</div>
+    <div class="dock-tooltip">Certificates</div>
+  </div>
+  <div class="dock-item" onclick="openWindow('techstack-window')">
+    <div class="dock-icon" style="background:linear-gradient(135deg,#2c3e50,#1a252f)">💻</div>
+    <div class="dock-tooltip">Tech Stack</div>
+  </div>
+  <div class="dock-item" onclick="openWindow('contact-window')">
+    <div class="dock-icon" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">👤</div>
+    <div class="dock-tooltip">Contact Me</div>
+  </div>
+  <div class="dock-sep"></div>
+  <div class="dock-item" onclick="document.querySelector('.res-btn').click()">
+    <div class="dock-icon" style="background:linear-gradient(135deg,#ff3b30,#a00)">📄</div>
+    <div class="dock-tooltip">Resume.pdf</div>
+  </div>
+  <div class="dock-sep"></div>
+  <div class="dock-item" onclick="openAskMe()" id="askme-dock">
+    <div class="dock-icon" style="background:linear-gradient(135deg,#bf5af2,#9b27d4);padding:0 14px;width:auto;gap:7px;min-width:52px;">
+      <span style="font-size:18px">✨</span>
+      <span style="font-size:12px;font-weight:600;color:#fff;white-space:nowrap">Ask About Me</span>
+    </div>
+    <div class="dock-tooltip">Ask About Me</div>
+  </div>
+</div>

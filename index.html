@@ -8,15 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <!-- MASTER MODULAR STYLESHEET (Imports css/base.css, css/desktop.css, css/windows.css, css/dock.css, css/askme.css, css/mobile.css) -->
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<!-- DESKTOP -->
+<!-- DESKTOP CONTAINER -->
 <div id="desktop">
   <img id="wallpaper" src="macos_wallpaper.jpg" alt="wallpaper"/>
 
-  <!-- MENU BAR -->
+  <!-- TOP MENUBAR COMPONENT -->
   <div id="menubar">
     <div class="menubar-left">
       <span class="menubar-apple">🍎</span>
@@ -33,9 +34,9 @@
     </div>
   </div>
 
-  <!-- DESKTOP AREA -->
+  <!-- DESKTOP HERO & ICONS GRID -->
   <div id="desktop-area">
-    <!-- Welcome Big Text (Centered & Lowered) -->
+    <!-- Welcome Hero Title Text -->
     <div id="welcome-wrap">
       <div id="welcome-small"></div>
       <div id="welcome-large"></div>
@@ -50,7 +51,7 @@
       </div>
     </div>
 
-    <!-- Desktop Icons Grid (Left Sidebar — 2 Columns Layout) -->
+    <!-- Desktop Icons Grid (Left Sidebar — 2 Columns) -->
     <div class="desktop-icon-grid">
       <!-- Column 1 -->
       <div class="desktop-icon" onclick="openWindow('projects-window'); scrollToProj('viper-card')">
@@ -66,7 +67,7 @@
         <span class="desktop-icon-label">Pencilastic</span>
       </div>
 
-      <!-- Column 2 (Starts next to VIPER at top!) -->
+      <!-- Column 2 (Top next to VIPER) -->
       <div class="desktop-icon" onclick="document.querySelector('.res-btn').click()">
         <div class="doc-icon-graphic">
           <div class="doc-badge">PDF</div>
@@ -81,7 +82,7 @@
     </div>
   </div>
 
-  <!-- WINDOW 1: DEDICATED ABOUT ME WINDOW -->
+  <!-- COMPONENT 1: ABOUT ME WINDOW -->
   <div id="main-window" class="mac-window" style="display:none;" onclick="bringToFront('main-window')">
     <div class="mac-titlebar">
       <div class="tls">
@@ -93,7 +94,6 @@
     </div>
 
     <div class="win-scroll">
-      <!-- Profile Header -->
       <div class="win-hero">
         <img src="profile_portrait.jpg" alt="Prajwal Sharma" class="win-avatar"/>
         <div>
@@ -102,7 +102,6 @@
         </div>
       </div>
 
-      <!-- Badges -->
       <div class="badges-row">
         <span class="badge-pill hi">🟢 Open for Internships 2026</span>
         <span class="badge-pill lo">🎨 UI/UX Design</span>
@@ -112,13 +111,11 @@
         <span class="badge-pill lo">C++</span>
       </div>
 
-      <!-- Bio -->
       <p class="win-bio">
         B.Tech Computer Science & Engineering student at <b>BBS College of Engineering & Technology, Prayagraj</b> (affiliated with AKTU).
         I operate at the intersection of visual artistry and functional digital systems — blending graphite pencil portraiture precision with high-fidelity UI/UX design and Python development.
       </p>
 
-      <!-- Stats -->
       <div class="stats-row">
         <div class="stat-box"><div class="stat-num">3+</div><div class="stat-lbl">Featured Projects</div></div>
         <div class="stat-box"><div class="stat-num">8</div><div class="stat-lbl">Certifications</div></div>
@@ -126,7 +123,6 @@
         <div class="stat-box"><div class="stat-num">2026</div><div class="stat-lbl">Graduation</div></div>
       </div>
 
-      <!-- Experience & Achievements -->
       <div class="sec-title">Experience & Achievements</div>
       <div class="win-section">
         <div class="exp-card">
@@ -178,7 +174,6 @@
         </div>
       </div>
 
-      <!-- Resume Download Banner -->
       <div class="res-banner">
         <div class="res-text">
           <h3>Need Prajwal's Full Resume?</h3>
@@ -189,7 +184,7 @@
     </div>
   </div>
 
-  <!-- WINDOW 2: DEDICATED PROJECTS WINDOW -->
+  <!-- COMPONENT 2: PROJECTS WINDOW -->
   <div id="projects-window" class="mac-window" style="display:none;" onclick="bringToFront('projects-window')">
     <div class="mac-titlebar">
       <div class="tls">
@@ -201,7 +196,6 @@
     </div>
 
     <div class="win-scroll">
-      <!-- VIPER -->
       <div class="proj-card" id="viper-card">
         <div class="proj-head">
           <div class="proj-ico"><img src="viper_project.png" alt="VIPER"/></div>
@@ -223,7 +217,6 @@
         </div>
       </div>
 
-      <!-- TradeSight AI -->
       <div class="proj-card" id="tradesight-card">
         <div class="proj-head">
           <div class="proj-ico"><img src="tradesight_project.png" alt="TradeSight AI"/></div>
@@ -245,7 +238,6 @@
         </div>
       </div>
 
-      <!-- Pencilastic -->
       <div class="proj-card" id="pencilastic-card">
         <div class="proj-head">
           <div class="proj-ico"><img src="pencilastic_project.png" alt="Pencilastic"/></div>
@@ -269,7 +261,7 @@
     </div>
   </div>
 
-  <!-- WINDOW 3: DEDICATED CERTIFICATES WINDOW -->
+  <!-- COMPONENT 3: CERTIFICATES WINDOW -->
   <div id="certs-window" class="mac-window" style="display:none;" onclick="bringToFront('certs-window')">
     <div class="mac-titlebar">
       <div class="tls">
@@ -350,7 +342,7 @@
     </div>
   </div>
 
-  <!-- WINDOW 4: DEDICATED TECH STACK TERMINAL WINDOW -->
+  <!-- COMPONENT 4: TECH STACK TERMINAL WINDOW -->
   <div id="techstack-window" class="mac-window" style="display:none;" onclick="bringToFront('techstack-window')">
     <div class="mac-titlebar">
       <div class="tls">
@@ -392,7 +384,7 @@
     </div>
   </div>
 
-  <!-- WINDOW 5: DEDICATED CONTACT ME WINDOW -->
+  <!-- COMPONENT 5: CONTACT ME WINDOW -->
   <div id="contact-window" class="mac-window" style="display:none;" onclick="bringToFront('contact-window')">
     <div class="mac-titlebar">
       <div class="tls">
@@ -428,7 +420,7 @@
     </div>
   </div>
 
-  <!-- DOCK BAR -->
+  <!-- COMPONENT 6: MAC DOCK BAR -->
   <div id="dock">
     <div class="dock-item" onclick="openWindow('main-window')">
       <div class="dock-icon" style="background:linear-gradient(135deg,#007aff,#0040aa)">👤</div>
@@ -467,10 +459,9 @@
 
 </div><!-- /desktop -->
 
-<!-- ASK ABOUT ME CHAT MODAL -->
-<div id="askme-overlay" onclick="closeAskMe()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999990;backdrop-filter:blur(5px);"></div>
-<div id="askme-panel" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.95);width:min(580px,94vw);max-height:78vh;background:rgba(20,20,28,0.98);border:1px solid rgba(191,90,242,0.35);border-radius:18px;box-shadow:0 32px 90px rgba(0,0,0,0.9);z-index:999995;display:none;flex-direction:column;overflow:hidden;transition:transform 0.22s cubic-bezier(0.34,1.3,0.64,1),opacity 0.2s;opacity:0;">
-  <!-- Titlebar -->
+<!-- COMPONENT 7: ASK ABOUT ME CHAT MODAL -->
+<div id="askme-overlay" onclick="closeAskMe()"></div>
+<div id="askme-panel">
   <div style="height:46px;background:rgba(32,32,44,0.99);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;padding:0 16px;gap:8px;flex-shrink:0;border-radius:18px 18px 0 0;user-select:none;position:relative;">
     <div style="width:12px;height:12px;border-radius:50%;background:#FF5F57;cursor:pointer;" onclick="closeAskMe()"></div>
     <div style="width:12px;height:12px;border-radius:50%;background:#FEBC2E;"></div>
@@ -481,11 +472,8 @@
       <span style="font-size:10px;font-weight:600;padding:1px 6px;border-radius:10px;background:rgba(191,90,242,0.2);color:#c8a0ff;border:1px solid rgba(191,90,242,0.4)">AI Assistant</span>
     </div>
   </div>
-  <!-- Messages -->
   <div id="chat-msgs" style="flex:1;overflow-y:auto;padding:20px 20px 10px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.15) transparent;"></div>
-  <!-- Suggestions -->
   <div id="chat-suggestions" style="padding:0 20px 12px;display:flex;flex-wrap:wrap;gap:6px;"></div>
-  <!-- Input -->
   <div style="padding:12px 16px;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:10px;align-items:center;flex-shrink:0;">
     <input id="chat-input" type="text" placeholder="Ask about Prajwal..." autocomplete="off"
       style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;font-size:13px;color:#fff;font-family:inherit;outline:none;transition:border-color 0.15s;"
@@ -496,22 +484,20 @@
   </div>
 </div>
 
-<!-- CERT MODAL -->
+<!-- CERTIFICATE PREVIEW MODAL -->
 <div id="cert-modal" onclick="closeCert()">
   <span id="cert-close" onclick="closeCert()">×</span>
   <img id="cert-modal-img" src="" alt="Certificate"/>
 </div>
 
-<!-- MOBILE VIEW -->
+<!-- COMPONENT 8: MOBILE VIEW CONTAINER -->
 <div id="mobile-view">
-  <!-- Fixed Top Header -->
   <div class="mob-header">
     <span class="mob-brand">Prajwal's Portfolio</span>
     <button class="mob-ai-btn" onclick="openAskMe()">✨ Ask AI</button>
   </div>
 
   <div class="mob-inner">
-    <!-- Hero Profile Card -->
     <div class="mob-hero-card" id="mob-about">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
         <img src="profile_portrait.jpg" alt="Prajwal" style="width:68px;height:68px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.25);box-shadow:0 6px 18px rgba(0,0,0,0.5);"/>
@@ -535,7 +521,6 @@
       </div>
     </div>
 
-    <!-- Featured Projects Section -->
     <div class="sec-title" id="mob-projects" style="margin:24px 0 12px;">Featured Projects</div>
     
     <div class="proj-card">
@@ -583,7 +568,6 @@
       </div>
     </div>
 
-    <!-- Certifications Section -->
     <div class="sec-title" id="mob-certs" style="margin:28px 0 12px;">Certifications (8 Total)</div>
     <div class="certs-grid" style="grid-template-columns: repeat(2, 1fr); gap: 10px;">
       <div class="cert-card" onclick="openCert('cert_tata.png')">
@@ -620,7 +604,6 @@
       </div>
     </div>
 
-    <!-- Tech Stack Section -->
     <div class="sec-title" id="mob-tech" style="margin:28px 0 12px;">Tech Stack</div>
     <div style="background:rgba(20,20,28,0.9);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:16px;font-family:'Fira Code',monospace;font-size:12px;">
       <div style="color:#28C840;margin-bottom:10px;font-weight:600;">@Prajwal % show tech stack</div>
@@ -630,7 +613,6 @@
       <div><span style="color:#28C840;">✓</span> <b>Specialization:</b> Graphite Portraiture, Glassmorphism</div>
     </div>
 
-    <!-- Contact Me Section -->
     <div class="sec-title" id="mob-contact" style="margin:28px 0 12px;">Contact Me</div>
     <div class="contact-grid" style="grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 24px;">
       <a href="https://github.com/PrajwalSharma08" target="_blank" class="contact-tile tile-github">
@@ -651,11 +633,9 @@
       </a>
     </div>
 
-    <!-- Download Resume Banner -->
     <a href="Prajwal_Sharma_Resume.pdf" download class="res-btn" style="display:block;text-align:center;padding:14px 20px;font-size:13px;">📄 Download Resume PDF</a>
   </div>
 
-  <!-- Fixed Bottom App Navigation Bar -->
   <div class="mob-bottom-nav">
     <a href="#mob-about" class="mob-nav-item">
       <span class="mob-nav-icon">👤</span>
@@ -684,8 +664,13 @@
   </div>
 </div>
 
-<!-- EXTERNAL JS MODULES -->
+<!-- MODULAR JS ARCHITECTURE (Imports dedicated section modules) -->
+<script src="js/clock.js"></script>
+<script src="js/hover.js"></script>
+<script src="js/windows.js"></script>
+<script src="js/draggable.js"></script>
+<script src="js/cert-modal.js"></script>
+<script src="js/askme-ui.js"></script>
 <script src="ask-me.js?v=5"></script>
-<script src="script.js"></script>
 </body>
 </html>

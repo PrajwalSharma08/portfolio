@@ -1,0 +1,181 @@
+<!-- MOBILE VIEW -->
+<div id="mobile-view">
+  <!-- Fixed Top Header -->
+  <div class="mob-header">
+    <span class="mob-brand">Prajwal's Portfolio</span>
+    <button class="mob-ai-btn" onclick="openAskMe()">✨ Ask AI</button>
+  </div>
+
+  <div class="mob-inner">
+    <!-- Hero Profile Card -->
+    <div class="mob-hero-card" id="mob-about">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+        <img src="profile_portrait.jpg" alt="Prajwal" style="width:68px;height:68px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.25);box-shadow:0 6px 18px rgba(0,0,0,0.5);"/>
+        <div>
+          <h1 style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.02em;">Prajwal Sharma</h1>
+          <p style="font-size:12px;color:rgba(255,255,255,0.58);margin-top:3px;">UI/UX Designer · Visual Artist · Python Developer</p>
+        </div>
+      </div>
+      <div class="badges-row" style="margin-bottom:14px;">
+        <span class="badge-pill hi">🟢 Open for Internships 2026</span>
+        <span class="badge-pill lo">🎨 UI/UX Design</span>
+        <span class="badge-pill lo">Python</span>
+        <span class="badge-pill lo">Figma</span>
+      </div>
+      <p class="win-bio" style="margin-bottom:16px;">B.Tech CSE student at BBS College Prayagraj (2022–2026). Operating at the intersection of visual artistry and functional digital design systems.</p>
+      
+      <div class="stats-row" style="margin-bottom:0;">
+        <div class="stat-box"><div class="stat-num" style="font-size:18px;">3+</div><div class="stat-lbl">Projects</div></div>
+        <div class="stat-box"><div class="stat-num" style="font-size:18px;">8</div><div class="stat-lbl">Certs</div></div>
+        <div class="stat-box"><div class="stat-num" style="font-size:18px;">4</div><div class="stat-lbl">Hackathons</div></div>
+      </div>
+    </div>
+
+    <!-- Featured Projects Section -->
+    <div class="sec-title" id="mob-projects" style="margin:24px 0 12px;">Featured Projects</div>
+    
+    <div class="proj-card">
+      <div class="proj-head">
+        <div class="proj-ico"><img src="viper_project.png" alt="VIPER"/></div>
+        <div class="proj-acts">
+          <a href="viper-case-study.html" class="proj-btn lv"><span class="live-dot"></span>Case Study</a>
+          <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
+        </div>
+      </div>
+      <div class="proj-name">VIPER — AI Security Interface</div>
+      <div class="proj-desc">High-fidelity UI/UX concept for an AI Security Operations Center featuring threat maps & alerts.</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Figma</span><span class="tech-tag">UI/UX</span><span class="tech-tag">Cyber Dark</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-head">
+        <div class="proj-ico"><img src="tradesight_project.png" alt="TradeSight"/></div>
+        <div class="proj-acts">
+          <a href="tradesight-case-study.html" class="proj-btn lv"><span class="live-dot"></span>Case Study</a>
+          <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
+        </div>
+      </div>
+      <div class="proj-name">TradeSight AI — Fintech Platform</div>
+      <div class="proj-desc">AI stock sentiment analysis dashboard built at Yukti Hackathon 2024 (AKTU Finalist).</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Python</span><span class="tech-tag">UI/UX</span><span class="tech-tag">Figma</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-head">
+        <div class="proj-ico"><img src="pencilastic_project.png" alt="Pencilastic"/></div>
+        <div class="proj-acts">
+          <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn lv"><span class="live-dot"></span>View</a>
+          <a href="https://github.com/PrajwalSharma08" target="_blank" class="proj-btn gh">⌘ GitHub</a>
+        </div>
+      </div>
+      <div class="proj-name">Pencilastic — Digital Art Gallery</div>
+      <div class="proj-desc">Minimal digital web gallery showcasing graphite pencil portrait artwork.</div>
+      <div class="tech-tags">
+        <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span>
+      </div>
+    </div>
+
+    <!-- Certifications Section -->
+    <div class="sec-title" id="mob-certs" style="margin:28px 0 12px;">Certifications (8 Total)</div>
+    <div class="certs-grid" style="grid-template-columns: repeat(2, 1fr); gap: 10px;">
+      <div class="cert-card" onclick="openCert('cert_tata.png')">
+        <img src="cert_tata.png" class="cert-thumb" alt="Tata"/>
+        <div class="cert-info"><div class="cert-org">Tata Group</div><div class="cert-name">Data Visualisation</div></div>
+      </div>
+      <div class="cert-card" onclick="openCert('cert_tata_cybersecurity.png')">
+        <img src="cert_tata_cybersecurity.png" class="cert-thumb" alt="Tata Cyber"/>
+        <div class="cert-info"><div class="cert-org">Tata Group</div><div class="cert-name">Cybersecurity Analyst</div></div>
+      </div>
+      <div class="cert-card" onclick="openCert('cert_deloitte.png')">
+        <img src="cert_deloitte.png" class="cert-thumb" alt="Deloitte"/>
+        <div class="cert-info"><div class="cert-org">Deloitte</div><div class="cert-name">Tech Consulting</div></div>
+      </div>
+      <div class="cert-card" onclick="openCert('cert_google.png')">
+        <img src="cert_google.png" class="cert-thumb" alt="Google"/>
+        <div class="cert-info"><div class="cert-org">Google</div><div class="cert-name">AI Essentials</div></div>
+      </div>
+      <div class="cert-card" onclick="openCert('cert_google_cloud.png')">
+        <img src="cert_google_cloud.png" class="cert-thumb" alt="Google Cloud"/>
+        <div class="cert-info"><div class="cert-org">Google Cloud</div><div class="cert-name">GenAI Fundamentals</div></div>
+      </div>
+      <div class="cert-card" onclick="openCert('cert_codsoft.png')">
+        <img src="cert_codsoft.png" class="cert-thumb" alt="CodSoft"/>
+        <div class="cert-info"><div class="cert-org">CodSoft</div><div class="cert-name">Python Internship</div></div>
+      </div>
+      <div class="cert-card" onclick="openCert('cert_hackwithindia.jpg')">
+        <img src="cert_hackwithindia.jpg" class="cert-thumb" alt="HackWithIndia"/>
+        <div class="cert-info"><div class="cert-org">HackWithIndia</div><div class="cert-name">Hackathon Cert</div></div>
+      </div>
+      <div class="cert-card" onclick="openCert('cert_gfg_syntax.png')">
+        <img src="cert_gfg_syntax.png" class="cert-thumb" alt="GFG"/>
+        <div class="cert-info"><div class="cert-org">GeeksforGeeks</div><div class="cert-name">Syntax Error</div></div>
+      </div>
+    </div>
+
+    <!-- Tech Stack Section -->
+    <div class="sec-title" id="mob-tech" style="margin:28px 0 12px;">Tech Stack</div>
+    <div style="background:rgba(20,20,28,0.9);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:16px;font-family:'Fira Code',monospace;font-size:12px;">
+      <div style="color:#28C840;margin-bottom:10px;font-weight:600;">@Prajwal % show tech stack</div>
+      <div style="margin-bottom:8px;"><span style="color:#28C840;">✓</span> <b>Languages:</b> Python, C/C++, HTML5, CSS3, JS, SQL</div>
+      <div style="margin-bottom:8px;"><span style="color:#28C840;">✓</span> <b>UI/UX Design:</b> Figma, Wireframes, Design Systems</div>
+      <div style="margin-bottom:8px;"><span style="color:#28C840;">✓</span> <b>Tools:</b> Git, GitHub, VS Code, Canva</div>
+      <div><span style="color:#28C840;">✓</span> <b>Specialization:</b> Graphite Portraiture, Glassmorphism</div>
+    </div>
+
+    <!-- Contact Me Section -->
+    <div class="sec-title" id="mob-contact" style="margin:28px 0 12px;">Contact Me</div>
+    <div class="contact-grid" style="grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 24px;">
+      <a href="https://github.com/PrajwalSharma08" target="_blank" class="contact-tile tile-github">
+        <div class="contact-tile-ico">🐙</div>
+        <div>Github</div>
+      </a>
+      <a href="https://www.linkedin.com/in/prajwal-sharma-015b98296" target="_blank" class="contact-tile tile-linkedin">
+        <div class="contact-tile-ico">💼</div>
+        <div>LinkedIn</div>
+      </a>
+      <a href="https://instagram.com/ps_artist_661" target="_blank" class="contact-tile tile-instagram">
+        <div class="contact-tile-ico">📷</div>
+        <div>Instagram</div>
+      </a>
+      <a href="mailto:manjumanoj1177@gmail.com" class="contact-tile tile-email">
+        <div class="contact-tile-ico">✉️</div>
+        <div>Email</div>
+      </a>
+    </div>
+
+    <!-- Download Resume Banner -->
+    <a href="Prajwal_Sharma_Resume.pdf" download class="res-btn" style="display:block;text-align:center;padding:14px 20px;font-size:13px;">📄 Download Resume PDF</a>
+  </div>
+
+  <!-- Fixed Bottom App Navigation Bar -->
+  <div class="mob-bottom-nav">
+    <a href="#mob-about" class="mob-nav-item">
+      <span class="mob-nav-icon">👤</span>
+      <span>About</span>
+    </a>
+    <a href="#mob-projects" class="mob-nav-item">
+      <span class="mob-nav-icon">📁</span>
+      <span>Projects</span>
+    </a>
+    <a href="#mob-certs" class="mob-nav-item">
+      <span class="mob-nav-icon">🏆</span>
+      <span>Certs</span>
+    </a>
+    <a href="#mob-tech" class="mob-nav-item">
+      <span class="mob-nav-icon">💻</span>
+      <span>Tech</span>
+    </a>
+    <a href="#mob-contact" class="mob-nav-item">
+      <span class="mob-nav-icon">📬</span>
+      <span>Contact</span>
+    </a>
+    <div class="mob-nav-item" onclick="openAskMe()">
+      <span class="mob-nav-icon">✨</span>
+      <span>Ask AI</span>
+    </div>
+  </div>
+</div>

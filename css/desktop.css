@@ -1,0 +1,225 @@
+/* ════════════════════════════════════════════════════
+   DESKTOP & WALLPAPER LAYOUT — Prajwal's Portfolio
+════════════════════════════════════════════════════ */
+
+/* DESKTOP CONTAINER — ROYAL BLUE GRADIENT */
+#desktop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 35%, #1e40af 0%, #1e3a8a 50%, #0b132b 100%);
+  transition: background 0.5s ease;
+}
+#wallpaper {
+  display: none;
+}
+
+/* MENU BAR */
+#menubar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 30px;
+  background: rgba(15, 12, 25, 0.65);
+  backdrop-filter: blur(25px) saturate(1.8);
+  -webkit-backdrop-filter: blur(25px) saturate(1.8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 90000;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  user-select: none;
+}
+.menubar-left { display: flex; align-items: center; gap: 16px; }
+.menubar-apple { font-size: 15px; cursor: default; }
+.menubar-brand { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.95); letter-spacing: -0.01em; }
+.menubar-item { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.78); cursor: pointer; transition: color 0.15s, background 0.15s; padding: 2px 8px; border-radius: 4px; }
+.menubar-item:hover { color: #fff; background: rgba(255,255,255,0.1); }
+.menubar-right { display: flex; align-items: center; gap: 12px; }
+.menubar-icon { font-size: 13px; color: rgba(255,255,255,0.75); cursor: pointer; }
+#menubar-time { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.9); min-width: 60px; text-align: right; }
+
+/* DESKTOP AREA */
+#desktop-area {
+  position: absolute;
+  top: 30px; left: 0; right: 0; bottom: 85px;
+  z-index: 1;
+}
+
+/* WELCOME BIG HERO TEXT — CENTERED & LOWERED */
+#welcome-wrap {
+  position: absolute;
+  top: 54%; left: 46%;
+  transform: translate(-50%, -40%);
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+  text-align: center;
+  width: min(88vw, 840px);
+}
+#welcome-small {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: clamp(15px, 2vw, 24px);
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.85);
+}
+#welcome-large {
+  font-family: 'Syne', 'Outfit', sans-serif;
+  font-size: clamp(56px, 9vw, 130px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  text-transform: lowercase;
+  text-shadow: 0 16px 50px rgba(0,0,0,0.8), 0 0 35px rgba(200, 160, 255, 0.22);
+}
+.hover-letter {
+  display: inline-block;
+  vertical-align: baseline;
+  transition: color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: all;
+  cursor: default;
+}
+.hover-letter:hover {
+  color: #c8a0ff;
+  transform: translateY(-6px) scale(1.08);
+  text-shadow: 0 0 25px rgba(200, 160, 255, 0.8);
+}
+
+/* 9:16 PORTRAIT CARD ON RIGHT SIDEBAR */
+.desktop-portrait-card {
+  position: absolute;
+  top: 48%;
+  right: 48px;
+  transform: translateY(-50%);
+  height: min(56vh, 430px);
+  aspect-ratio: 9/16;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.2);
+  z-index: 5;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s;
+}
+.desktop-portrait-card:hover {
+  transform: translateY(-54%) scale(1.04);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.85), 0 0 30px rgba(200, 160, 255, 0.4);
+}
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.portrait-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(10, 10, 18, 0.88) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px 14px;
+  user-select: none;
+}
+.portrait-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+.portrait-role {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 2px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+/* DESKTOP ICONS GRID (LEFT SIDEBAR — 2 COLUMNS, NO OVERFLOW) */
+.desktop-icon-grid {
+  position: absolute;
+  top: 18px; left: 24px;
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+  gap: 10px 16px;
+  z-index: 10;
+}
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+  min-width: 106px;
+}
+.desktop-icon:hover {
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(12px);
+  transform: translateY(-4px) scale(1.06);
+}
+.desktop-icon-emoji {
+  font-size: 68px;
+  line-height: 1;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
+}
+.desktop-icon-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.95), 0 0 5px rgba(0,0,0,0.9);
+  text-align: center;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* Realistic macOS PDF Document Icon — Extra Large */
+.doc-icon-graphic {
+  width: 54px; height: 66px;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f2f5 100%);
+  border-radius: 6px 14px 6px 6px;
+  position: relative;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.55), inset 0 1px 0 #ffffff;
+  border: 1px solid rgba(255,255,255,0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 8px 7px;
+  margin-bottom: 2px;
+}
+.doc-icon-graphic::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 15px; height: 15px;
+  background: #cbd5e1;
+  border-radius: 0 0 0 5px;
+  box-shadow: -1px 1px 3px rgba(0,0,0,0.25);
+}
+.doc-badge {
+  position: absolute;
+  top: 15px; left: 50%;
+  transform: translateX(-50%);
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 3px 8px rgba(239, 68, 68, 0.45);
+}
+.doc-lines { display: flex; flex-direction: column; gap: 4px; margin-top: 24px; }
+.doc-lines span { height: 2px; background: #94a3b8; border-radius: 2px; }
+.doc-lines span:nth-child(1) { width: 85%; }
+.doc-lines span:nth-child(2) { width: 100%; }
+.doc-lines span:nth-child(3) { width: 60%; }
